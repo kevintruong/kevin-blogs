@@ -1,0 +1,9 @@
+---
+title: "Embedded C, Object oriented programming - HOW TO"
+date: 2020-02-02T18:04:30+07:00
+draft: true
+---
+
+== Embedded C, Object oriented programming - HOW TO
+
+

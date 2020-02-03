@@ -1,0 +1,402 @@
+---
+title: "Git Internal"
+date: 2020-02-02T18:04:30+07:00
+draft: true
+---
+
+//= GIT INTERNAL
+//:author:Kevin Truong <kevin.truong.ds@gmail.com>
+//:toclevels: 4
+//:toc:
+//:sectnums:
+:source-highlighter: coderay
+:imagesdir: ./../../
+
+== Data structure
+
+Including 3 type of structure
+
+=== Blob
+
+* Blob : hashing of the file's byte (file content in bytes array)
+
+[[package_overview]]
+[.text-center]
+.Blob object -git internal structure
+image::git-internal/git_strcuture_object-blob.964129b5.png[align=center]
+
+* File Tree : hashing of names and folder definition with file blob.
+In another words, File Tree is hashing of filename/folder which blob belong.
+
+image::git-internal/git_strcuture_object-blob.964129b5.png[align=center]
+
+=== Tree Object
+
+* File Tree : A tree is simply a list of quadruples (permission, type, hash, name).
+the hash of tree is based on the contents of the tree, which means on the names, permissions, types, and hashes of its leaves.
+following is how to get detain about a tree object
+
+[source,bash]
+----
+# Using command git cat-file -p <hashing of commit>
+kevinrav@hieule-Latitude-5480:~/project/KEVIN/asciidoc-blog$ git cat-file -p b560f823709627385001c61d4c0e4e51a63e830f
+tree 841185ee3fda8e45b19b82cf6f9d5147a15dc2af
+parent d6853ae765c05a3ce7782eda2eec8bcc05fd6887
+author Vu Truong <vu.truong@veriksystems.com> 1574000727 +0700
+committer Vu Truong <vu.truong@veriksystems.com> 1574000727 +0700
+
+update info about git internal, tree object, and how git manage the change over time
+
+# git ls-tree <hashing of tree object> to get detain about its content.
+kevinrav@hieule-Latitude-5480:~/project/KEVIN/asciidoc-blog$ git ls-tree 841185ee3fda8e45b19b82cf6f9d5147a15dc2af
+100644 blob befa90d151167096820a3ebc582bd9c703dc2c92    .gitignore
+100644 blob 91a86a4e78b18d57299d21e0d1c3bcc552750242    Dockerfile
+100644 blob 5c813ce0af37cea1b5d4465814cda7cd24cb0242    Dockerfile.jenkins
+100644 blob d6594f703795d724851664f7c9c390c59d7d6a18    Jenkinsfile
+100644 blob 58731f2bf9d5c803061c62d63012931f1e3e7b68    README.adoc
+100755 blob c18360b5e66db7692e35de765c1ca315bf08e3d2    build_static_blog.sh
+040000 tree 24e6f2fbfd2f758dbf6a04592ec06e81ba8bdce2    docsearch
+040000 tree 528b09670205682054a93decc0453cdd39e13674    etc
+100644 blob 3fa51286d602962c631b070075cdd96923d43a83    gulpfile.js
+040000 tree 9a5246fe42eab6161e4d3269115b81a4c96a79e6    home
+100644 blob 1e90df6035e750da10db67101e4dd05c817c7805    kevin_antora_playbook.yml
+040000 tree ede637f699c21dd3dd5b3f0620805acb9ab27664    lib
+100644 blob 6a1c3bb8c756cb3a6fe3a49ff85ba094d7860e81    netlify.toml
+040000 tree 59273dedda0781b02609378157a8b66709ed83f9    netlify
+100644 blob 2693f70b2e8c7b4240db47f2d83697533ec04d3a    package-lock.json
+100644 blob 9a292e93e0b5ded0460f3d355e612ba2c77c30ec    package.json
+100644 blob 7e46ef34b18d768a430b626b377e657fbc022d15    production-antora-playbook.yml
+040000 tree b3f9a2be291f6ae562d3863f1bd85b06dc5af8e6    scripts
+040000 tree 0d5896d53bdd949a94273f032ebad4f028683b48    ui-bundle
+----
+
+About tree object, when its contents is changed then it led to git will create a new tree object.
+For example: we create new change in the current tree object by modify file README.adoc.
+Currenly, the `README.adoc` have hashing is `58731f2bf9d5c803061c62d63012931f1e3e7b68`
+for now make a commit, and the result should be like below:
+
+[source,bash]
+----
+kevinrav@hieule-Latitude-5480:~/project/KEVIN/asciidoc-blog$ git cat-file -p 83defeea0d72a2e2e235fd546c32328ed52b54e9
+tree 73465cd2cba1e655956c40b06ce9e62b9089c465
+parent b560f823709627385001c61d4c0e4e51a63e830f
+author Vu Truong <vu.truong@veriksystems.com> 1574003434 +0700
+committer Vu Truong <vu.truong@veriksystems.com> 1574003434 +0700
+
+add todo for README file
+kevinrav@hieule-Latitude-5480:~/project/KEVIN/asciidoc-blog$ git ^C
+kevinrav@hieule-Latitude-5480:~/project/KEVIN/asciidoc-blog$ git ls-tree 73465cd2cba1e655956c40b06ce9e62b9089c465
+100644 blob befa90d151167096820a3ebc582bd9c703dc2c92    .gitignore
+100644 blob 91a86a4e78b18d57299d21e0d1c3bcc552750242    Dockerfile
+100644 blob 5c813ce0af37cea1b5d4465814cda7cd24cb0242    Dockerfile.jenkins
+100644 blob d6594f703795d724851664f7c9c390c59d7d6a18    Jenkinsfile
+100644 blob 917449df8f8ad38979c86af887a76aed6ca341f2    README.adoc
+100755 blob c18360b5e66db7692e35de765c1ca315bf08e3d2    build_static_blog.sh
+040000 tree 24e6f2fbfd2f758dbf6a04592ec06e81ba8bdce2    docsearch
+040000 tree 528b09670205682054a93decc0453cdd39e13674    etc
+100644 blob 3fa51286d602962c631b070075cdd96923d43a83    gulpfile.js
+040000 tree 9a5246fe42eab6161e4d3269115b81a4c96a79e6    home
+100644 blob 1e90df6035e750da10db67101e4dd05c817c7805    kevin_antora_playbook.yml
+040000 tree ede637f699c21dd3dd5b3f0620805acb9ab27664    lib
+100644 blob 6a1c3bb8c756cb3a6fe3a49ff85ba094d7860e81    netlify.toml
+040000 tree 59273dedda0781b02609378157a8b66709ed83f9    netlify
+100644 blob 2693f70b2e8c7b4240db47f2d83697533ec04d3a    package-lock.json
+100644 blob 9a292e93e0b5ded0460f3d355e612ba2c77c30ec    package.json
+100644 blob 7e46ef34b18d768a430b626b377e657fbc022d15    production-antora-playbook.yml
+040000 tree b3f9a2be291f6ae562d3863f1bd85b06dc5af8e6    scripts
+040000 tree 0d5896d53bdd949a94273f032ebad4f028683b48    ui-bundle
+kevinrav@hieule-Latitude-5480:~/project/KEVIN/asciidoc-blog$
+----
+
+naturally, because the file `README.adoc` is change is content then led to the hashing is change from the old hashing number to new one is `917449df8f8ad38979c86af887a76aed6ca341f2` the as expected the hashing of tree object is change also.
+Or in another words, git create new tree object to store the current snapshot of data.
+
+[.text-center]
+.Tree object - git internal structure
+
+image::git-internal/git-internal/git_internal_object-tree.049e94f4.png[align="center"]
+
+=== Commit object
+
+* Commit: Metadata for author,commit, timestamp and message.
+Then hashing the metadata we have hash of commit
+
+[.text-center]
+.Commit Object - git internal structure
+image::git-internal/object-commit.076d6b0d.png[align="center"]
+
+With 3 types of data structure, Bellow is my thought about them:
+When we make commit by command bellow
+
+[source,bash]
+----
+git add -u # add all modified , prepare for a commit
+# for example there are 2 modified files: test1.txt and test2.txt be added
+git commit -m "this is my commit"
+----
+
+step 1: git will hashing content of added file `test1.txt` and `test2.txt`
+
+[source,text]
+----
+for example:
+test1.txt hashing : 0xabcd
+test2.txt hashing : 0xcdef
+----
+
+step 2: git also create hahshing filename and its parent folder of added file.
+If the hash value is not exist, git will create an entry to stored the new hash value.
+step 3: git hashing the metadata of commit.
+Here have some tricky:
+
+* the hashing of commit will content the hashing of tree which changed file belong
+* Hashing of blob files will be linked to tree.
+Each time the file changed will create a new hash for the file. the new hash will add to the tree
+* when a file not changed but move or rename , its blob hashing will remain, but it will changed the tree hashing.
+At the time, the blod hashing is linked to the new hashing tree.
+* We know about metadata hashing that with each commit will hashing the metadata. the hashing metadata contain hashing tree, the hashing tree contained the linked hashing blob of added files. so, from hashing commit we can found hashing blob of added files in the commit.
+And also easy to comparing the change between the current with last one.
+Simply by vimdiff the current blob with the previous.
+Or want to get changing history of a file, git can get the history of the file simple by search in linked list of commit to find all commits which involved changing on the file.
+
+[.text-center]
+.GIT Object
+image::git-internal/objects-example.d8743d1c.png[align="center"]
+
+For example:
+
+* We want to find info of a commit.
+
+** We know that the commit hashing contained hashing tree,author, timestamp.
+from hashing tree contained hashing blob of added files and hashing tree of its parent. with each hashing blob , we can file file changes specific, with each hashing tree parent, we know the change belongs what parent.
+The process will be recursived to the GIT ROOT or the the top level of tree folder has changed.
+Conclusion, from commit hashing, we know all change in this commit by searching recursive all info linked to its hashing.
+* We want to find all change/commit in a folder.
+
+[source,bash]
+----
+cd "<your git sub folder>"
+git log ./
+----
+
+** we know about git will store tree hashing of each folder.
+Then the work of get all commint/change in a specific folder is simple by searching all commit which have the tree hashing of folder.
+
+By using three different types of structure, git can provide all we need about a source project.
+
+=== Example
+
+.Commit,Tree, Blob Object and how there linked together
+image::git-internal/tree_object_linking.png[]
+
+According to the image above, From commit 1, it will link to a tree call `d8329f` , the tree involved a blob of test.txt.
+The blob has hashing is `83baae`, the containt of blob simple is text `version 1`.
+
+so, in the second commit, we make a change on test.txt file and also add new file call `new.txt` with its blob hashing is `fa49b0`.
+At the time, because there new file added to the folder (new.txt) then git will create another tree object to store the current blob files and also make a change on `test.txt` file from `version 1` to `version 2`.
+Then git also create new hashing blob if the file `test.txt` and add it to the new tree object.
+
+about the third commit, we add a new folder (tree) call bak.
+Contain the file `test.txt` of first commit and it contains `version 1` as first commit.
+so, Again, the hash of tree object is based on the contents of the tree, which means on the names, permissions, types, and hashes of its leaves.
+Then the tree object of folder `bak` is the same with tree object of the first commit. `d8329f`.
+The I will see in the graph that.
+The third commit link to a new tree object, the tree object contains info formation of the old one: blob of test.txt and new.txt, And has a new tree object of `bak`
+the tree object of `bak` will have the hash the same with the hashing tree of the first commit.
+
+== Git merge
+
+=== Brief
+
+We already know about git internal.
+Basically, there use three types of strureture and linked togeter to to make git become a perfect source version control and basic difference between `git merge` and `git rebase`.
+The next thing is basic way to use git to manage your source code in a project.
+
+.prepare for merge/rebase
+image::git-internal/merge-rebase01.svg[align="center"]
+
+Short Version:
+
+* Merge takes all the changes in one branch and merges them into another branch in one commit.
+* Rebase says I want the point at which I branched to move to a new starting point So when do you use either one?
+
+In another word (Long answer):
+
+* Merge Let's say you have created a branch for the purpose of developing a single feature.
+When you want to bring those changes back to master, you probably want merge (you don't care about maintaining all of the interim commits).
+
+.Merge feature to master
+image::git-internal/merge-commit02.svg[align="center"]
+
+* Rebase A second scenario would be if you started doing some development and then another developer made an unrelated change.
+You probably want to pull and then rebase to base your changes from the current version from the repo.
+
+.Rebase feature to master
+image::git-internal/rebase-commit03.svg[align="center"]
+
+<<<<<<< HEAD so, what should I use `git merge` or `git merge --no-ff` or `git rebase`.
+As I thought It depends on your git flow working or your company policy.
+with me, I will use `git rebase` for
+
+==== Git merge
+
+* Git merge explicit (Merge non-fast forward)
+
+.Merge non-fast-forward
+image::git-internal/what-is-a-merge.gif[align=center]
+=======
+
+so, what should I use `git rebase` or `git merge`.
+As I thought It depends on your git flow working.
+with me, I will use `git rebase` for
+
+=== Git merge explanation
+
+==== Git merge explicit (Merge non-fast forward)
+
+** GIT merge command
+
+[source,bash]
+----
+git checkout feature
+git merge master
+#or simple just one command to merge feature branch on master
+git merge feature master
+----
+
+* Description
+** git create a new commit with unify the work done in two branch.
+The commit will involve 2 parent commit.
+One come from the latest commit of the current branch, the other parent is latest parent of master.
+We can check it by using command
+
+[source,shell]
+----
+git cat-file -p "<your commit hashing >"
+----
+
+For example
+
+.Git merged master to blog_git_internal_and_my_workflow
+image::git-internal/git_merge_log_graph.jpg[align="center"]
+
+As you can see the commit of the merge commit is `d6853ae765c05a3ce7782eda2eec8bcc05fd6887` then the output of command already told above is `git cat-file -p d6853ae765c05a3ce7782eda2eec8bcc05fd6887`.
+The return output is
+
+[source,plaintext]
+----
+kevinrav@hieule-Latitude-5480:~/project/KEVIN/asciidoc-blog$ git cat-file -p d6853ae765c05a3ce7782eda2eec8bcc05fd6887
+tree 1503e53f338437a111672182a563ed577526acf6
+parent 63bf84ffb98e37f35e7ba70a997524012af3f135
+parent caa9353add623c915c97ac45f1c8b96129d22c26
+author Vu Truong <vu.truong@veriksystems.com> 1573831158 +0700
+committer Vu Truong <vu.truong@veriksystems.com> 1573831158 +0700
+
+Merge branch 'master' into blog_git_internal_and_my_workflow
+----
+
+We could see three involve a tree hashing and 2 different parent.
+About 2 parent is the hashing of two commit: one is latest commit of branch master, the other is latest commit of branch `blog_...`.
+Take a look on the tree by comment `git ls-tree
+1503e53f338437a111672182a563ed577526acf6`.
+The return output is
+
+[source,plaintext]
+----
+100644 blob befa90d151167096820a3ebc582bd9c703dc2c92    .gitignore
+100644 blob 91a86a4e78b18d57299d21e0d1c3bcc552750242    Dockerfile
+100644 blob 5c813ce0af37cea1b5d4465814cda7cd24cb0242    Dockerfile.jenkins
+100644 blob d6594f703795d724851664f7c9c390c59d7d6a18    Jenkinsfile
+100644 blob 58731f2bf9d5c803061c62d63012931f1e3e7b68    README.adoc
+100755 blob c18360b5e66db7692e35de765c1ca315bf08e3d2    build_static_blog.sh
+040000 tree 24e6f2fbfd2f758dbf6a04592ec06e81ba8bdce2    docsearch
+040000 tree 528b09670205682054a93decc0453cdd39e13674    etc
+100644 blob 3fa51286d602962c631b070075cdd96923d43a83    gulpfile.js
+040000 tree 4b22d32debf196c90cb61f14165fc4e7e25d9122    home
+100644 blob 1e90df6035e750da10db67101e4dd05c817c7805    kevin_antora_playbook.yml
+040000 tree ede637f699c21dd3dd5b3f0620805acb9ab27664    lib
+100644 blob 6a1c3bb8c756cb3a6fe3a49ff85ba094d7860e81    netlify.toml
+040000 tree 59273dedda0781b02609378157a8b66709ed83f9    netlify
+100644 blob 2693f70b2e8c7b4240db47f2d83697533ec04d3a    package-lock.json
+100644 blob 9a292e93e0b5ded0460f3d355e612ba2c77c30ec    package.json
+100644 blob 7e46ef34b18d768a430b626b377e657fbc022d15    production-antora-playbook.yml
+040000 tree b3f9a2be291f6ae562d3863f1bd85b06dc5af8e6    scripts
+040000 tree 0d5896d53bdd949a94273f032ebad4f028683b48    ui-bundle
+----
+
+look like the tree is containt hashing of GIT ROOT dir.
+The tree will store a hashing of all blob of files contain in ROOT DIR Acording to above section, each tree contain hashing of all blob its contain.
+
+
+.Merge non-fast-forward in action
+image::git-internal/what-is-a-merge.gif[align=center]
+
+==== Git merge fast forward/rebase
+
+>>>>>>> 0b7f87acb3b32a970becc244183c46ce394b65f1
+
+by default When you merge a branch to master.
+If the master has not any change from it fork to feature branch.
+Then when we merge the feature to the master, Git will not create a merge commit by default, in stead of that, git will move all commit in feature branch to master branch.
+It is called git commit fast forward.
+In another words, it could also git rebase.
+Basically, git rebase can understand like this.
+When we make a git rebase a feature branch with master by command
+
+[source,bash]
+----
+git checkout fea_example
+git rebase master
+----
+
+git will try to move the fork commit from the old to the latest commit of master branch.
+
+image::git-internal/git-rebase-in-action.svg[]
+in the image above, We can see that git will move the fork commit from the old to the new
+
+.Merge on fast forward/rebase
+image::git-internal/what-is-a-fast-forward.gif[align=center]
+
+=======
+image::git-internal/what-is-a-fast-forward.gif[align="center"]
+The different betwen git merge fast forward and git rebase is only make git merge fast forward from branch (A) with another B only when A is on the latest commit which commit B fork from.
+Git base in another way , asking GIT to update the fork commit of B from the latest one of A if A has new commit.
+Then when you make a git merge B to A then it should be a git merge fast forward (if --no-ff does not declare).
+We could understand that git rebase is pre-process state for `git merge fast forward`
+
+==== Git merge squash
+
+* Command
+
+[source,bash]
+----
+git checkout master
+git merge --squash "<your_feature_branch"
+----
+
+* Description
+** GIT compacts your commits in feature branch into one
+** GIT merge the new compact commit to master
+
+.Squash on merge in action
+image::git-internal/squash-on-merge.gif[align=center]
+
+for example:
+
+[source,bash]
+----
+git checkout master
+git merge --squash fea_a
+----
+
+
+`git merge --squash` will rewrite you history by compose all commit in the branch `fea_a` before make a git merge the master with new squash commit
+
+
+== Reference
+
+https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase[git-rebase-atlassian]
+
+https://git-scm.com/book/en/v2/Git-Internals-Git-Objectsp[Git Internal - Git Objects]
+
+

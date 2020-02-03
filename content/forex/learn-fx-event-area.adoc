@@ -1,0 +1,47 @@
+---
+title: "Price Action Learning"
+date: 2020-02-02T18:04:30+07:00
+draft: true
+---
+
+:imagesdir: ./../../
+
+
+
+== Event area in FX market
+Event area mean the zone market will break it swing or it break the
+support level. in the are will happend some kind of signal like:
+
+- Inside bar for strong directional move up or down
+- Reversal swing with signal of pin bar/fakey or tailed bar
+- or strong burst of momentum without price action signal
+
+image::forex/event_area_line.png[]
+
+image::forex/event-area-candle.png[]
+
+== How to trade event areas
+Make sure about the rules of number one
+
+* Lower time frame (4 hours) to get signal, double check with 1 day time frame
+* using line chart to detect the trend and important events, There important events include
+** Swing point event
+** break support/retriction level
+
+image::forex/events.png[]
+
+* Detect trende market using patter Higher-high and Lower-low for martket up
+or using higher-low to detect what is event area type need to analyst
+
+image::forex/trend-detect.png[]
+
+* consider about blind entries at event areas
+
+image::forex/example_analyst_1.png[]
+
+
+== Price action signal
+=== Tailed bars
+=== Pin bars
+
+image::forex/pin-bar-price-action.png[]
