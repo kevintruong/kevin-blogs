@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <title>Dnsmasq Dhcp How To</title>
+
+  <meta name="generator" content="Hugo 0.62.2" />
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <!-- ** Plugins Needed for the Project ** -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://blogs.ravstudio.me/plugins/bootstrap/bootstrap.min.css">
+
+  <!-- themefy-icon -->
+  <link rel="stylesheet" href="https://blogs.ravstudio.me/plugins/themify-icons/themify-icons.css">
+
+  <!-- highlight -->
+  <link rel="stylesheet" href="https://blogs.ravstudio.me/plugins/highlight/hybrid.css">
+
+  <!--Favicon-->
+  <link rel="icon" href="https://blogs.ravstudio.me/images/favicon.png" type="image/x-icon">
+
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+  
+  <style>
+  :root{
+    --primary-color:#02007e;
+    --secondary-color:#f9f9f9;
+    --text-color:#636363;
+    --text-color-dark:#242738;
+    --white-color:#ffffff;
+    --font-family:Lato;
+  }
+  </style>
+
+<!-- Main Stylesheet -->
+
+<link rel="stylesheet" href="https://blogs.ravstudio.me/css/style.min.css" media="screen">
+
+<!-- jquiry -->
+<script src="https://blogs.ravstudio.me/plugins/jquery/jquery-1.12.4.js"></script>
+
+<!-- jquary ui -->
+<script src="https://blogs.ravstudio.me/plugins/jquery/jquery-ui.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://blogs.ravstudio.me/plugins/bootstrap/bootstrap.min.js"></script>
+
+<!-- match-height JS -->
+<script src="https://blogs.ravstudio.me/plugins/match-height/jquery.matchHeight-min.js"></script>
+
+<!-- highlight -->
+<script src="https://blogs.ravstudio.me/plugins/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body>
+  
+  <!-- navigation -->
+  <header class="shadow-bottom sticky-top bg-white">
+    <div class="container">
+      <nav class="navbar navbar-expand-md navbar-light">
+  <a class="navbar-brand" href="/">
+    
+    
+    
+    Kevin-Truong
+    
+  </a>
+  <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+    aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse text-center" id="navigation">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="/">Home</a>
+      </li>
+      
+      
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="/pages">Blogs</a>
+      </li>
+      
+      
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          docs
+        </a>
+        <div class="dropdown-menu">
+          
+          <a class="dropdown-item" href="/forex">Forex</a>
+          
+          <a class="dropdown-item" href="/Travelling">Travelling</a>
+          
+        </div>
+      </li>
+      
+      
+    </ul>
+    
+    <select class="lang-list dark" id="select-language" onchange="location = this.value;">
+      
+      
+      
+      
+      
+      
+      
+      
+      <option id="en" value="https://blogs.ravstudio.me/pages/dnsmasq-dhcp-how-to/" selected>En
+      </option>
+      
+      
+      
+      
+      
+      
+    </select>
+    
+  </div>
+</nav>
+    </div>
+  </header>
+  <!-- /navigation -->
+  
+  <div id="content">
+
+<!-- details page -->
+<section class="single section bg-gray pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="mb-5 bg-white p-4 sticky-top top-100">
+          <ul class="list-styled">
+            
+            
+            <a class="d-block h4 back-btn" href="https://blogs.ravstudio.me/"></a>
+            
+            
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/" title="Blogging" class="sidelist
+  parent
+  
+  ">
+  <a href="https://blogs.ravstudio.me/pages/">
+    Blogging
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/dnsmasq-dhcp-how-to/" title="Dnsmasq Dhcp How To" class="sidelist
+  
+  active
+  ">
+  <a href="https://blogs.ravstudio.me/pages/dnsmasq-dhcp-how-to/">
+    Dnsmasq Dhcp How To
+  </a>
+  
+  
+
+
+    
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/design-of-everything/" title="Design of everything" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/pages/design-of-everything/">
+    Design of everything
+  </a>
+  
+  
+
+
+    
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/docker-what-is-it/" title="Docker - What it is" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/pages/docker-what-is-it/">
+    Docker - What it is
+  </a>
+  
+  
+
+
+    
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/eframework-my-embedded-framework/" title="eFramework - A tiny embedded framework" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/pages/eframework-my-embedded-framework/">
+    eFramework - A tiny embedded framework
+  </a>
+  
+  
+
+
+    
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/embedded-c-object-oriented-programming/" title="Embedded C, Object oriented programming - HOW TO" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/pages/embedded-c-object-oriented-programming/">
+    Embedded C, Object oriented programming - HOW TO
+  </a>
+  
+  
+
+
+    
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/filecracker-vs-docker-in-performance/" title="FileCracker vs Docker - Performance benchmark" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/pages/filecracker-vs-docker-in-performance/">
+    FileCracker vs Docker - Performance benchmark
+  </a>
+  
+  
+
+
+    
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/git-describe-and-my-work-flow/" title="Git Internal" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/pages/git-describe-and-my-work-flow/">
+    Git Internal
+  </a>
+  
+  
+
+
+    
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/my-git-working-flow/" title="Git working flow" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/pages/my-git-working-flow/">
+    Git working flow
+  </a>
+  
+  
+
+
+    
+    
+  </ul>
+</li>
+
+
+
+            
+            
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/forex/" title="Forex" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/forex/">
+    Forex
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/forex/learn-fx-event-area/" title="Price Action Learning" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/forex/learn-fx-event-area/">
+    Price Action Learning
+  </a>
+  
+  
+
+
+    
+    
+  </ul>
+</li>
+
+
+
+            
+            
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/travelling/" title="Travelling" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/travelling/">
+    Travelling
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/travelling/this-is-my-post/" title="This Is My Post" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/travelling/this-is-my-post/">
+    This Is My Post
+  </a>
+  
+  
+
+
+    
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/travelling/my-first-post/" title="My First Post" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/travelling/my-first-post/">
+    My First Post
+  </a>
+  
+  
+
+
+    
+    
+  </ul>
+</li>
+
+
+
+            
+            
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/faq/" title="Frequently Asked Questions" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/faq/">
+    Frequently Asked Questions
+  </a>
+  
+  
+
+
+            
+            
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/contact/" title="Got Any Questions" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/contact/">
+    Got Any Questions
+  </a>
+  
+  
+
+
+            
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="p-5 bg-white">
+          <h2 class="mb-5">Dnsmasq Dhcp How To</h2>
+          
+          <div class="content"><div class="sect1">
+<h2 id="_how_dnsmasq_dhcp_allocate_ip_address_for_dhcp_client">How dnsmasq-dhcp allocate Ip address for dhcp client</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_dhcp_sequences">DHCP sequences</h3>
+<div class="imageblock">
+<div class="content">
+<img src="../../static/blogs/file.png" alt="file">
+</div>
+</div>
+<div class="paragraph">
+<p>at begining, there 4 step to complete DHCP request.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>DHCP Discovery (client send)</p>
+</li>
+<li>
+<p>DHCP Offer (server send)</p>
+</li>
+<li>
+<p>DHCP Request (client send)</p>
+</li>
+<li>
+<p>DHCP Ack (server send)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>there have a exception case with window. that window dhcp client will issue
+inform dhcp message (broadcast) in port 67 that the window client will use a
+address , if the address is valid , server will send a unicast dhcp ack in new connection
+to the client (port 68)</p>
+</div>
+<div class="paragraph">
+<p>for renewing, client simple send unicast dhcp request to server, server simple send unicast dhcp ack
+responds if there ip address is avai. Otherwise, the message response should be NACK</p>
+</div>
+<div class="paragraph">
+<p>for Release, client just simple send dhcp lease message to server.</p>
+</div>
+<div class="paragraph">
+<p>Above is simple explain about dhcp request/allocate sequence.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_dnsmasq_handle_dhcp_request_allocate">How dnsmasq handle dhcp request/allocate</h3>
+<div class="paragraph">
+<p>dnsmasq will handle dhcp request follow the dhcp sequences already explain above.
+detail about how it implement could be so long, then I only explain what I see
+while make patch for it.</p>
+</div>
+<div class="paragraph">
+<p>dnsmasq follow rfc2131 to implement dhcp protocol.
+client send dhcp-discovery &#8658; dnsmasq &#8658; send hdcp-offer.
+first of all, dnsmasq will find in lease list (back up in a lease file ) obtain
+all ip address already provide for client.</p>
+</div>
+<div class="paragraph">
+<p>the lease list will load from lease file each time dnsmasq start/restart
+by search physical address (MAC address) of client in lease list. dnsmasq will
+reuse the ip-address with already provided to specific client.</p>
+</div>
+<div class="paragraph">
+<p>with provided ip address clients, dnsmasq will reuse the provided ip address.
+The provided ip address only allocate to another client in case dnsmasq has not other choise.
+for example run out ip address to allocate which lead to must reuse ip address of client who already send dhcp lease message.</p>
+</div>
+<div class="paragraph">
+<p>back to dnsmasq, with first time dhcp allocate to dhcp client, dnsmasq will handle discovery request
+from it. First of all it will looking for whether or not the client has been allocated.
+If it not, dhcp will run <code>address_allocate</code>, basically, the function will pick a available ip address based on option
+<code>--dhcp_sequential_ip</code> or not. In another words, It will allocate available IP in sequential or using
+hashing algorithm to get unique avai ip address in range.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">if (option_bool(OPT_CONSEC_ADDR))
+	    /* seed is largest extant lease addr in this context */
+	    start = lease_find_max_addr(c);
+	  else
+	    /* pick a seed based on hwaddr */
+	    start.s_addr = htonl(ntohl(c-&gt;start.s_addr) +
+				 ((j + c-&gt;addr_epoch) % (1 + ntohl(c-&gt;end.s_addr) - ntohl(c-&gt;start.s_addr))));
+
+	  /* iterate until we find a free address. */
+	  addr = start;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Base on the current implement I think it should be a problems in how dnsmasq allocate available IP address
+assuming that We have dhcp range from 192.168.0.10 (min) and 192.168.0.100 (max), then the pool size is 90 ip address</p>
+</div>
+<div class="paragraph">
+<p>The dnsmasq using option <code>--dhcp-sequential-ip</code> then we have many dhcp client allocate by the dnsmasq from
+<code>192.168.0.10</code> to <code>192.168.30</code>. In there time, using another dhcp client send dhcp request or dhcp discovery with option 50
+(requested ip address) the requested ip address is <code>192.168.0.80</code></p>
+</div>
+<div class="paragraph">
+<p>Based on the current implement of dnsmasq with options <code>dhcp-sequential-ip</code> it should have issue there.
+that the function <code>lease_find_max_addr</code> will return the lease object of <code>192.168.0.80</code>
+mean we will only have 9 availabe ipaddress actual compare to <code>69</code> expected.</p>
+</div>
+<div class="paragraph">
+<p>so there must have another implement for smarter handle the case.
+it turn the find max lease address into math work search min and get max in round.</p>
+</div>
+<div class="paragraph">
+<p>for example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The ipaddress already allocated can be: <code>20,1,2,3,4,30,31,32,50,60,70</code>
+the simple way is sort the list in order, find max in round from min. the sorted lease list is
+<code>1,2,3,4,20,30,31,32,50,60,70</code>. The min of lease is 1 and max in round is 4.
+to archived it then need to modified the implement of allocate_address. need to sort after allocate
+there have ipv4 and ipv6 which dnsmasq-dhcp will allocate.
+Then need to devide and conquere:</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+          
+          <p class="post-meta border-bottom pb-3 mb-0 mt-3">Updated on 04 Feb 2020</p>
+          <nav class="pagination mt-3">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+
+            
+            <a class="nav nav-prev" href="https://blogs.ravstudio.me/pages/"><i class="ti-arrow-left mr-2"></i> <span class="d-none d-md-block">Blogging</span></a>
+            
+            
+            <a class="nav nav-next" href="https://blogs.ravstudio.me/pages/design-of-everything/"> <span class="d-none d-md-block">Design of everything</span><i class="ti-arrow-right ml-2"></i></a>
+            
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /details page -->
+
+
+
+
+
+
+  </div><!-- footer -->
+<footer class="section bg-gray pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 text-md-left text-center">
+       <p>The Hugo Documents are copyright © <a href="https://gethugothemes.com/">gethugothemes</a> 2020.</p>
+      </div>
+      <div class="col-md-4 text-md-right text-center">
+        <ul class="list-inline mb-3">
+          
+          <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="https://www.facebook.com/Vudevil"><i class="ti-facebook"></i></a></li>
+          
+          <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i class="ti-twitter-alt"></i></a></li>
+          
+          <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i class="ti-vimeo-alt"></i></a></li>
+          
+          <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i class="ti-linkedin"></i></a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- /footer -->
+
+<!-- Main Script -->
+
+<script src="https://blogs.ravstudio.me/js/script.min.js"></script></body>
+
+</html>
