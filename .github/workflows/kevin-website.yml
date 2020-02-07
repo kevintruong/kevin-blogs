@@ -10,7 +10,7 @@ on:
 env:
   PROJECT_ID: ${{ secrets.RUN_PROJECT }}
   RUN_REGION: asia-northeast1
-  SERVICE_NAME: kevin-website
+  SERVICE_NAME: kevin-blogs-cloudrun
 
 jobs:
   setup-build-deploy:
@@ -43,3 +43,4 @@ jobs:
             --region $RUN_REGION \
             --image gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA \
             --platform managed
+            --allow-unauthenticated
