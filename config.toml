@@ -1,6 +1,6 @@
 ################################# Default configuration ###################
 # provide your domain here
-baseURL = "https://examplesite.com/"
+baseURL = "https://blogs.ravstudio.me"
 # theme
 theme = "dot"
 # site title
