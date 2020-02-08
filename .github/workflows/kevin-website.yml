@@ -21,17 +21,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Publish Site
-        uses: chabad360/hugo-actions@master
-        with:
-          buildPath: 'public'
-          # Use if you have a need to build the site to another directory
-          hugoVersion: 'extended_0.62.2'
-          # Use if your site requires a specific version of Hugo
-          # Append "extended_" to the begining to use Hugo Extended
-          args: -D
-          # Use if you want to pass some custom arguments to Hugo
-
       # Setup gcloud CLI
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
