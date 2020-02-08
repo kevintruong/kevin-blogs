@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/fr/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://blogs.ravstudio.me/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://blogs.ravstudio.me/fr/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/fr/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://blogs.ravstudio.me/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://blogs.ravstudio.me/fr/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/fr/tags/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://blogs.ravstudio.me/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://blogs.ravstudio.me/fr/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/fr/contact/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://blogs.ravstudio.me/contact/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://blogs.ravstudio.me/fr/contact/"
+                />
+  </url>
+  
+</urlset>

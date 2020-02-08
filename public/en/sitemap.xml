@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/pages/dnsmasq-dhcp-how-to/</loc>
+    <lastmod>2020-02-04T10:58:11+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/</loc>
+    <lastmod>2020-02-04T10:58:11+07:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://blogs.ravstudio.me/fr/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://blogs.ravstudio.me/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/pages/design-of-everything/</loc>
+    <lastmod>2020-02-02T18:04:30+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/pages/docker-what-is-it/</loc>
+    <lastmod>2020-02-02T18:04:30+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/pages/eframework-my-embedded-framework/</loc>
+    <lastmod>2020-02-02T18:04:30+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/pages/embedded-c-object-oriented-programming/</loc>
+    <lastmod>2020-02-02T18:04:30+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/pages/filecracker-vs-docker-in-performance/</loc>
+    <lastmod>2020-02-02T18:04:30+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/pages/git-describe-and-my-work-flow/</loc>
+    <lastmod>2020-02-02T18:04:30+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/pages/my-git-working-flow/</loc>
+    <lastmod>2020-02-02T18:04:30+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/forex/learn-fx-event-area/</loc>
+    <lastmod>2020-02-02T18:04:30+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/travelling/this-is-my-post/</loc>
+    <lastmod>2020-01-08T21:31:12+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/travelling/my-first-post/</loc>
+    <lastmod>2020-01-08T21:24:05+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/pages/</loc>
+    <lastmod>2018-12-28T11:02:05+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/forex/</loc>
+    <lastmod>2018-12-28T11:02:05+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/travelling/</loc>
+    <lastmod>2018-12-28T11:02:05+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://blogs.ravstudio.me/fr/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://blogs.ravstudio.me/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/contact/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://blogs.ravstudio.me/fr/contact/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://blogs.ravstudio.me/contact/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://blogs.ravstudio.me/tags/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://blogs.ravstudio.me/fr/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://blogs.ravstudio.me/tags/"
+                />
+  </url>
+  
+</urlset>

@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <title>Git Internal</title>
+
+  <meta name="generator" content="Hugo 0.62.2" />
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <!-- ** Plugins Needed for the Project ** -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://blogs.ravstudio.me/plugins/bootstrap/bootstrap.min.css">
+
+  <!-- themefy-icon -->
+  <link rel="stylesheet" href="https://blogs.ravstudio.me/plugins/themify-icons/themify-icons.css">
+
+  <!-- highlight -->
+  <link rel="stylesheet" href="https://blogs.ravstudio.me/plugins/highlight/hybrid.css">
+
+  <!--Favicon-->
+  <link rel="icon" href="https://blogs.ravstudio.me/images/favicon.png" type="image/x-icon">
+
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+  
+  <style>
+  :root{
+    --primary-color:#02007e;
+    --secondary-color:#f9f9f9;
+    --text-color:#636363;
+    --text-color-dark:#242738;
+    --white-color:#ffffff;
+    --font-family:Lato;
+  }
+  </style>
+
+<!-- Main Stylesheet -->
+
+<link rel="stylesheet" href="https://blogs.ravstudio.me/css/style.min.css" media="screen">
+
+<!-- jquiry -->
+<script src="https://blogs.ravstudio.me/plugins/jquery/jquery-1.12.4.js"></script>
+
+<!-- jquary ui -->
+<script src="https://blogs.ravstudio.me/plugins/jquery/jquery-ui.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://blogs.ravstudio.me/plugins/bootstrap/bootstrap.min.js"></script>
+
+<!-- match-height JS -->
+<script src="https://blogs.ravstudio.me/plugins/match-height/jquery.matchHeight-min.js"></script>
+
+<!-- highlight -->
+<script src="https://blogs.ravstudio.me/plugins/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+<body>
+  
+  <!-- navigation -->
+  <header class="shadow-bottom sticky-top bg-white">
+    <div class="container">
+      <nav class="navbar navbar-expand-md navbar-light">
+  <a class="navbar-brand" href="/">
+    
+    
+    
+    Kevin-Truong
+    
+  </a>
+  <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+    aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse text-center" id="navigation">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="/">Home</a>
+      </li>
+      
+      
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="/pages">Blogs</a>
+      </li>
+      
+      
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          docs
+        </a>
+        <div class="dropdown-menu">
+          
+          <a class="dropdown-item" href="/forex">Forex</a>
+          
+          <a class="dropdown-item" href="/Travelling">Travelling</a>
+          
+        </div>
+      </li>
+      
+      
+    </ul>
+    
+    <select class="lang-list dark" id="select-language" onchange="location = this.value;">
+      
+      
+      
+      
+      
+      
+      
+      
+      <option id="en" value="https://blogs.ravstudio.me/pages/git-describe-and-my-work-flow/" selected>En
+      </option>
+      
+      
+      
+      
+      
+      
+    </select>
+    
+  </div>
+</nav>
+    </div>
+  </header>
+  <!-- /navigation -->
+  
+  <div id="content">
+
+<!-- details page -->
+<section class="single section bg-gray pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="mb-5 bg-white p-4 sticky-top top-100">
+          <ul class="list-styled">
+            
+            
+            <a class="d-block h4 back-btn" href="https://blogs.ravstudio.me/"></a>
+            
+            
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/" title="Blogging" class="sidelist
+  parent
+  
+  ">
+  <a href="https://blogs.ravstudio.me/pages/">
+    Blogging
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/dnsmasq-dhcp-how-to/" title="Dnsmasq Dhcp How To" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/pages/dnsmasq-dhcp-how-to/">
+    Dnsmasq Dhcp How To
+  </a>
+  
+  
+
+
+    
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/design-of-everything/" title="Design of everything" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/pages/design-of-everything/">
+    Design of everything
+  </a>
+  
+  
+
+
+    
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/docker-what-is-it/" title="Docker - What it is" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/pages/docker-what-is-it/">
+    Docker - What it is
+  </a>
+  
+  
+
+
+    
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/eframework-my-embedded-framework/" title="eFramework - A tiny embedded framework" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/pages/eframework-my-embedded-framework/">
+    eFramework - A tiny embedded framework
+  </a>
+  
+  
+
+
+    
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/embedded-c-object-oriented-programming/" title="Embedded C, Object oriented programming - HOW TO" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/pages/embedded-c-object-oriented-programming/">
+    Embedded C, Object oriented programming - HOW TO
+  </a>
+  
+  
+
+
+    
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/filecracker-vs-docker-in-performance/" title="FileCracker vs Docker - Performance benchmark" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/pages/filecracker-vs-docker-in-performance/">
+    FileCracker vs Docker - Performance benchmark
+  </a>
+  
+  
+
+
+    
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/git-describe-and-my-work-flow/" title="Git Internal" class="sidelist
+  
+  active
+  ">
+  <a href="https://blogs.ravstudio.me/pages/git-describe-and-my-work-flow/">
+    Git Internal
+  </a>
+  
+  
+
+
+    
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/pages/my-git-working-flow/" title="Git working flow" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/pages/my-git-working-flow/">
+    Git working flow
+  </a>
+  
+  
+
+
+    
+    
+  </ul>
+</li>
+
+
+
+            
+            
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/forex/" title="Forex" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/forex/">
+    Forex
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/forex/learn-fx-event-area/" title="Price Action Learning" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/forex/learn-fx-event-area/">
+    Price Action Learning
+  </a>
+  
+  
+
+
+    
+    
+  </ul>
+</li>
+
+
+
+            
+            
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/travelling/" title="Travelling" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/travelling/">
+    Travelling
+  </a>
+  
+  
+  <ul>
+    
+    
+    
+
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/travelling/this-is-my-post/" title="This Is My Post" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/travelling/this-is-my-post/">
+    This Is My Post
+  </a>
+  
+  
+
+
+    
+    
+    
+    
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/travelling/my-first-post/" title="My First Post" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/travelling/my-first-post/">
+    My First Post
+  </a>
+  
+  
+
+
+    
+    
+  </ul>
+</li>
+
+
+
+            
+            
+
+
+
+
+<li data-nav-id="https://blogs.ravstudio.me/contact/" title="Got Any Questions" class="sidelist
+  
+  
+  ">
+  <a href="https://blogs.ravstudio.me/contact/">
+    Got Any Questions
+  </a>
+  
+  
+
+
+            
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="p-5 bg-white">
+          <h2 class="mb-5">Git Internal</h2>
+          
+          <div class="content"><div class="sect1">
+<h2 id="_data_structure">Data structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Including 3 type of structure</p>
+</div>
+<div class="sect2">
+<h3 id="_blob">Blob</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Blob : hashing of the file&#8217;s byte (file content in bytes array)</p>
+</li>
+</ul>
+</div>
+<div id="package_overview" class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="./../../git-internal/git_strcuture_object-blob.964129b5.png" alt="git strcuture object blob.964129b5">
+</div>
+<div class="title">Figure 1. Blob object -git internal structure</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>File Tree : hashing of names and folder definition with file blob.
+In another words, File Tree is hashing of filename/folder which blob belong.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./../../git-internal/git_strcuture_object-blob.964129b5.png" alt="git strcuture object blob.964129b5">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tree_object">Tree Object</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>File Tree : A tree is simply a list of quadruples (permission, type, hash, name).
+the hash of tree is based on the contents of the tree, which means on the names, permissions, types, and hashes of its leaves.
+following is how to get detain about a tree object</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash"># Using command git cat-file -p &lt;hashing of commit&gt;
+kevinrav@hieule-Latitude-5480:~/project/KEVIN/asciidoc-blog$ git cat-file -p b560f823709627385001c61d4c0e4e51a63e830f
+tree 841185ee3fda8e45b19b82cf6f9d5147a15dc2af
+parent d6853ae765c05a3ce7782eda2eec8bcc05fd6887
+author Vu Truong &lt;vu.truong@veriksystems.com&gt; 1574000727 +0700
+committer Vu Truong &lt;vu.truong@veriksystems.com&gt; 1574000727 +0700
+
+update info about git internal, tree object, and how git manage the change over time
+
+# git ls-tree &lt;hashing of tree object&gt; to get detain about its content.
+kevinrav@hieule-Latitude-5480:~/project/KEVIN/asciidoc-blog$ git ls-tree 841185ee3fda8e45b19b82cf6f9d5147a15dc2af
+100644 blob befa90d151167096820a3ebc582bd9c703dc2c92    .gitignore
+100644 blob 91a86a4e78b18d57299d21e0d1c3bcc552750242    Dockerfile
+100644 blob 5c813ce0af37cea1b5d4465814cda7cd24cb0242    Dockerfile.jenkins
+100644 blob d6594f703795d724851664f7c9c390c59d7d6a18    Jenkinsfile
+100644 blob 58731f2bf9d5c803061c62d63012931f1e3e7b68    README.adoc
+100755 blob c18360b5e66db7692e35de765c1ca315bf08e3d2    build_static_blog.sh
+040000 tree 24e6f2fbfd2f758dbf6a04592ec06e81ba8bdce2    docsearch
+040000 tree 528b09670205682054a93decc0453cdd39e13674    etc
+100644 blob 3fa51286d602962c631b070075cdd96923d43a83    gulpfile.js
+040000 tree 9a5246fe42eab6161e4d3269115b81a4c96a79e6    home
+100644 blob 1e90df6035e750da10db67101e4dd05c817c7805    kevin_antora_playbook.yml
+040000 tree ede637f699c21dd3dd5b3f0620805acb9ab27664    lib
+100644 blob 6a1c3bb8c756cb3a6fe3a49ff85ba094d7860e81    netlify.toml
+040000 tree 59273dedda0781b02609378157a8b66709ed83f9    netlify
+100644 blob 2693f70b2e8c7b4240db47f2d83697533ec04d3a    package-lock.json
+100644 blob 9a292e93e0b5ded0460f3d355e612ba2c77c30ec    package.json
+100644 blob 7e46ef34b18d768a430b626b377e657fbc022d15    production-antora-playbook.yml
+040000 tree b3f9a2be291f6ae562d3863f1bd85b06dc5af8e6    scripts
+040000 tree 0d5896d53bdd949a94273f032ebad4f028683b48    ui-bundle</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>About tree object, when its contents is changed then it led to git will create a new tree object.
+For example: we create new change in the current tree object by modify file README.adoc.
+Currenly, the <code>README.adoc</code> have hashing is <code>58731f2bf9d5c803061c62d63012931f1e3e7b68</code>
+for now make a commit, and the result should be like below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">kevinrav@hieule-Latitude-5480:~/project/KEVIN/asciidoc-blog$ git cat-file -p 83defeea0d72a2e2e235fd546c32328ed52b54e9
+tree 73465cd2cba1e655956c40b06ce9e62b9089c465
+parent b560f823709627385001c61d4c0e4e51a63e830f
+author Vu Truong &lt;vu.truong@veriksystems.com&gt; 1574003434 +0700
+committer Vu Truong &lt;vu.truong@veriksystems.com&gt; 1574003434 +0700
+
+add todo for README file
+kevinrav@hieule-Latitude-5480:~/project/KEVIN/asciidoc-blog$ git ^C
+kevinrav@hieule-Latitude-5480:~/project/KEVIN/asciidoc-blog$ git ls-tree 73465cd2cba1e655956c40b06ce9e62b9089c465
+100644 blob befa90d151167096820a3ebc582bd9c703dc2c92    .gitignore
+100644 blob 91a86a4e78b18d57299d21e0d1c3bcc552750242    Dockerfile
+100644 blob 5c813ce0af37cea1b5d4465814cda7cd24cb0242    Dockerfile.jenkins
+100644 blob d6594f703795d724851664f7c9c390c59d7d6a18    Jenkinsfile
+100644 blob 917449df8f8ad38979c86af887a76aed6ca341f2    README.adoc
+100755 blob c18360b5e66db7692e35de765c1ca315bf08e3d2    build_static_blog.sh
+040000 tree 24e6f2fbfd2f758dbf6a04592ec06e81ba8bdce2    docsearch
+040000 tree 528b09670205682054a93decc0453cdd39e13674    etc
+100644 blob 3fa51286d602962c631b070075cdd96923d43a83    gulpfile.js
+040000 tree 9a5246fe42eab6161e4d3269115b81a4c96a79e6    home
+100644 blob 1e90df6035e750da10db67101e4dd05c817c7805    kevin_antora_playbook.yml
+040000 tree ede637f699c21dd3dd5b3f0620805acb9ab27664    lib
+100644 blob 6a1c3bb8c756cb3a6fe3a49ff85ba094d7860e81    netlify.toml
+040000 tree 59273dedda0781b02609378157a8b66709ed83f9    netlify
+100644 blob 2693f70b2e8c7b4240db47f2d83697533ec04d3a    package-lock.json
+100644 blob 9a292e93e0b5ded0460f3d355e612ba2c77c30ec    package.json
+100644 blob 7e46ef34b18d768a430b626b377e657fbc022d15    production-antora-playbook.yml
+040000 tree b3f9a2be291f6ae562d3863f1bd85b06dc5af8e6    scripts
+040000 tree 0d5896d53bdd949a94273f032ebad4f028683b48    ui-bundle
+kevinrav@hieule-Latitude-5480:~/project/KEVIN/asciidoc-blog$</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>naturally, because the file <code>README.adoc</code> is change is content then led to the hashing is change from the old hashing number to new one is <code>917449df8f8ad38979c86af887a76aed6ca341f2</code> the as expected the hashing of tree object is change also.
+Or in another words, git create new tree object to store the current snapshot of data.</p>
+</div>
+<div class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="./../../git-internal/git-internal/git_internal_object-tree.049e94f4.png" alt="git internal object tree.049e94f4">
+</div>
+<div class="title">Figure 2. Tree object - git internal structure</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_commit_object">Commit object</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Commit: Metadata for author,commit, timestamp and message.
+Then hashing the metadata we have hash of commit</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="./../../git-internal/object-commit.076d6b0d.png" alt="object commit.076d6b0d">
+</div>
+<div class="title">Figure 3. Commit Object - git internal structure</div>
+</div>
+<div class="paragraph">
+<p>With 3 types of data structure, Bellow is my thought about them:
+When we make commit by command bellow</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">git add -u # add all modified , prepare for a commit
+# for example there are 2 modified files: test1.txt and test2.txt be added
+git commit -m &quot;this is my commit&quot;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>step 1: git will hashing content of added file <code>test1.txt</code> and <code>test2.txt</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">for example:
+test1.txt hashing : 0xabcd
+test2.txt hashing : 0xcdef</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>step 2: git also create hahshing filename and its parent folder of added file.
+If the hash value is not exist, git will create an entry to stored the new hash value.
+step 3: git hashing the metadata of commit.
+Here have some tricky:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the hashing of commit will content the hashing of tree which changed file belong</p>
+</li>
+<li>
+<p>Hashing of blob files will be linked to tree.
+Each time the file changed will create a new hash for the file. the new hash will add to the tree</p>
+</li>
+<li>
+<p>when a file not changed but move or rename , its blob hashing will remain, but it will changed the tree hashing.
+At the time, the blod hashing is linked to the new hashing tree.</p>
+</li>
+<li>
+<p>We know about metadata hashing that with each commit will hashing the metadata. the hashing metadata contain hashing tree, the hashing tree contained the linked hashing blob of added files. so, from hashing commit we can found hashing blob of added files in the commit.
+And also easy to comparing the change between the current with last one.
+Simply by vimdiff the current blob with the previous.
+Or want to get changing history of a file, git can get the history of the file simple by search in linked list of commit to find all commits which involved changing on the file.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center" style="text-align: center">
+<div class="content">
+<img src="./../../git-internal/objects-example.d8743d1c.png" alt="objects example.d8743d1c">
+</div>
+<div class="title">Figure 4. GIT Object</div>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>We want to find info of a commit.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>We know that the commit hashing contained hashing tree,author, timestamp.
+from hashing tree contained hashing blob of added files and hashing tree of its parent. with each hashing blob , we can file file changes specific, with each hashing tree parent, we know the change belongs what parent.
+The process will be recursived to the GIT ROOT or the the top level of tree folder has changed.
+Conclusion, from commit hashing, we know all change in this commit by searching recursive all info linked to its hashing.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>We want to find all change/commit in a folder.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">cd &quot;&lt;your git sub folder&gt;&quot;
+git log ./</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>we know about git will store tree hashing of each folder.
+Then the work of get all commint/change in a specific folder is simple by searching all commit which have the tree hashing of folder.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By using three different types of structure, git can provide all we need about a source project.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example">Example</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./../../git-internal/tree_object_linking.png" alt="tree object linking">
+</div>
+<div class="title">Figure 5. Commit,Tree, Blob Object and how there linked together</div>
+</div>
+<div class="paragraph">
+<p>According to the image above, From commit 1, it will link to a tree call <code>d8329f</code> , the tree involved a blob of test.txt.
+The blob has hashing is <code>83baae</code>, the containt of blob simple is text <code>version 1</code>.</p>
+</div>
+<div class="paragraph">
+<p>so, in the second commit, we make a change on test.txt file and also add new file call <code>new.txt</code> with its blob hashing is <code>fa49b0</code>.
+At the time, because there new file added to the folder (new.txt) then git will create another tree object to store the current blob files and also make a change on <code>test.txt</code> file from <code>version 1</code> to <code>version 2</code>.
+Then git also create new hashing blob if the file <code>test.txt</code> and add it to the new tree object.</p>
+</div>
+<div class="paragraph">
+<p>about the third commit, we add a new folder (tree) call bak.
+Contain the file <code>test.txt</code> of first commit and it contains <code>version 1</code> as first commit.
+so, Again, the hash of tree object is based on the contents of the tree, which means on the names, permissions, types, and hashes of its leaves.
+Then the tree object of folder <code>bak</code> is the same with tree object of the first commit. <code>d8329f</code>.
+The I will see in the graph that.
+The third commit link to a new tree object, the tree object contains info formation of the old one: blob of test.txt and new.txt, And has a new tree object of <code>bak</code>
+the tree object of <code>bak</code> will have the hash the same with the hashing tree of the first commit.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git_merge">Git merge</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_brief">Brief</h3>
+<div class="paragraph">
+<p>We already know about git internal.
+Basically, there use three types of strureture and linked togeter to to make git become a perfect source version control and basic difference between <code>git merge</code> and <code>git rebase</code>.
+The next thing is basic way to use git to manage your source code in a project.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./../../git-internal/merge-rebase01.svg" alt="merge rebase01">
+</div>
+<div class="title">Figure 6. prepare for merge/rebase</div>
+</div>
+<div class="paragraph">
+<p>Short Version:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Merge takes all the changes in one branch and merges them into another branch in one commit.</p>
+</li>
+<li>
+<p>Rebase says I want the point at which I branched to move to a new starting point So when do you use either one?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In another word (Long answer):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Merge Let&#8217;s say you have created a branch for the purpose of developing a single feature.
+When you want to bring those changes back to master, you probably want merge (you don&#8217;t care about maintaining all of the interim commits).</p>
+</li>
+</ul>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./../../git-internal/merge-commit02.svg" alt="merge commit02">
+</div>
+<div class="title">Figure 7. Merge feature to master</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Rebase A second scenario would be if you started doing some development and then another developer made an unrelated change.
+You probably want to pull and then rebase to base your changes from the current version from the repo.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./../../git-internal/rebase-commit03.svg" alt="rebase commit03">
+</div>
+<div class="title">Figure 8. Rebase feature to master</div>
+</div>
+<div class="paragraph">
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD so, what should I use <code>git merge</code> or <code>git merge --no-ff</code> or <code>git rebase</code>.
+As I thought It depends on your git flow working or your company policy.
+with me, I will use <code>git rebase</code> for</p>
+</div>
+<div class="sect3">
+<h4 id="_git_merge_2">Git merge</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Git merge explicit (Merge non-fast forward)</p>
+</li>
+</ul>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./../../git-internal/what-is-a-merge.gif" alt="what is a merge">
+</div>
+<div class="title">Figure 9. Merge non-fast-forward</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>so, what should I use <code>git rebase</code> or <code>git merge</code>.
+As I thought It depends on your git flow working.
+with me, I will use <code>git rebase</code> for</p>
+</div>
+<div class="paragraph">
+<p>=== Git merge explanation</p>
+</div>
+<div class="paragraph">
+<p>==== Git merge explicit (Merge non-fast forward)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>GIT merge command</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">git checkout feature
+git merge master
+#or simple just one command to merge feature branch on master
+git merge feature master</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Description</p>
+<div class="ulist">
+<ul>
+<li>
+<p>git create a new commit with unify the work done in two branch.
+The commit will involve 2 parent commit.
+One come from the latest commit of the current branch, the other parent is latest parent of master.
+We can check it by using command</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="shell">git cat-file -p &quot;&lt;your commit hashing &gt;&quot;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For example</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./../../git-internal/git_merge_log_graph.jpg" alt="git merge log graph">
+</div>
+<div class="title">Figure 10. Git merged master to blog_git_internal_and_my_workflow</div>
+</div>
+<div class="paragraph">
+<p>As you can see the commit of the merge commit is <code>d6853ae765c05a3ce7782eda2eec8bcc05fd6887</code> then the output of command already told above is <code>git cat-file -p d6853ae765c05a3ce7782eda2eec8bcc05fd6887</code>.
+The return output is</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="plaintext">kevinrav@hieule-Latitude-5480:~/project/KEVIN/asciidoc-blog$ git cat-file -p d6853ae765c05a3ce7782eda2eec8bcc05fd6887
+tree 1503e53f338437a111672182a563ed577526acf6
+parent 63bf84ffb98e37f35e7ba70a997524012af3f135
+parent caa9353add623c915c97ac45f1c8b96129d22c26
+author Vu Truong &lt;vu.truong@veriksystems.com&gt; 1573831158 +0700
+committer Vu Truong &lt;vu.truong@veriksystems.com&gt; 1573831158 +0700
+
+Merge branch 'master' into blog_git_internal_and_my_workflow</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We could see three involve a tree hashing and 2 different parent.
+About 2 parent is the hashing of two commit: one is latest commit of branch master, the other is latest commit of branch <code>blog_&#8230;&#8203;</code>.
+Take a look on the tree by comment <code>git ls-tree
+1503e53f338437a111672182a563ed577526acf6</code>.
+The return output is</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="plaintext">100644 blob befa90d151167096820a3ebc582bd9c703dc2c92    .gitignore
+100644 blob 91a86a4e78b18d57299d21e0d1c3bcc552750242    Dockerfile
+100644 blob 5c813ce0af37cea1b5d4465814cda7cd24cb0242    Dockerfile.jenkins
+100644 blob d6594f703795d724851664f7c9c390c59d7d6a18    Jenkinsfile
+100644 blob 58731f2bf9d5c803061c62d63012931f1e3e7b68    README.adoc
+100755 blob c18360b5e66db7692e35de765c1ca315bf08e3d2    build_static_blog.sh
+040000 tree 24e6f2fbfd2f758dbf6a04592ec06e81ba8bdce2    docsearch
+040000 tree 528b09670205682054a93decc0453cdd39e13674    etc
+100644 blob 3fa51286d602962c631b070075cdd96923d43a83    gulpfile.js
+040000 tree 4b22d32debf196c90cb61f14165fc4e7e25d9122    home
+100644 blob 1e90df6035e750da10db67101e4dd05c817c7805    kevin_antora_playbook.yml
+040000 tree ede637f699c21dd3dd5b3f0620805acb9ab27664    lib
+100644 blob 6a1c3bb8c756cb3a6fe3a49ff85ba094d7860e81    netlify.toml
+040000 tree 59273dedda0781b02609378157a8b66709ed83f9    netlify
+100644 blob 2693f70b2e8c7b4240db47f2d83697533ec04d3a    package-lock.json
+100644 blob 9a292e93e0b5ded0460f3d355e612ba2c77c30ec    package.json
+100644 blob 7e46ef34b18d768a430b626b377e657fbc022d15    production-antora-playbook.yml
+040000 tree b3f9a2be291f6ae562d3863f1bd85b06dc5af8e6    scripts
+040000 tree 0d5896d53bdd949a94273f032ebad4f028683b48    ui-bundle</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>look like the tree is containt hashing of GIT ROOT dir.
+The tree will store a hashing of all blob of files contain in ROOT DIR Acording to above section, each tree contain hashing of all blob its contain.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./../../git-internal/what-is-a-merge.gif" alt="what is a merge">
+</div>
+<div class="title">Figure 11. Merge non-fast-forward in action</div>
+</div>
+<div class="paragraph">
+<p>==== Git merge fast forward/rebase</p>
+</div>
+<div class="paragraph">
+<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0b7f87acb3b32a970becc244183c46ce394b65f1</p>
+</div>
+<div class="paragraph">
+<p>by default When you merge a branch to master.
+If the master has not any change from it fork to feature branch.
+Then when we merge the feature to the master, Git will not create a merge commit by default, in stead of that, git will move all commit in feature branch to master branch.
+It is called git commit fast forward.
+In another words, it could also git rebase.
+Basically, git rebase can understand like this.
+When we make a git rebase a feature branch with master by command</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">git checkout fea_example
+git rebase master</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>git will try to move the fork commit from the old to the latest commit of master branch.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./../../git-internal/git-rebase-in-action.svg" alt="git rebase in action">
+</div>
+</div>
+<div class="paragraph">
+<p>in the image above, We can see that git will move the fork commit from the old to the new</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./../../git-internal/what-is-a-fast-forward.gif" alt="what is a fast forward">
+</div>
+<div class="title">Figure 12. Merge on fast forward/rebase</div>
+</div>
+</div>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./../../git-internal/what-is-a-fast-forward.gif" alt="what is a fast forward">
+</div>
+</div>
+<div class="paragraph">
+<p>The different betwen git merge fast forward and git rebase is only make git merge fast forward from branch (A) with another B only when A is on the latest commit which commit B fork from.
+Git base in another way , asking GIT to update the fork commit of B from the latest one of A if A has new commit.
+Then when you make a git merge B to A then it should be a git merge fast forward (if --no-ff does not declare).
+We could understand that git rebase is pre-process state for <code>git merge fast forward</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_git_merge_squash">Git merge squash</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Command</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">git checkout master
+git merge --squash &quot;&lt;your_feature_branch&quot;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Description</p>
+<div class="ulist">
+<ul>
+<li>
+<p>GIT compacts your commits in feature branch into one</p>
+</li>
+<li>
+<p>GIT merge the new compact commit to master</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./../../git-internal/squash-on-merge.gif" alt="squash on merge">
+</div>
+<div class="title">Figure 13. Squash on merge in action</div>
+</div>
+<div class="paragraph">
+<p>for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">git checkout master
+git merge --squash fea_a</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>git merge --squash</code> will rewrite you history by compose all commit in the branch <code>fea_a</code> before make a git merge the master with new squash commit</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reference">Reference</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase">git-rebase-atlassian</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://git-scm.com/book/en/v2/Git-Internals-Git-Objectsp">Git Internal - Git Objects</a></p>
+</div>
+</div>
+</div>
+</div>
+          
+          <p class="post-meta border-bottom pb-3 mb-0 mt-3">Updated on 02 Feb 2020</p>
+          <nav class="pagination mt-3">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+
+            
+            <a class="nav nav-prev" href="https://blogs.ravstudio.me/pages/filecracker-vs-docker-in-performance/"><i class="ti-arrow-left mr-2"></i> <span class="d-none d-md-block">FileCracker vs Docker - Performance benchmark</span></a>
+            
+            
+            <a class="nav nav-next" href="https://blogs.ravstudio.me/pages/my-git-working-flow/"> <span class="d-none d-md-block">Git working flow</span><i class="ti-arrow-right ml-2"></i></a>
+            
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /details page -->
+
+
+
+
+
+
+  </div><!-- footer -->
+<footer class="section bg-gray pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 text-md-left text-center">
+       <p>The Hugo Documents are copyright © <a href="https://gethugothemes.com/">gethugothemes</a> 2020.</p>
+      </div>
+      <div class="col-md-4 text-md-right text-center">
+        <ul class="list-inline mb-3">
+          
+          <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="https://www.facebook.com/Vudevil"><i class="ti-facebook"></i></a></li>
+          
+          <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i class="ti-twitter-alt"></i></a></li>
+          
+          <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i class="ti-vimeo-alt"></i></a></li>
+          
+          <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i class="ti-linkedin"></i></a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- /footer -->
+
+<!-- Main Script -->
+
+<script src="https://blogs.ravstudio.me/js/script.min.js"></script></body>
+
+</html>
