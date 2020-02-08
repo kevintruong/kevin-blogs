@@ -21,15 +21,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+      - name: Publish Site
+        uses: chabad360/hugo-actions@master
         with:
-          hugo-version: '0.62.2'
-          # extended: true
-
-      - name: Build
-        run: |
-          hugo -D
+          buildPath: 'public'
+          # Use if you have a need to build the site to another directory
+          hugoVersion: 'extended_0.58.3'
+          # Use if your site requires a specific version of Hugo
+          # Append "extended_" to the begining to use Hugo Extended
+          args: --gc --minify --cleanDestinationDir
+          # Use if you want to pass some custom arguments to Hugo
 
       # Setup gcloud CLI
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
