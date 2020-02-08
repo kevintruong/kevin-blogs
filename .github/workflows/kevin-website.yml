@@ -28,7 +28,8 @@ jobs:
           # extended: true
 
       - name: Build
-        run: hugo --minify
+        run: |
+          hugo -D
 
       # Setup gcloud CLI
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
