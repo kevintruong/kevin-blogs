@@ -4,7 +4,7 @@ date: 2020-02-02T18:04:30+07:00
 draft: true
 ---
 
-:source-highlighter: coderay
+:source-highlighter: hightlight
 :imagesdir: ./../../
 
 
@@ -14,7 +14,7 @@ Linker script will using by `ld` tool.
 The linker script is default hard code in ld tool.
 Can dump the linker script by command bellow
 
-[source,shell]
+[source,bash]
 ----
 ld --verbose > linkerscript.ld
 ----
@@ -22,7 +22,7 @@ ld --verbose > linkerscript.ld
 * for example:
 ** With native gcc in ubuntu could you command like above to dump linker script.
 
-[source,shell]
+[source,bash]
 ----
 ld --verbose > linkerscript.ld
 ----

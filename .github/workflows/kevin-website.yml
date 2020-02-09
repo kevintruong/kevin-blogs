@@ -26,6 +26,11 @@ jobs:
         with:
           args: git submodule update --init --recursive
 
+      - name: Hugo build
+        uses: kevintruong/hugo-adoc-action@master
+        with:
+          args: hugo -D
+
       # Setup gcloud CLI
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:

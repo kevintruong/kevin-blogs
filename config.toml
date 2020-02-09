@@ -24,7 +24,7 @@ text_color_dark = "#242738"
 white_color = "#ffffff"
 
 # font family
-font_family = "lato" # Choose font family from : https://fonts.google.com/
+font_family = "Open Sans Condense" # Choose font family from : https://fonts.google.com/
 
 # contact form action
 contact_form_action = "#" # contact form works with : https://formspree.io
@@ -34,17 +34,17 @@ contact_form_action = "#" # contact form works with : https://formspree.io
 icon = "ti-facebook" # themify icon pack : https://themify.me/themify-icons
 link = "https://www.facebook.com/Vudevil"
 
-[[params.social]]
-icon = "ti-twitter-alt" # themify icon pack : https://themify.me/themify-icons
-link = "#"
-  
-[[params.social]]
-icon = "ti-vimeo-alt" # themify icon pack : https://themify.me/themify-icons
-link = "#"
-  
-[[params.social]]
-icon = "ti-linkedin" # themify icon pack : https://themify.me/themify-icons
-link = "#"
+#[[params.social]]
+#icon = "ti-twitter-alt" # themify icon pack : https://themify.me/themify-icons
+#link = "#"
+#
+#[[params.social]]
+#icon = "ti-vimeo-alt" # themify icon pack : https://themify.me/themify-icons
+#link = "#"
+#
+#[[params.social]]
+#icon = "ti-linkedin" # themify icon pack : https://themify.me/themify-icons
+#link = "#"
 
 
 ################################# navigation ################################
@@ -55,7 +55,7 @@ weight = 1
 
 [[menu.main]]
 name = "Blogs"
-url = "pages"
+url = "blogs"
 weight = 2
 
 # Dropdown menu
@@ -67,7 +67,7 @@ hasChildren = true
   [[menu.main]]
   parent = "docs"
   name = "Blogs"
-  url = "pages"
+  url = "blogs"
   weight = 1
 
 
@@ -90,7 +90,7 @@ languageName = "En"
 languageCode = "en-us"
 weight = 1
 home = "Home"
-copyright = "The Hugo Documents are copyright © [gethugothemes](https://gethugothemes.com/) 2020."
+copyright = "The Kevin Blogs are copyright © Kevin-Truong 2020."
 
 # banner
 [Languages.en.params.banner]
