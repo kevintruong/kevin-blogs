@@ -1,0 +1,18 @@
+---
+title: "How to Using Hugo and Cloudrun to Build Static Web for Free"
+date: 2020-02-11T08:25:05+07:00
+draft: true
+tag: []
+author: "Kevin Truong"
+---
+
+:imagesdir: ./../../
+:source-highlighter: coderay
+
+== Hugo and cloudrun to build static web
+
+=== Hogo quick start
+
+=== cloudrun quick start
+
+=== Using github action/workflow for auto deploy your web
