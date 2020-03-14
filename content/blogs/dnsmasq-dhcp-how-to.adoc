@@ -4,11 +4,15 @@ date: 2020-02-04T10:58:11+07:00
 draft: true
 ---
 
+:source-highlighter: coderay
+:imagesdir: ./../../
+
+
 == How dnsmasq-dhcp allocate Ip address for dhcp client
 
 === DHCP sequences
 
-image::../../static/blogs/file.png[]
+image::blogs/dhcp-4-exhcange.png[]
 
 at begining, there 4 step to complete DHCP request.
 

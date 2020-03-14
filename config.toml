@@ -9,6 +9,11 @@ title = "Kevin-Truong"
 disableLanguages = []
 
 ############################# Default Parameters ##########################
+[author]
+    name = "Kevin Truong Cong Hoan Vu"
+    alias = "kevin-truong"
+    email = "kevin.truong.ds@gmail.com"
+
 [params]
 # logo is for all page
 logo = ""
