@@ -1,7 +1,0 @@
----
-title: "Design of everything"
-date: 2020-02-02T18:04:30+07:00
-draft: true
----
-
-== Design of everything

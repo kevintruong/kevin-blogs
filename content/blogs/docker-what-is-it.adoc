@@ -1,8 +1,0 @@
----
-title: "Docker - What it is"
-date: 2020-02-02T18:04:30+07:00
-draft: true
----
-
-== Docker - What it is
-
