@@ -1,0 +1,62 @@
+---
+title: "Uefi Getting Start Your First Step"
+date: 2020-03-21T10:56:41-04:00
+draft: true
+---
+
+:imagesdir: /images/
+:source-highlighter: coderay
+
+== UEFI Getting Start Your First Step (Part 1)
+
+=== What is UEFI ?
+
+=== Install dependencies and prepare environment
+
+For simple to install build environment I will use Docker instead of build develop environment in my PC
+
+Intel create UEFI framework call EDK2. Basically, it will easy for everybody want to jump to the field.
+
+[source,shell]
+----
+cd /home/kevin/Project/uefi-trainig
+git clone git@github.com:kevintruong/edk2.git edk-vutruong
+----
+
+clone UEFI Docker for compile
+
+[source,shell]
+----
+git clone https://github.com/kevintruong/edk2-docker
+----
+
+build docker image from Docker file
+
+[source,shell]
+----
+cd edk2-docker
+docker build -t edk2-builder .
+----
+
+=== Compile your first UEFI application
+
+[source,bash]
+----
+cd ../edk2
+docker run -it --rm --volume `pwd`:/mnt/edk2 edk-builder "your build command here"
+----
+
+testing your build environment
+
+[source,bash]
+----
+docker run --rm -it -v $(pwd):/mnt/edk2 edk2-builder -m MdeModulePkg/Application/HelloWorld/HelloWorld.inf -a X64 -t GCC5
+----
+
+=== Test your first UEFI hello world
+Can deploy UEFI in PC to test the UEFI app. But for simple and speed up the
+testing process. We can you QEMU to quick deploy and quick test UEFI application
+
+With QEMU, we can run UEFI application/driver simply and quickly.
+
+=== Conclusion

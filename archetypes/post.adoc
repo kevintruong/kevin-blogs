@@ -4,6 +4,10 @@ date: {{ .Date }}
 draft: true
 ---
 
+:imagesdir: ./../../
+:source-highlighter: coderay
+
+
 == {{ replace .Name "-" " " | title }}
 
 === What is {{ replace .Name "-" " " | title }}?
