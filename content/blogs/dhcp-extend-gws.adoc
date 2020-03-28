@@ -65,6 +65,7 @@ endwhile
 stop
 ----
 
+[.text-center]
 .DHCP multiple request extension handler
 [plantuml,dhcp_multiple_request_extension,svg,align="center"]
 ----
@@ -107,6 +108,7 @@ First of all, we need to know that at beginning, dnsmasq using leases file as da
 But it just push the new entry to the end of leases file (single linked list).
 To archive DHCP sequential without break the rule (Dnsmasq using leases file as global variable and it is used alot in the application) we need to leverage the current leases file.
 
+[.text-center]
 .leases file - simple single linked content lease entry
 [plantuml,dhcp_sequential_flow_chart,svg]
 ----
@@ -118,8 +120,9 @@ leases -down->subnet_1_ipv4_addr1
 -left->subnet1_ipv4_addr3
 ----
 
+[.text-center]
 .Leases file single linked contain sorted subnet
-[plantuml,dhcp_sequential_flow_chart_extension,svg]
+[plantuml,dhcp_sequential_flow_chart_extension,svg,align="center"]
 ----
 leases -down->sorted_subnet_1_ipv4
 -right-> sorted_subnet_2_ipv4
@@ -134,8 +137,9 @@ For example: We have network address 192.168.0.0/24 and already allocated IP add
 then it will check the next is `.0.101` naturally.
 So, it is not expected as we enable sequential IP allocate.
 
+[.text-center]
 .Origin implement of leases_get_max_addr() of dnsmasq
-[plantuml,dhcp_sequential_flow_chart_origin_activity,svg]
+[plantuml,dhcp_sequential_flow_chart_origin_activity,svg,align="center"]
 ----
 start
 :receive_dhcp_discovery();
@@ -166,8 +170,9 @@ stop
 
 ----
 
+[.text-center]
 .New implement for sequential dnsmasq
-[plantuml,dhcp_sequential_flow_chart_extension_activity,svg]
+[plantuml,dhcp_sequential_flow_chart_extension_activity,svg,align="center"]
 ----
 :cur_segment=find_segment(context);
 :cur_lease=cur_segment;
