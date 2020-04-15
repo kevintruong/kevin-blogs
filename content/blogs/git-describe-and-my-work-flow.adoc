@@ -6,9 +6,9 @@ draft: true
 
 //= GIT INTERNAL
 //:author:Kevin Truong <kevin.truong.ds@gmail.com>
-//:toclevels: 4
-//:toc:
-//:sectnums:
+:toclevels: 4
+:toc:
+:sectnums:
 :source-highlighter: coderay
 :imagesdir: ./../../
 

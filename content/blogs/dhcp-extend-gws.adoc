@@ -5,6 +5,7 @@ draft: true
 tag: []
 author: "Kevin Truong"
 ---
+
 :projectdir: ../../
 :imagesdir: ${projectdir}/blogs/
 :source-highlighter: coderay
@@ -12,6 +13,7 @@ author: "Kevin Truong"
 :sectnums:
 
 == DNSMASQ DHCP EXTENSION FEATURES
+
 <<<
 :toc: left
 <<<
