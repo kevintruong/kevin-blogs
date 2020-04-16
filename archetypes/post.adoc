@@ -4,9 +4,13 @@ date: {{ .Date }}
 draft: true
 ---
 
-:imagesdir: ./../../
+:projectdir: ../../
+:imagesdir: ${projectdir}/assets/
+:toclevels: 4
+:toc:
+:sectnums:
 :source-highlighter: coderay
-
+:sectnumlevels: 5
 
 == {{ replace .Name "-" " " | title }}
 
