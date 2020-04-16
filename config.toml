@@ -1,6 +1,6 @@
 ################################# Default configuration ###################
 # provide your domain here
-baseURL = "https://blogs.ravstudio.me"
+baseURL = "https://kencancode.xyz"
 # theme
 theme = "dot"
 # site title
@@ -13,7 +13,6 @@ disableLanguages = []
     name = "Kevin Truong Cong Hoan Vu"
     alias = "kevin-truong"
     email = "kevin.truong.ds@gmail.com"
-
 [params]
 # logo is for all page
 logo = ""
@@ -114,28 +113,3 @@ enable = true
 label = "contact us"
 link = "contact"
 
-
-################################### Franch Language ######################
-[Languages.fr]
-languageName = "Fr"
-languageCode = "fr-fr"
-weight = 2
-home = "Accueil"
-copyright = "Les documents Hugo sont sous copyright © [gethugothemes](https://gethugothemes.com/) 2020."
-
-# banner
-[Languages.fr.params.banner]
-title = "Comment pouvons nous aider?"
-description = "Trouvez rapidement des conseils et des réponses auprès de notre équipe d'assistance ou contactez-nous."
-bg_image = "images/banner.jpg"
-placeholder = "Avoir une question? Il suffit de demander ici ou de saisir les termes"
-
-# call to action
-[Languages.fr.params.cta]
-enable = true
-title = "Vous n'avez pas trouvé de réponse à votre question?"
-description = "Contactez-nous pour plus de détails sur les services supplémentaires et la tarification du travail personnalisé"
-[Languages.fr.params.cta.button]
-enable = true
-label = "Contactez nous"
-link = "contact"
