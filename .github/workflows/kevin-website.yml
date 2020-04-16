@@ -27,8 +27,8 @@ jobs:
         uses: kevintruong/hugo-adoc-action@master
         with:
           args: hugo -D
-      - name: update blogs to public/blogs
-        run : sudo cp -rf blogs/* public/blogs
+      - name: update assets to public/
+        run : sudo cp -rf assets public/
 
       # Setup gcloud CLI
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
@@ -44,12 +44,12 @@ jobs:
       # Build and push image to Google Container Registry
       - name: Build
         run: |
-          gcloud builds submit -t gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA
+          gcloud builds submit -t gcr.io/$PROJECT_ID/$SERVICE_NAME:latest
       # Deploy image to Cloud Run
       - name: Deploy
         run: |
           gcloud run deploy $SERVICE_NAME \
             --region $RUN_REGION \
-            --image gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA \
+            --image gcr.io/$PROJECT_ID/$SERVICE_NAME:lastest \
             --platform managed \
             --allow-unauthenticated

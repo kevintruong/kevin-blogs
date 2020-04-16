@@ -7,7 +7,7 @@ author: "Kevin Truong"
 ---
 
 :projectdir: ../../
-:imagesdir: ${projectdir}/blogs/
+:imagesdir: ${projectdir}/assets/
 :source-highlighter: coderay
 :sectnumlevels: 5
 :sectnums:
