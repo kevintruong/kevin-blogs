@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 function hugo_ascii_docker_run() {
@@ -19,7 +18,7 @@ function hugo_ascii_docker_run() {
     --volume ${GROUP_FILE}:/etc/group \
     --volume $HOME:$HOME \
     --volume $(pwd):/documents \
-    hugo-ascii hugo ${PARAMETERS}
+    hugo-ascii hugo ${PARAMETERS} || true
 }
 
 watch() {
@@ -40,4 +39,67 @@ watch() {
     done
 }
 
-watch $ROOT_DIR/content 3
+function usage
+{
+    echo "usage: arg_parse_example -a AN_ARG -s SOME_MORE_ARGS [-y YET_MORE_ARGS || -h]"
+    echo "   ";
+    echo "  -w | --watch            : A super special argument";
+    echo "  -dt| --difftime         : difftime";
+    echo "  -r | --run              : run command";
+    echo "  -h | --help             : Help";
+}
+
+function parse_args
+{
+  # positional args
+  args=()
+
+  # named args
+  while [[ "$1" != "" ]]; do
+      case "$1" in
+          -w | --watch )                watch_dir="$2";             shift;;
+          -dt | --difftime )            diff_time="$2";     shift;;
+          -r | --runcmd )               run_cmd="$2";      shift;;
+          -h | --help )                 usage;                   exit;; # quit and show usage
+          * )                           args+=("$1")             # if no match, add it to the positional args
+      esac
+      shift # move to next kv pair
+  done
+
+  # restore positional args
+  set -- "${args[@]}"
+
+}
+
+
+function run
+{
+  parse_args "$@"
+   # validate required args
+
+  echo "you passed in...\n"
+  echo "named arg: watchdir: $watch_dir"
+  echo "named arg: difftime : $diff_time"
+  echo "named arg: runcmd: $run_cmd"
+
+  if [[ ! -z "${watch_dir}"  &&  ! -z "${run_cmd}" ]]; then
+    echo " -r and -w can not be combined"
+    usage
+    exit 1
+  fi
+
+  if [[ ! -z "${watch_dir}" ]]; then
+    echo "run hugo watch content dir"
+    if [[ -z "${diff_time}" ]]; then
+        diff_time=3
+    fi
+    watch ${watch_dir} ${diff_time}
+  fi
+
+  if [[ ! -z "${run_cmd}" ]]; then
+    echo "run hugo command "
+    hugo_ascii_docker_run ${run_cmd}
+  fi
+}
+
+run "$@";
