@@ -18,21 +18,21 @@ function hugo_ascii_docker_run() {
     --volume ${GROUP_FILE}:/etc/group \
     --volume $HOME:$HOME \
     --volume $(pwd):/documents \
-    hugo-ascii hugo ${PARAMETERS} || true
+    hugo-ascii hugo ${PARAMETERS}
 }
 
 watch() {
     echo watching folder $1/ every $2 secs.
     while [[ true ]]
     do
-        files=`find $1 -type f -newermt '3 seconds ago'`
+        files=`find $1 -type f -newermt "$2 seconds ago"`
         if [[ ${files} != "" ]] ; then
             docker stop hugo-ascii-runner
             sleep 1
             hugo_ascii_docker_run -D
-            sleep 2
+            sleep 1
             cp -rf ${ROOT_DIR}/assets ${ROOT_DIR}/static/
-            sleep 2
+            sleep 1
             hugo_ascii_docker_run "server -D"
         fi
         sleep 3
@@ -41,9 +41,11 @@ watch() {
 
 function usage
 {
-    echo "usage: arg_parse_example -a AN_ARG -s SOME_MORE_ARGS [-y YET_MORE_ARGS || -h]"
+    echo "usage: hugo_ascii_cmder -w your_dir_path -d diff_time : for monitoring your directory and re-update local hugo web"
+    echo "usage: hugo_ascii_cmder -r 'hugo command here' : for monitoring your directory and re-update local hugo web"
+
     echo "   ";
-    echo "  -w | --watch            : A super special argument";
+    echo "  -w | --watch            : your dir to monitor";
     echo "  -dt| --difftime         : difftime";
     echo "  -r | --run              : run command";
     echo "  -h | --help             : Help";
