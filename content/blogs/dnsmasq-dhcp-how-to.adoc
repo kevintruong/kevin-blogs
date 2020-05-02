@@ -1,16 +1,24 @@
----
-title: "Dnsmasq Dhcp How To"
-date: 2020-02-04T10:58:11+07:00
-draft: true
----
++++
+fragment = "content"
+weight = 100
 
-:source-highlighter: coderay
+title = "Dnsmasq Dhcp How To"
+
+[sidebar]
+  sticky = true
+
++++
+
+:projectdir: ../../../../
+:imagesdir: ${projectdir}/assets/
 :imagesdir: ./../../
+:source-highlighter: coderay
+:sectnumlevels: 5
+:sectnums:
 
+=== How dnsmasq-dhcp allocate Ip address for dhcp client
 
-== How dnsmasq-dhcp allocate Ip address for dhcp client
-
-=== DHCP sequences
+==== DHCP sequences
 
 image::blogs/dhcp-4-exhcange.png[]
 

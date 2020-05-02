@@ -1,12 +1,20 @@
----
-title: "LinkerScript - What it is ?"
-date: 2020-02-02T18:04:30+07:00
-draft: true
----
++++
+fragment = "content"
+weight = 100
 
-:source-highlighter: hightlight
-:imagesdir: ./../../
+title= "LinkerScript - What it is ?"
 
+[sidebar]
+  sticky = true
++++
+
+:projectdir: ../../../../
+:imagesdir: ${projectdir}/assets/
+:toclevels: 4
+:toc:
+:sectnums:
+:source-highlighter: coderay
+:sectnumlevels: 5
 
 == LinkerScript - How to get it
 

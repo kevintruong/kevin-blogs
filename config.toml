@@ -1,115 +1,124 @@
-################################# Default configuration ###################
-# provide your domain here
-baseURL = "https://kencancode.xyz"
-# theme
-theme = "dot"
-# site title
-title = "Kevin-Truong"
-# desable language
-disableLanguages = []
-
-############################# Default Parameters ##########################
-[author]
-    name = "Kevin Truong Cong Hoan Vu"
-    alias = "kevin-truong"
-    email = "kevin.truong.ds@gmail.com"
-[params]
-# logo is for all page
-logo = ""
-# logo white is for homepage logo, you can use colorful logo too...
-logo_white = ""
-# when logo is empty, it will shown your site title
-
-# customize color
-primary_color = "#02007e"
-secondary_color = "#f9f9f9"
-text_color = "#636363"
-text_color_dark = "#242738"
-white_color = "#ffffff"
-
-# font family
-font_family = "Open Sans Condense" # Choose font family from : https://fonts.google.com/
-
-# contact form action
-contact_form_action = "#" # contact form works with : https://formspree.io
-
-############################## social links ##############################
-[[params.social]]
-icon = "ti-facebook" # themify icon pack : https://themify.me/themify-icons
-link = "https://www.facebook.com/Vudevil"
-
-#[[params.social]]
-#icon = "ti-twitter-alt" # themify icon pack : https://themify.me/themify-icons
-#link = "#"
-#
-#[[params.social]]
-#icon = "ti-vimeo-alt" # themify icon pack : https://themify.me/themify-icons
-#link = "#"
-#
-#[[params.social]]
-#icon = "ti-linkedin" # themify icon pack : https://themify.me/themify-icons
-#link = "#"
-
-
-################################# navigation ################################
-[[menu.main]]
-name = "Forex"
-url = "forex"
-weight = 1
-
-[[menu.main]]
-name = "Blogs"
-url = "blogs"
-weight = 2
-
-# Dropdown menu
-[[menu.main]]
-weight = 3
-name = "docs"
-hasChildren = true
-
-  [[menu.main]]
-  parent = "docs"
-  name = "Blogs"
-  url = "blogs"
-  weight = 1
-
-
-  [[menu.main]]
-  parent = "docs"
-  name = "Travelling"
-  url = "Travelling"
-  weight = 2
-
-  [[menu.main]]
-  parent = "docs"
-  name = "Forex"
-  url = "forex"
-  weight = 2
-
-
-################################ English Language ######################
-[Languages.en]
-languageName = "En"
+# Site settings
+baseurl = "/"
 languageCode = "en-us"
-weight = 1
-home = "Home"
-copyright = "The Kevin Blogs are copyright © Kevin-Truong 2020."
+defaultContentLanguage = "en"
+title = "Kevin Truong"
+theme = "syna"
+enableGitInfo = true
+version = "0.16.2"
+disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
+ignorefiles = [ "content/dev/.*" ]
 
-# banner
-[Languages.en.params.banner]
-title = "Kevin Truong Knowledge base"
-description = "You can find my writing"
-bg_image = "images/banner.jpg"
-placeholder = "Have a question? Just ask here or enter terms"
+# Google Analytics tracking
+googleAnalytics = ""
 
-# call to action
-[Languages.en.params.cta]
-enable = true
-title = "Didn't find an answer to your question?"
-description = "Musce libero nunc, dignissim quis turpis quis, semper vehicula dolor. Suspendisse tincidunt consequat quam."
-[Languages.en.params.cta.button]
-enable = true
-label = "contact us"
-link = "contact"
+[outputs]
+  home = ["HTML", "JSON"]
 
+[frontmatter]
+date = ["date", "lastmod"]
+lastmod = ["lastmod", ":git", "date"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+     unsafe = true
+
+[params]
+  name = "Kevin Truong - KenCanCode"
+  description = "Open Source Theme for your next project"
+  debug = true
+  unsafeEvents = true # Default is false. Enables ?event=type format of url events.
+
+  [params.style]
+    #background = "secondary"
+
+  # Theme customizations
+  # Assets relative to 'static/'
+  [params.custom]
+    favicon = "favicon.ico"
+    favicon_ico_sizes = "16x16 32x32"
+    favicon_png = "favicon.png"
+    favicon_svg = "favicon.svg"
+
+  # Piwik tracking
+  [params.analytics.piwik]
+    #url = "https://use.example.net"
+    #id = ""
+    #domain = "*" # Track subdomains via "*.example.com"
+    # Optional hash for integrity check
+    #hash = "sha512-RfeD0pacGTqy9m7U6PgehQfS4cc7SIt+e+P+H5e848kEvB/RW84CUGO3O4O3LNbxjevym6KPUZ8muPsMrI8WIw=="
+
+  # Optional, global disable switch for fontawesome related files
+  # For custom fontawesome js files use the custom.js method
+  [params.fontawesome]
+    disabled = false
+    pro = false
+
+  [params.colors]
+    primary = "#00838F"
+    secondary = "#868e96"
+    success = "#008f54"
+    info = "#00c9dc"
+    warning = "#fdf314"
+    danger = "#dc1200"
+    light = "#f8f9fa"
+    dark = "#343a40"
+
+# main/prepend/postpend menus are displayed in nav fragment.
+# footer/footer_social menus are displayed in footer fragment.
+# copyright_footer menus are displayed in copyright fragment
+# Keep an eye out for updates. These will be moved out to make navbar more
+# configurable.
+[[menu.main]]
+  url = "/"
+  name = "Home"
+  weight = 10
+
+#[[menu.main]]
+#  url = "/fragments"
+#  name = "Fragments"
+#  weight = 20
+
+#[[menu.main]]
+#  url = "/docs"
+#  name = "Docs"
+#  weight = 30
+
+[[menu.main]]
+  url = "/projects"
+  name = "Projects"
+  weight = 30
+
+
+[[menu.main]]
+  url = "/blogs"
+  name = "Blogs"
+  weight = 30
+
+
+[[menu.main]]
+  url = "/about"
+  name = "About"
+  weight = 40
+
+[[menu.footer]]
+  url = "https://syna.okkur.org/demo"
+  name = "Getting Started"
+  weight = 10
+
+[[menu.footer]]
+  url = "https://about.okkur.org/"
+  name = "About Okkur Labs"
+  weight = 20
+
+[[menu.footer_social]]
+  weight = 30
+  name = "github"
+  url = "http://github.com/kevintruong/"
+  pre = "fab fa-github fa-stack-2x"
+
+[[menu.copyright_footer]]
+  url = "/about"
+  name = "About Us"
+  weight = 10

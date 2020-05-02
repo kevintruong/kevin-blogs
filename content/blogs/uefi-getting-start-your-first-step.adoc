@@ -1,8 +1,12 @@
----
-title: "Uefi Getting Start Your First Step"
-date: 2020-03-21T10:56:41-04:00
-draft: true
----
++++
+fragment = "content"
+weight = 100
+
+title = "Uefi Getting Start Your First Step"
+
+[sidebar]
+  sticky = true
++++
 
 :imagesdir: /images/
 :source-highlighter: coderay

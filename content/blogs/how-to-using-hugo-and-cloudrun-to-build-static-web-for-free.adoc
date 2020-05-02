@@ -1,13 +1,20 @@
----
-title: "How to Using Hugo and Cloudrun to Build Static Web for Free"
-date: 2020-02-11T08:25:05+07:00
-draft: true
-tag: []
-author: "Kevin Truong"
----
++++
+fragment = "content"
+weight = 100
 
-:imagesdir: ./../../
+title = "How to Using Hugo and Cloudrun to Build Static Web for Free"
+
+[sidebar]
+  sticky = true
++++
+
+:projectdir: ../../../../
+:imagesdir: ${projectdir}/assets/
+:toclevels: 4
+:toc:
+:sectnums:
 :source-highlighter: coderay
+:sectnumlevels: 5
 
 == Hugo and cloudrun to build static web
 

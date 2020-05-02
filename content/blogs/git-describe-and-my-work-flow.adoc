@@ -1,11 +1,13 @@
----
-title: "Git Internal"
-date: 2020-02-02T18:04:30+07:00
-draft: true
----
++++
+fragment = "content"
+weight = 100
 
-//= GIT INTERNAL
-//:author:Kevin Truong <kevin.truong.ds@gmail.com>
+title = "Git Internal, understand about git insider"
+
+[sidebar]
+  sticky = true
++++
+
 :toclevels: 4
 :toc:
 :sectnums:

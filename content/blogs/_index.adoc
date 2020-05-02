@@ -1,9 +1,5 @@
----
-title: "Blogging"
-date: 2018-12-28T11:02:05+06:00
-icon: "ti-write"
-description: "Lorem ipsum dolor sit amet ipsum dolor sit amet ipsum dolor sit amet"
-type : "docs"
----
-
-
++++
+date = "2018-07-20"
+title = "Blogs"
+description = "Open Source Theme from Okkur for your next project"
++++

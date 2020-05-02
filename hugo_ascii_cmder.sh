@@ -8,7 +8,7 @@ function hugo_ascii_docker_run() {
     GROUP_FILE=/etc/group
     echo "run hugo with $PARAMETERS"
     docker run \
-    -d \
+    -it \
     --rm \
     --name hugo-ascii-runner \
     --net host \
@@ -21,12 +21,15 @@ function hugo_ascii_docker_run() {
     hugo-ascii hugo ${PARAMETERS}
 }
 
+
 watch() {
     echo watching folder $1/ every $2 secs.
+    hugo_ascii_docker_run "server -D"
     while [[ true ]]
     do
         files=`find $1 -type f -newermt "$2 seconds ago"`
         if [[ ${files} != "" ]] ; then
+            echo "${files} file changed, let update"
             docker stop hugo-ascii-runner
             sleep 1
             hugo_ascii_docker_run -D
@@ -96,6 +99,7 @@ function run
         diff_time=3
     fi
     watch ${watch_dir} ${diff_time}
+    return
   fi
 
   if [[ ! -z "${run_cmd}" ]]; then

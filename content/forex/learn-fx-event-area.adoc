@@ -1,8 +1,12 @@
----
-title: "Price Action Learning"
-date: 2020-02-02T18:04:30+07:00
-draft: true
----
++++
+fragment = "content"
+weight = 100
+
+title = "Price Action Learning"
+
+[sidebar]
+sticky = true
++++
 
 :imagesdir: ./../../
 
