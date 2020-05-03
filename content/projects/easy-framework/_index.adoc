@@ -1,0 +1,7 @@
++++
+date = "2018-07-20"
+title = "Easy Framework"
+description = "Open Source Theme from Okkur for your next project"
++++
+
+{{< youtube id="w7Ft2ymGmfc" autoplay="true" >}}

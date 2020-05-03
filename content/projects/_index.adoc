@@ -1,6 +1,6 @@
 +++
 date = "2018-07-20"
-title = "My Open Source Projects"
-description = "Open Source Theme from Okkur for your next project"
+title = "My Projects"
+description = "Describe about my projects"
 +++
 

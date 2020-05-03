@@ -8,8 +8,13 @@ title = "Price Action Learning"
 sticky = true
 +++
 
-:imagesdir: ./../../
-
+:projectdir: ../../
+:imagesdir: ${projectdir}/assets/
+:toclevels: 4
+:toc:
+:sectnums:
+:source-highlighter: coderay
+:sectnumlevels: 5
 
 
 == Event area in FX market

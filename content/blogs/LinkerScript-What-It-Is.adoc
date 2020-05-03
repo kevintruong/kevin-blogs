@@ -8,7 +8,7 @@ title= "LinkerScript - What it is ?"
   sticky = true
 +++
 
-:projectdir: ../../../../
+:projectdir: ../../
 :imagesdir: ${projectdir}/assets/
 :toclevels: 4
 :toc:

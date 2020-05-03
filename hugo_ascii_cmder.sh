@@ -8,6 +8,7 @@ function hugo_ascii_docker_run() {
     GROUP_FILE=/etc/group
     echo "run hugo with $PARAMETERS"
     docker run \
+    -d \
     -it \
     --rm \
     --name hugo-ascii-runner \
