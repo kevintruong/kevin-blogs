@@ -1,10 +1,10 @@
 ---
-title: "My Projects"
+title: "Today I learned"
 date: 2018-12-28T11:02:05+06:00
 icon: "ti-credit-card"
-description: "MY PROJECTS"
+description: "MY TIL"
 type : "docs"
-weight: 20
+weight: 30
 ---
 
 

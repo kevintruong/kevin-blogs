@@ -116,7 +116,7 @@ Or in another words, git create new tree object to store the current snapshot of
 [.text-center]
 .Tree object - git internal structure
 
-image::git-internal/git-internal/git_internal_object-tree.049e94f4.png[align="center"]
+image::git-internal/git_internal_object-tree.049e94f4.png[align="center"]
 
 === Commit object
 
