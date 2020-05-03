@@ -1,22 +1,21 @@
 ---
 title: "Embedded C - OOP approaching"
 date: 2020-02-28T23:29:49+07:00
+tag: ["embedded-system","programming","C/C++"]
 draft: true
-tag: []
 author: "Kevin Truong"
 ---
 
 :projectdir: ../../
 :imagesdir: ${projectdir}/assets/
+:toclevels: 4
+:toc:
+:toc: left
+:sectnums:
 :source-highlighter: coderay
 :sectnumlevels: 5
-:sectnums:
 
 == EMBEDDED C - Object Oriented Programming Approaching
-
-<<<
-:toc: left
-<<<
 
 <<<
 
@@ -42,40 +41,39 @@ No programmer should start each project from scratch
 Encapsulation is the mechanism of hiding of data implementation by restricting access to public methods. Instance variables are kept private and accessor methods are made public to achieve this.
 ```
 
-In ANSI C, to archive the attribution then we need to understand about `.c` and `.h` files to me, the `.h` file is where we will describe about which is `interface` , the other `.c` will be where we define about `implementation`.
-We have two new concepts `interface` and `implementation`.
-By understanding the `interface` and `implementation` in C, then we can archive encapsulate attribution of C.
+In ANSI C, to archive the attribution then we need to understand about *.c* and *.h* files to me, the *.h* file is where we will describe about which is *interface* , the other *.c* will be where we define about *implementation*.
+We have two new concepts *interface* and *implementation*.
+By understanding the *interface* and *implementation* in C, then we can archive encapsulate attribution of C.
 
 ==== Interface in C
 
-We develop a module call A, then Can understand Interface of A (`A_Intf`) in practically is something we want expose to the world A will expose some functionality which it can like Do_X, Do_Y by interface API like
-`A_Do_X`, `A_Do_Y`
+We develop a module call A, then Can understand Interface of A (*A_Intf*) in practically is something we want expose to the world A will expose some functionality which it can like Do_X, Do_Y by interface API like _A_Do_X_, _A_Do_Y_
 
-For example: module B can require A for some durty work by used its interface API by calling `A_Do_X`
-The interface will describe in `A.h` , the implementation of the interface will push in `A.c`.
-But it is just implementation of interface We need another `.c` file to hold detail impelement of module.
-In the case, I will use file `A_Impl.c`
-so, for a module A:
+For example: module B can require A for some durty work by used its interface API by calling *A_Do_X* The interface will describe in *A.h* , the implementation of the interface will push in *A.c*.
+But it is just implementation of interface We need another *.c* file to hold detail impelement of module.
+In the case, I will use file *A_Impl.c* so, for a module A:
 
-```
+[source,c]
+----
 A.h   \\ Interface declare
 A.c   \\ Interface implementation
 A_Impl.c  \\ Detail implementation of module A
-```
+----
 
 But this way for some verify complex module when module A will have many ways for implementation bufor example: A need to support `unix`, support `OS_X` , support `Win32` ... then the detail implementation for the module is need to extend
 
-```
+[source,c]
+----
 A.h   \\ Interface declare
 A.c   \\ Interface implementation
 A_Impl_Unix.c  \\ Detail implementation of module A in Unix platform.
 A_Impl_OSX.c  \\ Detail implementation of module A in OSX platform.
 A_Impl_Win32.c  \\ Detail implementation of module A in WIN32 platform.
-```
+----
 
-the `A.c` will on/off code blocks which is compiled based on platform variable.
+the *A.c* will on/off code blocks which is compiled based on platform variable.
 
-Another example is module A has two ways implementation for two algorithms call `alpha` and `omega`.
+Another example is module A has two ways implementation for two algorithms call *alpha* and *omega*.
 The module A
 
 the thumb rule here is: When we make a new module, We must careful on consider what is interface of module, what we need to expose to the world ?
@@ -155,6 +153,7 @@ void A_Do_Y_Impl(){
 }
 
 ----
+
 []
 .A_Unix_Impl.c
 [source,c]
@@ -176,10 +175,14 @@ void A_Do_Y_Impl(){
 ```
 Abstract means a concept or an Idea which is not associated with any particular instance.
 ```
-In C, I like the pointer concept. A void pointer can point to any data type. In another word, a void pointer
-can be any data type. From an array to specticular structure.
+
+In C, I like the pointer concept.
+A void pointer can point to any data type.
+In another word, a void pointer can be any data type.
+From an array to specticular structure.
 
 For example:
+
 []
 .Void pointer point to an array
 [source,c]

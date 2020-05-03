@@ -1,15 +1,18 @@
-+++
-fragment = "content"
-weight = 100
+---
+title: "Uefi Getting Start Your First Step"
+date: 2020-02-28T23:29:49+07:00
+draft: true
+tag: ["embedded-system","programming","C/C++"]
+author: "Kevin Truong"
+---
 
-title = "Uefi Getting Start Your First Step"
-
-[sidebar]
-  sticky = true
-+++
-
-:imagesdir: /images/
+:projectdir: ../../
+:imagesdir: ${projectdir}/assets/
+:toclevels: 4
+:toc:
+:sectnums:
 :source-highlighter: coderay
+:sectnumlevels: 5
 
 == UEFI Getting Start Your First Step (Part 1)
 

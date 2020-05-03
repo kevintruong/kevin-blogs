@@ -1,18 +1,18 @@
-+++
-fragment = "content"
-weight = 100
+---
+title: "Git Internal, understand about git insider"
+date: 2020-02-28T23:29:49+07:00
+draft: true
+tag: ["embedded-system","programming","C/C++"]
+author: "Kevin Truong"
+---
 
-title = "Git Internal, understand about git insider"
-
-[sidebar]
-  sticky = true
-+++
-
+:projectdir: ../../
+:imagesdir: ${projectdir}/assets/
 :toclevels: 4
 :toc:
 :sectnums:
 :source-highlighter: coderay
-:imagesdir: ./../../
+:sectnumlevels: 5
 
 == Data structure
 

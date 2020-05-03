@@ -1,12 +1,9 @@
-+++
-fragment = "content"
-weight = 100
-
-title= "LinkerScript - What it is ?"
-
-[sidebar]
-  sticky = true
-+++
+---
+title: "LinkerScript - What it is ?"
+date: 2020-02-28T23:29:49+07:00
+tag: ["embedded-system","programming","C/C++"]
+author: "Kevin Truong"
+---
 
 :projectdir: ../../
 :imagesdir: ${projectdir}/assets/
@@ -38,7 +35,6 @@ ld --verbose > linkerscript.ld
 ** with cross toolchain , it is similar or it will use a default linker script for chipset support.
 
 === Compile your source with your customize linker script
-
 
 by default, linker will use it build/default linker script.
 For redirect linker to use your linkerscript.
