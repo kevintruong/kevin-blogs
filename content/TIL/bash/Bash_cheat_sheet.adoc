@@ -30,6 +30,19 @@ author: "Kevin Truong"
 <<<
 
 == Extract Firmware Archive and get image file
+=== check substring in string
+
+[source,bash]
+----
+string="hello world"
+if [[ ${string} == *"hello"* ]]; then
+    echo "${string} contains the world hello"
+else
+    echo "not contain the world hello"
+fi
+----
+
+Example:
 
 [source,bash]
 ----
