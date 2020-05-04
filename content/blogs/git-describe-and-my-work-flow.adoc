@@ -10,9 +10,10 @@ author: "Kevin Truong"
 :imagesdir: ${projectdir}/assets/
 :toclevels: 4
 :toc:
-:sectnums:
 :source-highlighter: coderay
+:sectnums:
 :sectnumlevels: 5
+
 
 == Data structure
 

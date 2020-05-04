@@ -15,17 +15,15 @@ author: "Kevin Truong"
 :source-highlighter: coderay
 :sectnumlevels: 5
 
-== DNSMASQ - DHCP features extending
+== DHCP handle multiple requests
 
-=== DHCP handle multiple requests
-
-==== Problem:
+=== Problem:
 
 By default, DNSMASQ is not designed for process multiple dhcp request in the same time.
 With original source, If there have more than 6 DHCP request at the same time.
 DHCP will offer the same address from the 6rd
 
-====  Solution
+===  Solution
 
 Whenever DHCP offers IP address, I will store the address to a simple linked list call `offered` list.
 Then if DHCP received multiple DHCP request, then It will checked single one by one available IP adddress with out existed in Leases file.
@@ -67,15 +65,15 @@ endwhile
 stop
 ----
 
-=== DHCP sequential allocation
+== DHCP sequential allocation
 
-==== Problem:
+=== Problem:
 
 If DHCP server already allocated a range of IP, for example: from `x.y.10.2` to `x.y.10.30` and then there have manual IP address like `x.y.10.50`.
 Then IP address is allocated by DHCP server.
 So DHCP sequential will offer from `x.y.10.51` in in stead of `x.y.10.31` as expected.
 
-==== Solution:
+=== Solution:
 
 * Already try a round it when implement DHCP reservation.
 Need to rework on how dnsmasq push an entry to its leases list.

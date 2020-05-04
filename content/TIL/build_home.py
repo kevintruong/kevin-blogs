@@ -54,7 +54,7 @@ def prepare_topic_records(repo_path):
             git_path_file = relpath(filepath, git_root)
             url = "https://github.com/kevintruong/kevin-blogs/blob/master/{}".format(path)
             record = {
-                "path": git_path_file,
+                "path": path,
                 "title": title,
                 "url": url,
                 "body": body,
@@ -67,7 +67,9 @@ def prepare_topic_records(repo_path):
 def dump_topic_records_to_index(topic_records: dict, til_home):
     til_home.write("=== {} \n".format(topic_records['topic']))
     for each_til in topic_records['info']:
-        til_home.write(f"link:{each_til['path'].replace('.adoc','')}[{each_til['title']}]")
+        til_home.write("* link:{}[{}] {}".format(each_til['path'].replace('.adoc', '').lower(),
+                                                 each_til["title"].replace('"', ""),
+                                                 each_til["created"].split("T")[0]))
     pass
 
 

@@ -2,8 +2,6 @@
 title: "KenCanCode.xyz"
 ---
 
-== KenCanCode
-
 Hello, My name Vu Truong/Kevin Truong this is my blog to describe about my work, my knowledge, and also my note about
 what I am doing and also what I learn or experience in the IT industry.
 
