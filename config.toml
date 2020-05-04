@@ -6,6 +6,7 @@ title = "KenCanCode.xyz"
 theme = "hugo-theme-learn"
 metaDataFormat = "yaml"
 defaultContentLanguageInSubdir= true
+buildExpired = true
 
 [params]
   editURL = "https://github.com/kevintruong/kevin-blogs/edit/master/content/"
