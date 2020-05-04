@@ -26,7 +26,7 @@ jobs:
       - name: Hugo build
         uses: kevintruong/hugo-adoc-action@master
         with:
-          args: hugo -D
+          args: hugo -D --minify
       - name: update assets to public/
         run : sudo cp -rf assets public/
 
