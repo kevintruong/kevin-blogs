@@ -23,5 +23,10 @@ the TIL like dictionary for my work.
 
 
 
+
+
 === C_Cpp 
 * link:c_cpp/embedded-c-object-oriented-programming-part-1[Embedded C - OOP approaching] 2020-05-03
+
+=== bash 
+* link:bash/bash_cheat_sheet[Bash Cheat Sheet] 2020-05-04

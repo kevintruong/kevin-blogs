@@ -11,7 +11,7 @@ def created_changed_times(repo_path, ref="master"):
     created_changed_times = {}
     repo = git.Repo(repo_path, odbt=git.GitDB, search_parent_directories=True)
     git_root = repo.git.rev_parse("--show-toplevel")
-    commits = reversed(list(repo.iter_commits(ref)))
+    commits = reversed(list(repo.iter_commits()))
     for commit in commits:
         dt = commit.committed_datetime
         affected_files = list(commit.stats.files.keys())
@@ -65,7 +65,7 @@ def prepare_topic_records(repo_path):
 
 
 def dump_topic_records_to_index(topic_records: dict, til_home):
-    til_home.write("=== {} \n".format(topic_records['topic']))
+    til_home.write("\n\n=== {} \n".format(topic_records['topic']))
     for each_til in topic_records['info']:
         til_home.write("* link:{}[{}] {}".format(each_til['path'].replace('.adoc', '').lower(),
                                                  each_til["title"].replace('"', ""),

@@ -1,0 +1,60 @@
+---
+title: "Bash Cheat Sheet"
+date: 2020-02-28T23:29:49+07:00
+tag: ["Bash","script"]
+draft: true
+author: "Kevin Truong"
+---
+
+:projectdir: ../../
+:imagesdir: ${projectdir}/assets/
+:toclevels: 4
+:toc:
+:toc: left
+:sectnums:
+:source-highlighter: coderay
+:sectnumlevels: 5
+
+== Bash Cheat Sheet
+
+<<<
+
+*HISTORY*
+
+[cols="1,1,1,3",options="header",]
+|===============================================================================================
+|Version |Date |Author |Remark
+|0.1 |March 19, 2020 |Vu Truong |First created
+|===============================================================================================
+
+<<<
+
+== Extract Firmware Archive and get image file
+
+[source,bash]
+----
+if [[ ${FIRMWARE_IMAGE} == *".tar.xz"*  ]]; then
+    echo "the $FIRMWARE_IMAGE is tar.xz file"
+    if [[ ! -f "${FIRMWARE_IMAGE}" ]]; then
+        echo "NOT FOUND $FIRMWARE_IMAGE"
+        exit -1
+    fi
+    tar -vxf "${FIRMWARE_IMAGE}" -C /tmp/ --wildcards "*.img"
+    if [[ ${FIRMWARE_IMAGE} == *"c4000l"* ]];then
+        FIRMWARE_IMG_FILE=$(find /tmp/c4000l-normal -name "*.img")
+        echo ${FIRMWARE_IMG_FILE}
+    elif [[ ${FIRMWARE_IMAGE} == *"c4000x"* ]];then
+        FIRMWARE_IMG_FILE=$(find /tmp/c4000x-normal -name "*.img")
+        echo ${FIRMWARE_IMG_FILE}
+    fi
+else
+    FIRMWARE_IMG_FILE="/tftp/vu.truong/C4000L/${FIRMWARE_IMAGE}-squashfs-fullimage.img"
+fi
+
+echo "Firmware upgrade"
+curl -k -v -c cookiejar "https://${DEVICE_IP}/cgi/cgi_action?username=admin&password=${DEVICE_ADMIN_PASSWORD}" >> /dev/null 2>&1
+curl -k --cookie cookiejar -F \
+                "firmware=@/$FIRMWARE_IMG_FILE" -H \
+                'X-Requested-With: XMLHttpRequest' \
+                "https://${DEVICE_IP}/cgi/cgi_set?Object=Device.X_LANTIQ_COM_Upgrade.Upgrade.4&Operation=Modify&State=UPG_REQ&FileType=FIRMWARE"
+----
