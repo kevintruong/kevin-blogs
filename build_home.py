@@ -7,7 +7,7 @@ from os.path import relpath
 root = pathlib.Path(__file__).parent.resolve()
 
 
-def created_changed_times(repo_path, ref="master"):
+def created_changed_times(repo_path):
     created_changed_times = {}
     repo = git.Repo(repo_path, odbt=git.GitDB, search_parent_directories=True)
     git_root = repo.git.rev_parse("--show-toplevel")
@@ -86,5 +86,5 @@ def index_generate(root_dir):
             dump_topic_records_to_index(recors, til_home)
 
 
-if __name__ == "__main__":
-    index_generate(root)
+# if __name__ == "__main__":
+#     index_generate(root)

@@ -1,0 +1,13 @@
+site:
+  title: KenCanCode.xyz
+  url: https://kencancode.xyz
+contents:
+  - url: https://github.com/kevintruong/easy-framework.git
+    path: content/projects/
+    update: true
+  - url: https://github.com/kevintruong/workspace-rsync.git
+    path: content/projects/
+    update: true
+  - url: https://github.com/kevintruong/til.git
+    path: content/
+    update: true
