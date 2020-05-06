@@ -3,11 +3,12 @@ site:
   url: https://kencancode.xyz
 contents:
   - url: https://github.com/kevintruong/easy-framework.git
-    path: content/projects/
+    path: content/projects/easy-framework
     update: true
   - url: https://github.com/kevintruong/workspace-rsync.git
-    path: content/projects/
+    path: content/projects/workspace-rsync
     update: true
-  - url: https://github.com/kevintruong/til.git
-    path: content/
-    update: true
+actions:
+  index_generate:
+    - path: content/projects
+    - path: content/til

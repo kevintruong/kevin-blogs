@@ -9,7 +9,7 @@ root = pathlib.Path(__file__).parent.resolve()
 
 def created_changed_times(repo_path):
     created_changed_times = {}
-    repo = git.Repo(repo_path, odbt=git.GitDB, search_parent_directories=True)
+    repo = git.Repo(repo_path, odbt=git.GitDB, search_parent_directories=False)
     git_root = repo.git.rev_parse("--show-toplevel")
     commits = reversed(list(repo.iter_commits()))
     for commit in commits:
@@ -40,7 +40,7 @@ def get_title_of_doc(body: str):
 def prepare_topic_records(repo_path):
     all_times, git_root = created_changed_times(repo_path)
 
-    topic_dirs = [f.path for f in os.scandir(root) if f.is_dir()]
+    topic_dirs = [f.path for f in os.scandir(repo_path) if f.is_dir()]
 
     for each_topic_dir in topic_dirs:
         topic = os.path.basename(each_topic_dir)
@@ -53,7 +53,7 @@ def prepare_topic_records(repo_path):
             fp = filepath.open()
             body = fp.read().strip()
             title = get_title_of_doc(body)
-            path = str(filepath.relative_to(root))
+            path = str(filepath.relative_to(repo_path))
             url = "https://github.com/kevintruong/kevin-blogs/blob/master/{}".format(path)
             record = {
                 "path": path,
@@ -68,11 +68,12 @@ def prepare_topic_records(repo_path):
 
 
 def dump_topic_records_to_index(topic_records: dict, til_home):
-    til_home.write("\n\n=== {} \n".format(topic_records['topic']))
-    for each_til in topic_records['info']:
-        til_home.write("* link:{}[{}] {}".format(each_til['path'].replace('.adoc', '').lower(),
-                                                 each_til["title"].replace('"', ""),
-                                                 each_til["created"].split("T")[0]))
+    if len(topic_records['info']):
+        til_home.write("\n\n=== {} \n".format(topic_records['topic']))
+        for each_til in topic_records['info']:
+            til_home.write("* link:{}[{}] {}".format(each_til['path'].replace('.adoc', '').lower(),
+                                                     each_til["title"].replace('"', ""),
+                                                     each_til["created"].split("T")[0]))
     pass
 
 
@@ -80,10 +81,10 @@ def index_generate(root_dir):
     home_file = root_dir.joinpath("_index.adoc")
     temp_home_file = root_dir.joinpath("_index.adoc.in")
     temp_content = temp_home_file.open().read()
-    with open(home_file, "w") as til_home:
-        til_home.write(temp_content)
+    with open(home_file, "w") as index_file:
+        index_file.write(temp_content)
         for recors in prepare_topic_records(root_dir):
-            dump_topic_records_to_index(recors, til_home)
+            dump_topic_records_to_index(recors, index_file)
 
 
 # if __name__ == "__main__":
