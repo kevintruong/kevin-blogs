@@ -25,7 +25,7 @@ jobs:
       - name: generate index
         uses: kevintruong/hugo-adoc-action@master
         with:
-          args: python3 contain_builder.py
+          args: python3 content_builder.py
 
       - name: Hugo build static web
         uses: kevintruong/hugo-adoc-action@master
