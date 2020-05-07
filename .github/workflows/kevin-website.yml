@@ -22,14 +22,17 @@ jobs:
         uses: actions/checkout@v1
         with:
           submodules: true
+      - name: generate index
+        uses: kevintruong/hugo-adoc-action@master
+        with:
+          args: python3 contain_builder.py
 
-      - name: Hugo build
+      - name: Hugo build static web
         uses: kevintruong/hugo-adoc-action@master
         with:
           args: hugo -D --minify
       - name: update assets to public/
         run : sudo cp -rf assets public/
-
       # Setup gcloud CLI
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
