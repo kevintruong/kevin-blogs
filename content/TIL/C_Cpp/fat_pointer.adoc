@@ -1,0 +1,72 @@
+---
+title: "Fat pointer"
+date: 2020-02-28T23:29:49+07:00
+tag: ["embedded-system","programming","C/C++"]
+draft: true
+author: "Kevin Truong"
+---
+
+:projectdir: ../../
+:imagesdir: ${projectdir}/assets/
+:toclevels: 4
+:toc:
+:toc: left
+:sectnums:
+:source-highlighter: coderay
+:sectnumlevels: 5
+
+== Fat pointer
+
+Today, I read an interested article about Fat Pointer.
+So, I will try to write some note about this concept.
+Yes, We already know about Pointer in C. But what is Fat Pointer.
+
+Fat Pointer was defined by Walter Bright (Inventor of D Language) for solving problems that come from the relationship between pointer and array.
+
+We already know about some kinds of legacy error in C likes: segmentation fault . The issue usually happend because wrong memory accessed or unintended overwrite data.
+Bellow is some example for these problems:
+
+[source,c]
+----
+void segmentation_fault_1(void){ // >> 1
+    char buf[10];
+    snprintf(buf,"%s","hello world, kencancode.xyz");
+}
+----
+
+[source,c]
+----
+void segmentation_fault_2(void){
+    char buf[10];
+    memset(buf,0,20);
+}
+----
+
+At example 1 and 2, with `buf` has size is 10 bytes. But we try to write a large number of bytes which larger than 10 bytes
+to the buf. Then the behavior of the program is undefined now.
+The Fat Pointer tried to solve the problems by adding header to the standard pointer.
+By defined structure of memory buffer like bellow and customize the allocated function
+
+[source,c]
+----
+typedef struct new_pointer_header_st {
+    uint32_t type;
+    uint32_t length;
+}new_pointer_header_t
+
+void * fat_pointer_alloc(uint32_t buf_size){
+    new_pointer_header_t *new_buff = (new_pointer_header_t *)calloc(1, sizeof(new_pointer_header_t) + buf_size);
+    new_buff->type = 1;
+    new_buff->length = buf_size;
+    return (void *)new_buff + sizeof(new_pointer_header_t);
+}
+
+void fat_pointer_free(void * buf){
+    new_pointer_header_t *head = buf - sizeof(new_pointer_header_t);
+    free(head);
+}
+
+----
+
+By this implementation, We always know about what size of buffer. Then we can scope the trailing pointer and limit what the pointer point to
+

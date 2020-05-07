@@ -1,0 +1,58 @@
+---
+title: "Embedded C - OOP approaching - Abstraction"
+date: 2020-02-28T23:29:49+07:00
+tag: ["embedded-system","programming","C/C++"]
+draft: true
+author: "Kevin Truong"
+---
+
+:projectdir: ../../
+:imagesdir: ${projectdir}/assets/
+:toclevels: 4
+:toc:
+:toc: left
+:sectnums:
+:source-highlighter: coderay
+:sectnumlevels: 5
+
+<<<
+
+*HISTORY*
+
+[cols="1,1,1,3",options="header",]
+|===============================================================================================
+|Version |Date |Author |Remark
+|0.1 |March 19, 2020 |Vu Truong |First created
+|===============================================================================================
+
+<<<
+
+```
+No programming technique solves all problems.
+No programming language produces only correct results.
+No programmer should start each project from scratch
+```
+
+== Abstraction
+
+```
+Abstract means a concept or an Idea which is not associated with any particular instance.
+```
+
+In C, I like the pointer concept.
+A void pointer can point to any data type.
+In another word, a void pointer can be any data type.
+From an array to specticular structure.
+
+For example:
+
+[]
+.Void pointer point to an array
+[source,c]
+----
+void *pArray = NULL;
+char sHelloWorld[] = "Hello World"
+pArray = sHelloWorld;
+printf("str from Array: %s",sHelloWorld);
+printf("str from pointer: %s",pArray);
+----

@@ -1,5 +1,5 @@
 ---
-title: "Embedded C - OOP approaching"
+title: "Embedded C - OOP approaching - Encapsulation"
 date: 2020-02-28T23:29:49+07:00
 tag: ["embedded-system","programming","C/C++"]
 draft: true
@@ -14,8 +14,6 @@ author: "Kevin Truong"
 :sectnums:
 :source-highlighter: coderay
 :sectnumlevels: 5
-
-== EMBEDDED C - Object Oriented Programming Approaching
 
 <<<
 
@@ -35,7 +33,7 @@ No programming language produces only correct results.
 No programmer should start each project from scratch
 ```
 
-=== Encapsulated
+== Encapsulated
 
 ```
 Encapsulation is the mechanism of hiding of data implementation by restricting access to public methods. Instance variables are kept private and accessor methods are made public to achieve this.
@@ -45,7 +43,7 @@ In ANSI C, to archive the attribution then we need to understand about *.c* and 
 We have two new concepts *interface* and *implementation*.
 By understanding the *interface* and *implementation* in C, then we can archive encapsulate attribution of C.
 
-==== Interface in C
+=== Interface in C
 
 We develop a module call A, then Can understand Interface of A (*A_Intf*) in practically is something we want expose to the world A will expose some functionality which it can like Do_X, Do_Y by interface API like _A_Do_X_, _A_Do_Y_
 
@@ -78,7 +76,7 @@ The module A
 
 the thumb rule here is: When we make a new module, We must careful on consider what is interface of module, what we need to expose to the world ?
 
-==== implementation in C
+=== implementation in C
 
 According to above session, we can simply understand the implementation in C practically that It includes implementation of interface and detail implementation of module.
 
@@ -170,32 +168,4 @@ void A_Do_Y_Impl(){
 
 ----
 
-=== Abstraction
 
-```
-Abstract means a concept or an Idea which is not associated with any particular instance.
-```
-
-In C, I like the pointer concept.
-A void pointer can point to any data type.
-In another word, a void pointer can be any data type.
-From an array to specticular structure.
-
-For example:
-
-[]
-.Void pointer point to an array
-[source,c]
-----
-void *pArray = NULL;
-char sHelloWorld[] = "Hello World"
-pArray = sHelloWorld;
-printf("str from Array: %s",sHelloWorld);
-printf("str from pointer: %s",pArray);
-----
-
-=== Inheritance
-
-```
-Inheritances expresses “is-a” and/or “has-a” relationship between two objects.
-```
