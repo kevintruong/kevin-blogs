@@ -25,14 +25,10 @@ the TIL like dictionary for my work.
 
 
 
-=== .idea 
-
-
-=== Vagrant 
-
-
 === bash 
 * link:bash/bash_cheat_sheet[Bash Cheat Sheet] 2020-05-04
 
+
 === C_Cpp 
+* link:c_cpp/fat_pointer[Fat pointer] 2020-05-07
 * link:c_cpp/embedded-c-object-oriented-programming-part-1[Embedded C - OOP approaching] 2020-05-03

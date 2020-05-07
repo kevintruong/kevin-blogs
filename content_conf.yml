@@ -9,6 +9,7 @@ contents:
     path: content/projects/workspace-rsync
     update: true
 actions:
-  index_generate:
-    - path: content/projects
-    - path: content/til
+  - action: index_generate
+    paths:
+       - path: content/TIL
+       - path: content/projects
