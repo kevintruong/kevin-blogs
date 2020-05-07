@@ -61,7 +61,6 @@ def prepare_topic_records(repo_path,search_git_root):
                 "url": url,
                 "body": body,
             }
-
             record.update(all_times[git_path_file])
             records.append(record)
         yield {'topic': topic, 'info': records}

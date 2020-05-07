@@ -19,7 +19,7 @@ function hugo_ascii_docker_run() {
     --volume ${GROUP_FILE}:/etc/group \
     --volume $HOME:$HOME \
     --volume $(pwd):/documents \
-    hugo-ascii hugo ${PARAMETERS}
+    hugo-ascii ${PARAMETERS}
 }
 
 
@@ -33,11 +33,11 @@ watch() {
             echo "${files} file changed, let update"
             docker stop hugo-ascii-runner
             sleep 1
-            hugo_ascii_docker_run -D
+            hugo_ascii_docker_run hugo -D
             sleep 1
             cp -rf ${ROOT_DIR}/assets ${ROOT_DIR}/static/
             sleep 1
-            hugo_ascii_docker_run "server -D"
+            hugo_ascii_docker_run "hugo server -D"
         fi
         sleep 3
     done

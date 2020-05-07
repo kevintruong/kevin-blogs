@@ -11,7 +11,7 @@ weight: 20
 
 
 === workspace-rsync 
-* link:workspace-rsync/_index[Workspace Rsync Auto Sync Up Your Local With Remote] 2020-05-02
+* link:workspace-rsync/_index[Workspace Rsync] 2020-05-02
 
 
 === easy-framework 

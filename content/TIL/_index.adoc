@@ -25,6 +25,10 @@ the TIL like dictionary for my work.
 
 
 
+=== python 
+* link:python/simple_work_flow[Simple Work Flow] 2020-05-07
+
+
 === bash 
 * link:bash/bash_cheat_sheet[Bash Cheat Sheet] 2020-05-04
 

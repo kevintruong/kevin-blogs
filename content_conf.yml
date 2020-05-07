@@ -13,3 +13,4 @@ actions:
     paths:
        - path: content/TIL
        - path: content/projects
+         level: 1

@@ -1,10 +1,8 @@
 import abc
 import shutil
 from pathlib import Path
-
-import yaml
-
 from build_home import *
+import yaml
 
 
 class Content:
@@ -40,7 +38,6 @@ class Action(abc.ABC):
     def execute(self):
         pass
 
-
 class IndexGenerateAction(Action):
 
     def __init__(self, actionobj: dict):
@@ -48,7 +45,6 @@ class IndexGenerateAction(Action):
         self.paths = []
         for each_path in self.actionObj['paths']:
             self.paths.append(each_path['path'])
-        print(len(self.paths))
         pass
 
     def execute(self):
@@ -72,9 +68,9 @@ class ActionGenerator:
 if __name__ == '__main__':
     content_cfg = open("content_conf.yml")
     config = yaml.load(content_cfg, Loader=yaml.FullLoader)
-    # for each_content in config['contents']:
-    #     content = Content(each_content)
-    #     content.clone_content()
+    for each_content in config['contents']:
+        content = Content(each_content)
+        content.clone_content()
     if config['actions']:
         for each_action in config['actions']:
             act = ActionGenerator.action_generator(each_action)
