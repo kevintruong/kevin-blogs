@@ -48,7 +48,7 @@ def prepare_topic_records(repo_path,search_git_root):
         records = []
         for filepath in adoc_files:
             git_path_file = relpath(filepath, git_root)
-            if git_path_file not in all_times.keys():
+            if git_path_file not in all_times.keys() or "_index" in git_path_file:
                 continue
             fp = filepath.open()
             body = fp.read().strip()

@@ -38,6 +38,7 @@ class Action(abc.ABC):
     def execute(self):
         pass
 
+
 class IndexGenerateAction(Action):
 
     def __init__(self, actionobj: dict):
@@ -50,9 +51,9 @@ class IndexGenerateAction(Action):
     def execute(self):
         for each_path in self.paths:
             abs_current_path = pathlib.Path(__file__).parent.resolve()
-            abs_dir_path = os.path.join(abs_current_path,each_path)
+            abs_dir_path = os.path.join(abs_current_path, each_path)
             print(f"run Index generate for path {abs_dir_path}")
-            index_generate(Path(abs_dir_path),True)
+            index_generate(Path(abs_dir_path), True)
         pass
 
 

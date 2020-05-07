@@ -1,5 +1,5 @@
 ---
-title: "Today, I learned by Interview Questions"
+title: "TIL by Interview questions"
 date: 2020-02-28T23:29:49+07:00
 tag: ["TIL","TodayILearn","todayilearn"]
 author: "Kevin Truong"

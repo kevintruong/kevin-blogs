@@ -25,6 +25,10 @@ the TIL like dictionary for my work.
 
 
 
+=== LBI 
+* link:lbi/global-static-object-evil[LBIQ- Why static or global object is evil] 2020-05-07
+
+
 === python 
 * link:python/simple_work_flow[Simple Work Flow] 2020-05-07
 
