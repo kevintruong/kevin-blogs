@@ -16,74 +16,7 @@ author: "Kevin Truong"
 :sectnumlevels: 5
 
 == Static object and global object, why is they evil
-Based on ideal about CI/CD concept and also learn from some well-known tech stacks like
-ansible, saltstack. By using simple yaml file to describe about flow work.
-I simply apply some of concept to my work flow. like bellow
+In embedded system, we have some kind of inteface names: I2C, SPI, USB to communicate between peripherals.
+Let take example for this on SPI interface with the module is 1 master and multiple slave devices like bellow:
 
-First, I need yaml file to define what I need for my work flow.
-
-Second, I need implement python utility to parse my work flow and do what I want.
-
-The greate thing of this is Low Code and customize for my work flow only.
-
-This python code bellow is implement a Factory pattern to return only Action Interface
-for action I configure in yaml file.
-
-1. You need to declare interface, here is `Action` . The action have 1 simple interface API
-called `execute`
-2. Implement a factory call ActionGenerator and return the action which describe in action_obj input
-
-3. run the action execute
-
-[source,python3]
-----
-class Action(abc.ABC):
-    @abc.abstractmethod
-    def execute(self):
-        pass
-
-class IndexGenerateAction(Action):
-
-    def __init__(self, actionobj: dict):
-        self.actionObj = actionobj
-        self.paths = []
-        for each_path in self.actionObj['paths']:
-            self.paths.append(each_path['path'])
-        pass
-
-    def execute(self):
-        for each_path in self.paths:
-            abs_current_path = pathlib.Path(__file__).parent.resolve()
-            abs_dir_path = os.path.join(abs_current_path,each_path)
-            print(f"run Index generate for path {abs_dir_path}")
-            index_generate(Path(abs_dir_path),True)
-        pass
-
-
-class ActionGenerator:
-
-    @classmethod
-    def action_generator(cls, actionObj: dict):
-        if actionObj['action'] == "index_generate":
-            return IndexGenerateAction(actionObj)
-        pass
-----
-
-[source,yaml]
-----
-site:
-  title: KenCanCode.xyz
-  url: https://kencancode.xyz
-contents:
-  - url: https://github.com/kevintruong/easy-framework.git
-    path: content/projects/easy-framework
-    update: true
-  - url: https://github.com/kevintruong/workspace-rsync.git
-    path: content/projects/workspace-rsync
-    update: true
-actions:
-  - action: index_generate
-    paths:
-       - path: content/TIL
-       - path: content/projects
-----
+image::blogs/SPI-1master-nslave.png[]

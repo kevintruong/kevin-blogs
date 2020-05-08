@@ -1,0 +1,41 @@
+---
+title: "Idea"
+date: 2020-02-28T23:29:49+07:00
+tag: ["Interview","Design Pattern"]
+draft: true
+author: "Kevin Truong"
+disableToc: true
+---
+
+=== Docker + X11 + packer: Lightweight Development Environment Containers
+
+I read about `HashiCorp packer` and `HashiCorp Vagrant`. I love the concept
+behind themselves.
+In my experience I always have problems on bringe up development environment
+of new projects for my team member. Each project has different way for build,
+tools for development, testing ... to transfer Development Env that success work
+for me to team members is nightmare.
+With embedded system projects, you have to install many dev environment to build
+project source. It also has another nightmare because each source project requirements
+different Linux distribute version. I know that all most them will support the well-known one
+Ubuntu but which some old project require very old version 10.04 or 14.04 etc.
+
+Yeah, the problem can solve by using docker as your build system
+By create separate docker image to package which software require for your project
+create docker image and run the docker image to build you project
+Now docker is your friend build system
+
+But we work like a team, then need to unify work process, about what IDE need to use for development,
+what tool is useful for testing and speed up the performance of the whole team.
+yes, We need an unify development environment for a specific project
+Varand from HashiCorp is greate tool for create a VM box and combined with Packer then
+It can create a defined VM Box with
+
+The one I didn't like on Vagrant is that it will using VM machine
+As my thought it is take a lot resource of your PC.
+That I come to another ideal is using docker will X11.
+yes, I know about the weak point of docker with X11.
+
+
+
+
