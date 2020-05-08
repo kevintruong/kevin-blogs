@@ -11,6 +11,6 @@ contents:
 actions:
   - action: index_generate
     paths:
-       - path: content/TIL
-       - path: content/projects
-         level: 1
+      - path: content/TIL
+      - path: content/projects
+        level: 1
