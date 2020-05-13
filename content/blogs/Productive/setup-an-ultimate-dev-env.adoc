@@ -1,0 +1,104 @@
+---
+title: "Ultimate Dev Env - Boost up your productivity"
+date: 2020-02-28T23:29:49+07:00
+draft: true
+tag: ["productivity","development","dev-env"]
+author: "Kevin Truong"
+---
+
+:projectdir: ../../
+:imagesdir: ${projectdir}/assets/
+:toclevels: 4
+:toc:
+:source-highlighter: coderay
+:sectnums:
+:sectnumlevels: 5
+
+[[purpose]]
+.Purpose
+****
+How do I speed up my work flow, how I can feel easy while working and not restrict by some kind of boring work like:
+Trying to remember what command I need on specific work, navigate to multiple terminal for monitoring process or debug log, speed up on prepare dev environment for specific project ...etc.
+This document describe about how I configure my development Environment to boost up my productivity.
+The setup will based on some awesome tools like `tmux`, `oh-my-zsh` , `oh-my-tmux`, `fzf`,`jump`,`tmuxinator`
+****
+
+== ZSH - OH MY ZSH
+
+I just changed from bash to zsh recently by accident.
+Yes, it is not an intended changing from bash to zsh.
+The reason for this because I change OS from ubuntu to debian and then with unknow reason my sweet tool `fzf`
+do not work well.
+Yes, already tried to debug for fixing this.
+But can not, then I try to work around it by switching to `fzf`.
+because fzf is my love.
+When I came `zsh` , I found out that there has a framework for zsh called `oh-my-zsh` to make more productivity by simple adding/removing plugins.
+Yes there have alot of useful plugins for `oh-my-zsh`.
+And you can also feel easy to add/remove plugins with `oh-my-zsh`
+
+=== Install oh-my-zsh
+
+For install `oh-my-zsh`, firstly you need to install zsh
+
+[source,shell]
+----
+sudo apt install -y zsh
+----
+
+install `oh-my-zsh` by simple command
+
+[source,shell]
+----
+# via curl
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+----
+
+basically, after run the command above, you done with install `oh-my-zsh`.
+But yes, we need to make some customize for better productivity then we need some plugins
+
+=== oh-my-zsh useful plugins
+
+`oh-my-sh` already has built-in plugins.
+But need to enable it.
+To enable `oh-my-zsh` plugins.
+editting file ~/.zshrc
+
+[source,shell]
+----
+vi ~/.zshrc
+----
+
+Adding plugins which you want to enable in field `plugins=(...)`
+my lovely useful is bellow
+
+[source,shell]
+----
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git
+        zsh-completions
+        zsh-autosuggestions
+        vi-mode
+        rsync
+        ripgrep
+        cp
+        common-aliases
+        alias-finder
+        tmuxinator
+        web-search
+        debian
+        extract
+)
+
+----
+
+== TMUX - TMUX PLUGIN
+
+== FZF - JUMP
+
+== TMUXINATOR
+
+== SWAP CAPLOCK - ESCAPE
