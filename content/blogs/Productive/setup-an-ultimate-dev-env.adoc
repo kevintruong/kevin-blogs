@@ -69,7 +69,7 @@ vi ~/.zshrc
 ----
 
 Adding plugins which you want to enable in field `plugins=(...)`
-my lovely useful is bellow
+my lovely useful is bellow.
 
 [source,shell]
 ----
@@ -84,11 +84,9 @@ plugins=(git
         vi-mode
         rsync
         ripgrep
-        cp
         common-aliases
         alias-finder
         tmuxinator
-        web-search
         debian
         extract
 )
@@ -96,6 +94,25 @@ plugins=(git
 ----
 
 == TMUX - TMUX PLUGIN
+
+for console management, I use tmux + `oh-my-tmux` + some awesome tmux plugins.
+Really appreciate `gpaksz` https://github.com/gpakosz/.tmux . He make amazing work on create tmux configure file.
+It is simple to isntall and have all things I need.
+The tmux configured file come from him is really well structured and simple to adding more plugins.
+
+=== Install `oh-my-tmux`
+
+by command below, you can install `oh-my-tmux`
+
+[source,shell]
+----
+cd
+git clone https://github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf
+cp .tmux/.tmux.conf.local .
+----
+
+=== Owesome tmux plugins
 
 == FZF - JUMP
 
