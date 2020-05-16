@@ -19,7 +19,7 @@ function hugo_ascii_docker_run() {
     --volume ${GROUP_FILE}:/etc/group \
     --volume $HOME:$HOME \
     --volume $(pwd):/documents \
-    hugo-ascii ${PARAMETERS}
+    kevinelg/hugo-asciidoc ${PARAMETERS}
 }
 
 

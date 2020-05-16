@@ -2,11 +2,10 @@
 title: "KenCanCode.xyz"
 ---
 
-Hello, My name Vu Truong/Kevin Truong this is my blog to describe about my work, my knowledge, and also my note about
-what I am doing and also what I learn or experience in the IT industry.
+Hello, My name Vu Truong/Kevin Truong this is my blog to describe about my work, my knowledge, and also my note about what I am doing and also what I learn or experience in the IT industry.
 
-I also have a youtube channel call https://www.youtube.com/channel/UCUI_23Sh86s0PTEiYyHl3lQ[KenCanCode]. The youtube channel will
-share your guys some my live coding sessions, and also some tutorials which I found out or relearn from others
+I also have a youtube channel call https://www.youtube.com/channel/UCUI_23Sh86s0PTEiYyHl3lQ[KenCanCode].
+The youtube channel will share your guys some my live coding sessions, and also some tutorials which I found out or relearn from others
 
 == My Projects
 
@@ -15,10 +14,5 @@ share your guys some my live coding sessions, and also some tutorials which I fo
 
 == My Blogs
 
-
 == TIL
 
-
-== Donwload all my posts
-
-{{%attachments title="Related files" pattern=".*(pdf|mp4)"/%}}

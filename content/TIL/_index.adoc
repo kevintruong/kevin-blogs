@@ -25,18 +25,18 @@ the TIL like dictionary for my work.
 
 
 
-=== LBI 
-* link:lbi/global-static-object-evil[LBIQ- Why static or global object is evil] 2020-05-07
+=== bash 
+* link:bash/bash_cheat_sheet[Bash Cheat Sheet] 2020-05-04
 
 
 === python 
 * link:python/simple_work_flow[Simple Work Flow] 2020-05-07
 
 
-=== bash 
-* link:bash/bash_cheat_sheet[Bash Cheat Sheet] 2020-05-04
-
-
 === C_Cpp 
-* link:c_cpp/fat_pointer[Fat pointer] 2020-05-07
 * link:c_cpp/embedded-c-object-oriented-programming-part-1[Embedded C - OOP approaching] 2020-05-03
+* link:c_cpp/fat_pointer[Fat pointer] 2020-05-07
+
+
+=== LBI 
+* link:lbi/global-static-object-evil[LBIQ- Why static or global object is evil] 2020-05-07

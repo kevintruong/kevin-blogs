@@ -1,5 +1,5 @@
 ---
-title: "Ultimate Dev Env - Boost up your productivity"
+title: "Development Environment - Boost up your productivity"
 date: 2020-02-28T23:29:49+07:00
 draft: true
 tag: ["productivity","development","dev-env"]
@@ -20,7 +20,7 @@ author: "Kevin Truong"
 How do I speed up my work flow, how I can feel easy while working and not restrict by some kind of boring work like:
 Trying to remember what command I need on specific work, navigate to multiple terminal for monitoring process or debug log, speed up on prepare dev environment for specific project ...etc.
 This document describe about how I configure my development Environment to boost up my productivity.
-The setup will based on some awesome tools like `tmux`, `oh-my-zsh` , `oh-my-tmux`, `fzf`,`jump`,`tmuxinator`
+The setup will based on some awesome tools like `tmux`, `oh-my-zsh` , `oh-my-tmux`, `fzf`,`jump`
 ****
 
 == ZSH - OH MY ZSH
@@ -99,9 +99,34 @@ for console management, I use tmux + `oh-my-tmux` + some awesome tmux plugins.
 Really appreciate `gpaksz` https://github.com/gpakosz/.tmux . He make amazing work on create tmux configure file.
 It is simple to isntall and have all things I need.
 The tmux configured file come from him is really well structured and simple to adding more plugins.
+And I love this vi-naviation style to switch between console.
+for example:
 
-=== Install `oh-my-tmux`
+[source,text]
+----
+bind-key -r -T prefix       h                     select-pane -L
+bind-key -r -T prefix       j                     select-pane -D
+bind-key -r -T prefix       k                     select-pane -U
+bind-key -r -T prefix       l                     select-pane -R
+----
 
+or using the same VI Navigate key to edit current layout
+
+[source,text]
+----
+bind-key -r -T prefix       J                     resize-pane -D 2
+bind-key -r -T prefix       K                     resize-pane -U 2
+bind-key -r -T prefix       L                     resize-pane -R 2
+bind-key    -T prefix       M                     select-pane -M
+----
+
+=== Install oh-my-tmux
+
+[.text-center]
+.oh-my-tmux
+image::tmux-real-demo.gif[align=center]
+
+[align=center]
 by command below, you can install `oh-my-tmux`
 
 [source,shell]
@@ -112,10 +137,146 @@ ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
 ----
 
-=== Owesome tmux plugins
+=== Awesome tmux plugins
+
+For more comfortable, I will need some tmux plugins like bellow
+
+[source,text]
+----
+# oh-my-tmux plugins (built-in)
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+# My plugins
+set -g @plugin 'kristijanhusak/tmux-simple-git-status'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'laktak/extrakto'
+set -g @plugin 'tmux-plugins/tmux-copycat'
+set -g @plugin 'tmux-plugins/tmux-yank'
+----
+
+* tmux-plugins/tpm : Tmux Plugin Manager.
+You need this one to install other plugins.
+It already buit-in when you install
+`oh-my-tmux`
+* kristijanhusak/tmux-simple-git-status: Dispay git status in power bar
+* link:https://github.com/tmux-plugins/tmux-resurrect[tmux-plugins/tmux-resurrect]: useful for save current workspace and restore it when you up again
+** `<tmux-prefix-key> + <ctrl-s>` : Save current workspace
+** `<tmux-prefix-key> + <ctrl-r>` : restore previous workspace
+* link:https://github.com/tmux-plugins/tmux-continuum[tmux-plugins/tmux-continuum]: continuous saving of tmux environment, automatic tmux start when computer/server is turned on automatic restore when tmux is started
+* link:https://github.com/laktak/extrakto[laktak/extrakto]: Output completions - you can complete commands that require you to retype text that is already on the screen.
+This works everywhere, even in remote ssh sessions.
+* link:https://github.com/tmux-plugins/tmux-copycat[tmux-plugins/tmux-copycat]: his plugin enables: regex searches search result, highlighting, predefined searches
+** `prefix + /` - regex search (strings work too)
+
+Example search entries:
+
+```
+    foo - searches for string foo
+    [0-9]+ - regex search for numbers
+```
+
+Grep is used for searching.
+Searches are case insensitive.
+
+** Predefined searches
+
+```
+    prefix + ctrl-f - simple file search
+    prefix + ctrl-g - jumping over git status files (best used after git status command)
+    prefix + alt-h - jumping over SHA-1/SHA-256 hashes (best used after git log command)
+    prefix + ctrl-u - url search (http, ftp and git urls)
+    prefix + ctrl-d - number search (mnemonic d, as digit)
+    prefix + alt-i - ip address search
+```
+
+These start "copycat mode" and jump to first match.
+
+* link:https://github.com/tmux-plugins/tmux-yank[tmux-plugins/tmux-yank]:Tmux plugin for copying to system clipboard.
+Works on OSX, Linux and Cygwin
+** Normal Mode
+*** `prefix–y` — copies text from the command line to the clipboard.
+*** `prefix–Y` — copy the current pane's current working directory to the clipboard.
+
+** Copy Mode
+*** `y` — copy selection to system clipboard.
+*** `Y` (shift-y) — "put" selection.
+Equivalent to copying a selection, and pasting it to the command line.
 
 == FZF - JUMP
 
-== TMUXINATOR
+=== link:https://github.com/junegunn/fzf[FZF]
 
-== SWAP CAPLOCK - ESCAPE
+image::fzf-real-demo.gif[align=center]
+
+fzf is a general-purpose command-line fuzzy finder.
+
+[source,shell]
+----
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+----
+
+FZF is great tool to fuzzy find what command you already run After installed, it will replace the reverse-search `Ctrl-r` by fzf search like demo above.
+
+=== link:https://github.com/gsamokovarov/jump[JUMP]
+
+There has problem that I need to install the utility tool also.
+Tmux will help use solve the naviation between multiple console.
+but we will need a easy way to navigate between multiple directories.
+for example: we have some really long directory path like
+
+```
+/home/kevin/Project/kevin-blogs/content/projects/workspace-rsync/Docs
+```
+
+to navigate to the directory above from `$HOME`. then we need go through alot the `Docs` parent of parent directories... etc
+
+So, `jump` will help us on the issue by remember name of what directory we are already in before
+
+`Jump` will support many ways to install like bellow
+
+[source,shell]
+----
+#macOS
+brew install jump
+
+#Ubuntu
+wget https://github.com/gsamokovarov/jump/releases/download/v0.30.1/jump_0.30.1_amd64.deb && sudo dpkg -i jump_0.30.1_amd64.deb
+
+#Fedora
+wget https://github.com/gsamokovarov/jump/releases/download/v0.30.1/jump-0.30.1-1.x86_64.rpm && sudo rpm -i jump-0.30.1-1.x86_64.rpm
+
+#Nix
+nix-env -iA nixpkgs.jump
+
+# Go
+go get github.com/gsamokovarov/jump
+
+
+----
+
+*Integration*
+
+Jump needs to be integrated with the shell.
+For bash and zsh, the line below needs to be in ~/.bashrc, ~/bash_profile or ~/.zshrc:
+
+```shell
+eval "$(jump shell)"
+```
+
+== Enable vi-mode in tmux and oh-my-zsh
+
+To enable vi style in oh-my-zsh, you need to push `vi-mode` to plugins list like bellow
+```shell
+plugins=(...
+        vi-mode
+        ...)
+```
+
+to enable vi style in tmux, you also need to set vi-mode option in ~/.tmux.conf
+
+```shell
+set -g @shell_mode 'vi'
+set-window-option -g mode-keys vi
+```
