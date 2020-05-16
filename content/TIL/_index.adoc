@@ -24,7 +24,6 @@ the TIL like dictionary for my work.
 
 
 
-
 === bash
 * link:bash/bash_cheat_sheet[Bash Cheat Sheet] 2020-05-04
 
