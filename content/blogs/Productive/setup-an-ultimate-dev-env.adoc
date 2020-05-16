@@ -207,16 +207,15 @@ Equivalent to copying a selection, and pasting it to the command line.
 
 === link:https://github.com/junegunn/fzf[FZF]
 
+[.text-center]
+.FZF demo
 image::fzf-real-demo.gif[align=center]
-
 fzf is a general-purpose command-line fuzzy finder.
-
 [source,shell]
 ----
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ----
-
 FZF is great tool to fuzzy find what command you already run After installed, it will replace the reverse-search `Ctrl-r` by fzf search like demo above.
 
 === link:https://github.com/gsamokovarov/jump[JUMP]
@@ -264,6 +263,10 @@ For bash and zsh, the line below needs to be in ~/.bashrc, ~/bash_profile or ~/.
 ```shell
 eval "$(jump shell)"
 ```
+
+[.text-center]
+.Jump demo
+image::jump-demo.gif[align=center]
 
 == Enable vi-mode in tmux and oh-my-zsh
 
