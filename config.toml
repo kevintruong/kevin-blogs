@@ -7,7 +7,6 @@ theme = "hugo-theme-learn"
 metaDataFormat = "yaml"
 defaultContentLanguageInSubdir= true
 buildExpired = true
-ignoreFiles = [ "\\README.adoc$"]
 
 [params]
   editURL = "https://github.com/kevintruong/kevin-blogs/edit/master/content/"
