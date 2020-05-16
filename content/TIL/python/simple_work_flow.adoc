@@ -15,7 +15,6 @@ author: "Kevin Truong"
 :source-highlighter: coderay
 :sectnumlevels: 5
 
-== Simple Work Flow
 Based on ideal about CI/CD concept and also learn from some well-known tech stacks like
 ansible, saltstack. By using simple yaml file to describe about flow work.
 I simply apply some of concept to my work flow. like bellow

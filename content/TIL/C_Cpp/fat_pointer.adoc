@@ -15,8 +15,6 @@ author: "Kevin Truong"
 :source-highlighter: coderay
 :sectnumlevels: 5
 
-== Fat pointer
-
 Today, I read an interested article about Fat Pointer.
 So, I will try to write some note about this concept.
 Yes, We already know about Pointer in C. But what is Fat Pointer.

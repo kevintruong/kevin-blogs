@@ -15,8 +15,6 @@ author: "Kevin Truong"
 :source-highlighter: coderay
 :sectnumlevels: 5
 
-== Bash Cheat Sheet
-
 <<<
 
 *HISTORY*
@@ -29,8 +27,7 @@ author: "Kevin Truong"
 
 <<<
 
-== Extract Firmware Archive and get image file
-=== check substring in string
+== check substring in string
 
 [source,bash]
 ----
@@ -42,6 +39,7 @@ else
 fi
 ----
 
+== Extract Firmware Archive and get image file
 Example:
 
 [source,bash]
