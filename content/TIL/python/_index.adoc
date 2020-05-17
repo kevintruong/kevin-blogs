@@ -1,0 +1,6 @@
+---
+title: "Python"
+date: 2020-02-28T23:29:49+07:00
+tag: ["TIL","python","todayilearn"]
+author: "Kevin Truong"
+---
