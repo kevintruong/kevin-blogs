@@ -1,0 +1,45 @@
+@startuml
+box "Sender"
+participant TCP_Client_App
+participant TCP_Socket_Client
+end box
+
+box "Receiver"
+participant TCP_Socket_Server
+participant TCP_Server_App
+end box
+
+group normal case
+TCP_Socket_Client <--> TCP_Socket_Server : established connection
+note left: ISN TCP client: 1001
+note right: ISN TCP server: 7001
+TCP_Client_App --> TCP_Socket_Client : send "abc" bytes data
+TCP_Socket_Client --> TCP_Socket_Server : send "abc" to socket server
+TCP_Socket_Server --> TCP_Server_App: send "abc" to Server_App
+TCP_Socket_Client <-- TCP_Socket_Server: send ACK=1004
+TCP_Client_App --> TCP_Socket_Client: send "defg" 4 bytes
+TCP_Socket_Client --> TCP_Socket_Server: send "defg" data, seq=1004
+TCP_Socket_Server --> TCP_Server_App: send "defg" to Server_App
+TCP_Socket_Client <-- TCP_Socket_Server: send ACK=1007
+end
+
+group Client send large packet
+TCP_Client_App --> TCP_Socket_Client: send 1024 bytes
+note left of TCP_Client_App
+Assume TCP conenction limit
+TCP Segment to 512 byte
+end note
+TCP_Socket_Client --> TCP_Socket_Server: send 512 data, seq=1007,len=512
+TCP_Socket_Client --> TCP_Socket_Server: send 512 data, seq=1559,len=512
+TCP_Socket_Server --> TCP_Socket_Server: Assemble TCP Segment
+TCP_Socket_Server --> TCP_Server_App: send 1024 bytes to Server_App
+TCP_Socket_Client <-- TCP_Socket_Server: send ACK=2071
+end
+group server send large packet
+TCP_Socket_Server <-- TCP_Server_App: send 712 bytes,seq=7001
+TCP_Socket_Client <-- TCP_Socket_Server: Send 512 bytes, seq=7001,len=512
+TCP_Socket_Client <-- TCP_Socket_Server: Send 200 bytes, seq=7513,len=200
+TCP_Socket_Client <-- TCP_Socket_Client: Assemble TCP Segment
+TCP_Client_App    <-- TCP_Socket_Client: Send 712 bytes to Client App
+TCP_Socket_Client --> TCP_Socket_Server: Send ACK=7713
+@enduml
