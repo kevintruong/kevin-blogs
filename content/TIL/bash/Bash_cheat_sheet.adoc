@@ -69,3 +69,22 @@ curl -k --cookie cookiejar -F \
                 'X-Requested-With: XMLHttpRequest' \
                 "https://${DEVICE_IP}/cgi/cgi_set?Object=Device.X_LANTIQ_COM_Upgrade.Upgrade.4&Operation=Modify&State=UPG_REQ&FileType=FIRMWARE"
 ----
+
+== Run command in remote side 
+f Machine A is a Windows box, use Plink (part of PuTTY) with the -m parameter, 
+and it will execute the local script on the remote server.
+
+[source,shell]
+----
+plink root@MachineB -m local_script.sh
+----
+
+If Machine A is a Unix-based system, you can use:
+
+[source,shell]
+----
+ssh root@MachineB 'bash -s' < local_script.sh
+----
+
+
+

@@ -42,4 +42,5 @@ TCP_Socket_Client <-- TCP_Socket_Server: Send 200 bytes, seq=7513,len=200
 TCP_Socket_Client <-- TCP_Socket_Client: Assemble TCP Segment
 TCP_Client_App    <-- TCP_Socket_Client: Send 712 bytes to Client App
 TCP_Socket_Client --> TCP_Socket_Server: Send ACK=7713
+end
 @enduml

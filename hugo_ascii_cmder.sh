@@ -19,16 +19,16 @@ function hugo_ascii_docker_run() {
     --volume ${GROUP_FILE}:/etc/group \
     --volume $HOME:$HOME \
     --volume $(pwd):/documents \
-    kevinelg/hugo-asciidoc ${PARAMETERS}
+    hugo-adoc ${PARAMETERS}
 }
 
 
 watch() {
     echo watching folder $1/ every $2 secs.
-    hugo_ascii_docker_run "server -D"
+    hugo_ascii_docker_run "hugo server -D"
     while [[ true ]]
     do
-        files=`find $1 -type f -newermt "$2 seconds ago"`
+        files=`find $1 -type f -newermt "$5 seconds ago"`
         if [[ ${files} != "" ]] ; then
             echo "${files} file changed, let update"
             docker stop hugo-ascii-runner
@@ -40,7 +40,7 @@ watch() {
             sleep 1
             hugo_ascii_docker_run "hugo server -D"
         fi
-        sleep 3
+        sleep 5
     done
 }
 

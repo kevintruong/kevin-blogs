@@ -6,6 +6,7 @@ draft: true
 
 :projectdir: ../../
 :imagesdir: ${projectdir}/assets/
+:assetsdir: ${projectdir}/static/assets/
 :toclevels: 4
 :toc:
 :sectnums:
@@ -254,7 +255,7 @@ We will use the example above to describe how TCP transfer data
 
 [plantuml,activity,svg,align="center"]
 ----
-include::./content/blogs/Assets/plantuml/tcp_handshake.plantuml[]
+include::{assetsdir}/diagrams/tcp_handshake.plantuml[]
 ----
 
 ==== Benchmark

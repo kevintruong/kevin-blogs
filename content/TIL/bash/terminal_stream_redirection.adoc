@@ -1,0 +1,37 @@
+---
+title: "Terminal I/O streams and redirection"
+date: 2020-02-28T23:29:49+07:00
+tag: ["Bash","script"]
+draft: true
+author: "Kevin Truong"
+---
+
+:projectdir: ../../
+:imagesdir: ${projectdir}/assets/
+:toclevels: 4
+:toc:
+:toc: left
+:sectnums:
+:source-highlighter: coderay
+:sectnumlevels: 5
+
+== Terminal IO
+
+3 default stream: stdin, stdout, stderr.
+All those streams describe by file description (id) in order are 1,2,3
+
+== Redirection
+
+* Using angle bracket for redirect from or to command
+** > to send to command
+** < to receive from a command
+** >> append to command
+** << to in-place append
+* using `&` is write into a stream.
+Example:
+
+```
+echo "hello 1" &1 # write hello 1 to stdout
+```
+
+
