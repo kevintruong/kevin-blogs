@@ -20,3 +20,5 @@ In embedded system, we have some kind of inteface names: I2C, SPI, USB to commun
 Let take example for this on SPI interface with the module is 1 master and multiple slave devices like bellow:
 
 image::blogs/SPI-1master-nslave.png[]
+
+

@@ -32,12 +32,13 @@ watch() {
         if [[ ${files} != "" ]] ; then
             echo "${files} file changed, let update"
             docker stop hugo-ascii-runner
+            sleep 1
             hugo_ascii_docker_run "python3 contain_builder.py"
-            sleep 1
+            sleep 2
             hugo_ascii_docker_run "hugo -D"
-            sleep 1
+            sleep 2
             cp -rf ${ROOT_DIR}/assets ${ROOT_DIR}/static/
-            sleep 1
+            sleep 2
             hugo_ascii_docker_run "hugo server -D"
         fi
         sleep 5
