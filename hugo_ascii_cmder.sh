@@ -19,12 +19,13 @@ function hugo_ascii_docker_run() {
     --volume ${GROUP_FILE}:/etc/group \
     --volume $HOME:$HOME \
     --volume $(pwd):/documents \
-    hugo-adoc ${PARAMETERS}
+    hugo-ascii ${PARAMETERS}
 }
 
 
 watch() {
     echo watching folder $1/ every $2 secs.
+    docker stop hugo-ascii-runner
     hugo_ascii_docker_run "hugo server -D"
     while [[ true ]]
     do
@@ -33,15 +34,17 @@ watch() {
             echo "${files} file changed, let update"
             docker stop hugo-ascii-runner
             sleep 1
+            echo "Regenerate content"
             hugo_ascii_docker_run "python3 contain_builder.py"
-            sleep 2
+            echo "regenerate content Dir"
             hugo_ascii_docker_run "hugo -D"
             sleep 2
+            echo "update assets dir"
             cp -rf ${ROOT_DIR}/assets ${ROOT_DIR}/static/
             sleep 2
             hugo_ascii_docker_run "hugo server -D"
         fi
-        sleep 5
+        sleep 3
     done
 }
 

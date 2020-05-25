@@ -1,5 +1,5 @@
 ---
-title: "TCP - TLS What You Need to Know"
+title: "TCP What You Need to Know"
 date: 2020-05-16T15:45:18Z
 draft: true
 ---
@@ -14,8 +14,7 @@ draft: true
 :sectnumlevels: 5
 
 I work for a software company, mostly working on developing router.
-But honestly, I feel bad about our teammate.
-We have lack of knowledge on some kind of fundamentals of networking like TCP, UDP, DHCP, ...
+But honestly, I feel lacks of knowledge on some kind of fundamentals of networking like TCP, UDP, DHCP, ...
 I saw some kind of simple question on how to send/received package with TCP socket and when I come to deep dive on this portion.
 No one can tell me detail about it.
 That why I decided to relearn and write something about it.
@@ -52,7 +51,7 @@ We need to understand how we call it like this
 For establishing a connection, TCP will perform handshake protocol called 3 way handshake
 
 [.text-center]
-.TCP Handshake
+.*TCP Handshake*
 [plantuml,tcp-handshake,svg,align=center]
 ----
 Sender --> Receiver : SYN,seq_s=rnd()
@@ -85,7 +84,7 @@ In this case, TCP client is sender and TCP server is receiver.
 
 [col]
 --
-.TCP Client/Sender
+.*TCP Client/Sender*
 [source,c]
 ----
 #include <stdio.h>
@@ -138,7 +137,7 @@ int main(int argc, char const *argv[])
 
 [col]
 --
-.TCP server/receiver
+.*TCP server/receiver*
 [source,c]
 ----
 #include <unistd.h>
@@ -253,30 +252,79 @@ Then ISN number as byte level will increase by 1.
 
 We will use the example above to describe how TCP transfer data
 
-[plantuml,activity,svg,align="center"]
+[.text-center]
+.*TCP Data Transfer*
+[plantuml,tcp_transfer_data,svg,align="center"]
 ----
-include::{assetsdir}/diagrams/tcp_handshake.plantuml[]
+box "Sender"
+participant TCP_Client_App
+participant TCP_Socket_Client
+end box
+
+box "Receiver"
+participant TCP_Socket_Server
+participant TCP_Server_App
+end box
+
+group normal case
+TCP_Socket_Client <--> TCP_Socket_Server : established connection
+note left: ISN TCP client: 1001
+note right: ISN TCP server: 7001
+TCP_Client_App --> TCP_Socket_Client : send "abc" bytes data
+TCP_Socket_Client --> TCP_Socket_Server : send "abc" to socket server
+TCP_Socket_Server --> TCP_Server_App: send "abc" to Server_App
+TCP_Socket_Client <-- TCP_Socket_Server: send ACK=1004
+TCP_Client_App --> TCP_Socket_Client: send "defg" 4 bytes
+TCP_Socket_Client --> TCP_Socket_Server: send "defg" data, seq=1004
+TCP_Socket_Server --> TCP_Server_App: send "defg" to Server_App
+TCP_Socket_Client <-- TCP_Socket_Server: send ACK=1007
+end
+
+group Client send large packet
+TCP_Client_App --> TCP_Socket_Client: send 1024 bytes
+note left of TCP_Client_App
+Assume TCP conenction limit
+TCP Segment to 512 byte
+end note
+TCP_Socket_Client --> TCP_Socket_Server: send 512 data, seq=1007,len=512
+TCP_Socket_Client --> TCP_Socket_Server: send 512 data, seq=1559,len=512
+TCP_Socket_Server --> TCP_Socket_Server: Assemble TCP Segment
+TCP_Socket_Server --> TCP_Server_App: send 1024 bytes to Server_App
+TCP_Socket_Client <-- TCP_Socket_Server: send ACK=2071
+end
+group server send large packet
+TCP_Socket_Server <-- TCP_Server_App: send 712 bytes,seq=7001
+TCP_Socket_Client <-- TCP_Socket_Server: Send 512 bytes, seq=7001,len=512
+TCP_Socket_Client <-- TCP_Socket_Server: Send 200 bytes, seq=7513,len=200
+TCP_Socket_Client <-- TCP_Socket_Client: Assemble TCP Segment
+TCP_Client_App    <-- TCP_Socket_Client: Send 712 bytes to Client App
+TCP_Socket_Client --> TCP_Socket_Server: Send ACK=7713
+end
 ----
 
-==== Benchmark
+=== Benchmark
 
-=== Overview
+For now, we know how established TCP connection and also how it transfer data from sender to receiver and otherwise.
+To transfer data in TCP. First of all need to establish a connection.
+The work need to take 2 `Round Trip`.
 
-=== How it works
+I said `round trip` right, this is new definition but hard to explain it to easy to understand.
+Then we can understand the definition by example:
 
-=== Conclusion
+I said established TCP connection take about 2 round trips.
+So why 2 round trips.
 
-== TLS
+* The first one round trip is the route of SYN packet send from sender to receiver plus to the route of ACK packet send from receiver to sender.
 
-=== What is TCP ?
+* The second round trip is the route of sync packet send from receiver to sender and also the route of ACK packet send from receiver to sender.
 
-=== Overview
+So the Route Trip mean the full route of packet to a destination plus to full route of packet response.
+And the time to complete a route trip is Route Trip Time (RTT)
 
-=== How it works
-
-=== Conclusion
 
 == Reference
 
 * http://www.tcpipguide.com/free/t_TCPConnectionEstablishmentProcessTheThreeWayHandsh-3.htm[TCP connection three ways established]
 * https://www.geeksforgeeks.org/socket-programming-cc/[TCP server client source reference]
+
+
