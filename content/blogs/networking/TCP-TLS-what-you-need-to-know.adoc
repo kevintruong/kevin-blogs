@@ -13,6 +13,7 @@ draft: true
 :source-highlighter: coderay
 :sectnumlevels: 5
 
+
 I work for a software company, mostly working on developing router.
 But honestly, I feel lacks of knowledge on some kind of fundamentals of networking like TCP, UDP, DHCP, ...
 I saw some kind of simple question on how to send/received package with TCP socket and when I come to deep dive on this portion.
@@ -43,8 +44,17 @@ In the blog, I will go to detail about the TCP protocol.
 
 === TCP - Guarantee transfer protocol ?
 
-According above, we have TCP will be like a guarantee transport protocol.
-We need to understand how we call it like this
+1. *Connection management*: How connection established and how to terminate the connection
+2. *Reliablitity*: Using sequence numbers (used for segements reodering) and retransmission.
+3. *Flow control*: Make sure sender do not overflow a receiver.
+4. *Congestion control*: Make sure sender do not overflow network.
+
+the features 3 and 4 are the same purpose (limit the overflow) but different layer.
+
+The 3 (Flow Control) will limit the sender from overflow receiver (Application layer).
+Receiver will tell to Sender about what size of data it (receiver) can receive.
+
+The 4 (Congestion Control) will limit the server from overflow the network (Link Layer).
 
 ==== Connection Establish
 
@@ -223,6 +233,7 @@ The next thing we need to deep dive into is how TCP transfer data package reliea
 ==== Data transfer between sender and receiver in TCP link
 
 Before go dive to TCP transfer data sequence, I think we need to know about some terminology
+
 * Initial Squence Number (ISN) :
 ** Each sides has its own ISN. Can use ramdom number
 ** ISN is byte level number. each time a sender send a number of bytes data. then sender will has new ISN number = old ISN + send bytes number.
@@ -257,48 +268,52 @@ We will use the example above to describe how TCP transfer data
 [plantuml,tcp_transfer_data,svg,align="center"]
 ----
 box "Sender"
-participant TCP_Client_App
-participant TCP_Socket_Client
+    participant TCP_Client_App
+    participant TCP_Socket_Client
 end box
 
 box "Receiver"
-participant TCP_Socket_Server
-participant TCP_Server_App
+    participant TCP_Socket_Server
+    participant TCP_Server_App
 end box
 
 group normal case
-TCP_Socket_Client <--> TCP_Socket_Server : established connection
-note left: ISN TCP client: 1001
-note right: ISN TCP server: 7001
-TCP_Client_App --> TCP_Socket_Client : send "abc" bytes data
-TCP_Socket_Client --> TCP_Socket_Server : send "abc" to socket server
-TCP_Socket_Server --> TCP_Server_App: send "abc" to Server_App
-TCP_Socket_Client <-- TCP_Socket_Server: send ACK=1004
-TCP_Client_App --> TCP_Socket_Client: send "defg" 4 bytes
-TCP_Socket_Client --> TCP_Socket_Server: send "defg" data, seq=1004
-TCP_Socket_Server --> TCP_Server_App: send "defg" to Server_App
-TCP_Socket_Client <-- TCP_Socket_Server: send ACK=1007
+    TCP_Socket_Client <--> TCP_Socket_Server : established connection
+
+    note left: ISN TCP client: 1001
+    note right: ISN TCP server: 7001
+
+    TCP_Client_App --> TCP_Socket_Client : send "abc" bytes data
+    TCP_Socket_Client --> TCP_Socket_Server : send "abc" to socket server
+    TCP_Socket_Server --> TCP_Server_App: send "abc" to Server_App
+    TCP_Socket_Client <-- TCP_Socket_Server: send ACK=1004
+    TCP_Client_App --> TCP_Socket_Client: send "defg" 4 bytes
+    TCP_Socket_Client --> TCP_Socket_Server: send "defg" data, seq=1004
+    TCP_Socket_Server --> TCP_Server_App: send "defg" to Server_App
+    TCP_Socket_Client <-- TCP_Socket_Server: send ACK=1007
 end
 
 group Client send large packet
-TCP_Client_App --> TCP_Socket_Client: send 1024 bytes
-note left of TCP_Client_App
-Assume TCP conenction limit
-TCP Segment to 512 byte
-end note
-TCP_Socket_Client --> TCP_Socket_Server: send 512 data, seq=1007,len=512
-TCP_Socket_Client --> TCP_Socket_Server: send 512 data, seq=1559,len=512
-TCP_Socket_Server --> TCP_Socket_Server: Assemble TCP Segment
-TCP_Socket_Server --> TCP_Server_App: send 1024 bytes to Server_App
-TCP_Socket_Client <-- TCP_Socket_Server: send ACK=2071
+    TCP_Client_App --> TCP_Socket_Client: send 1024 bytes
+    note left of TCP_Client_App
+        Assume TCP conenction limit
+        TCP Segment to 512 byte
+    end note
+
+    TCP_Socket_Client --> TCP_Socket_Server: send 512 data, seq=1007,len=512
+    TCP_Socket_Client --> TCP_Socket_Server: send 512 data, seq=1559,len=512
+    TCP_Socket_Server --> TCP_Socket_Server: Assemble TCP Segment
+    TCP_Socket_Server --> TCP_Server_App: send 1024 bytes to Server_App
+    TCP_Socket_Client <-- TCP_Socket_Server: send ACK=2071
 end
+
 group server send large packet
-TCP_Socket_Server <-- TCP_Server_App: send 712 bytes,seq=7001
-TCP_Socket_Client <-- TCP_Socket_Server: Send 512 bytes, seq=7001,len=512
-TCP_Socket_Client <-- TCP_Socket_Server: Send 200 bytes, seq=7513,len=200
-TCP_Socket_Client <-- TCP_Socket_Client: Assemble TCP Segment
-TCP_Client_App    <-- TCP_Socket_Client: Send 712 bytes to Client App
-TCP_Socket_Client --> TCP_Socket_Server: Send ACK=7713
+    TCP_Socket_Server <-- TCP_Server_App: send 712 bytes,seq=7001
+    TCP_Socket_Client <-- TCP_Socket_Server: Send 512 bytes, seq=7001,len=512
+    TCP_Socket_Client <-- TCP_Socket_Server: Send 200 bytes, seq=7513,len=200
+    TCP_Socket_Client <-- TCP_Socket_Client: Assemble TCP Segment
+    TCP_Client_App    <-- TCP_Socket_Client: Send 712 bytes to Client App
+    TCP_Socket_Client --> TCP_Socket_Server: Send ACK=7713
 end
 ----
 
@@ -321,10 +336,11 @@ So why 2 round trips.
 So the Route Trip mean the full route of packet to a destination plus to full route of packet response.
 And the time to complete a route trip is Route Trip Time (RTT)
 
+=== Congestion Control
+
+* Why need congestion control basically, Send will negotiate with Receiver to maximum
 
 == Reference
 
 * http://www.tcpipguide.com/free/t_TCPConnectionEstablishmentProcessTheThreeWayHandsh-3.htm[TCP connection three ways established]
 * https://www.geeksforgeeks.org/socket-programming-cc/[TCP server client source reference]
-
-
