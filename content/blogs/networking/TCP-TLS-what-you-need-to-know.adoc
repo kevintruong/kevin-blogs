@@ -40,9 +40,9 @@ I did not give a shit on how Receiver process the data.
 Maybe receiver will lost some data, the data is crash by channel noise.
 UDP sender say: It's not my responsibility, I have data , I already send it to you (receiver). and that's it.
 
-In the blog, I will go to detail about the TCP protocol.
+== Features
 
-=== TCP - Guarantee transfer protocol ?
+In the blog, I will go to detail about the TCP protocol.
 
 1. *Connection management*: How connection established and how to terminate the connection
 2. *Reliablitity*: Using sequence numbers (used for segements reodering) and retransmission.
@@ -56,7 +56,7 @@ Receiver will tell to Sender about what size of data it (receiver) can receive.
 
 The 4 (Congestion Control) will limit the server from overflow the network (Link Layer).
 
-==== Connection Establish
+=== Connection management
 
 For establishing a connection, TCP will perform handshake protocol called 3 way handshake
 
@@ -225,15 +225,15 @@ Send ACK + SYN(r) and wait for ACK from client <4>
 --
 
 [.text-center]
-.TCP 3-ways handshake
-image::tcp_handshake.png[]
+.*TCP 3-ways Handshake*
+image::tcp_handshake.png[align=center]
 
 So, for establishing a TCP connection, sender and receiver mut perfom 3 ways handshake.
 sender must sync with receiver a sender magic number, and also receive will also sync with sender a receiver magic number After synchronize both magic numbers, the tcp connection will be established
 
 The next thing we need to deep dive into is how TCP transfer data package relieable and orderable
 
-==== Data transfer between sender and receiver in TCP link
+=== Reliablitity in TCP link
 
 Before go dive to TCP transfer data sequence, I think we need to know about some terminology
 
@@ -320,8 +320,6 @@ group server send large packet
 end
 ----
 
-=== Benchmark
-
 For now, we know how established TCP connection and also how it transfer data from sender to receiver and otherwise.
 To transfer data in TCP. First of all need to establish a connection.
 The work need to take 2 `Round Trip`.
@@ -339,11 +337,46 @@ So why 2 round trips.
 So the Route Trip mean the full route of packet to a destination plus to full route of packet response.
 And the time to complete a route trip is Route Trip Time (RTT)
 
+=== Flow Control
+
 === Congestion Control
 
-* Why need congestion control basically, Send will negotiate with Receiver to maximum
+As I mentioned above, TCP using receive window (ACK package) to inform the sender about receiver's capability.
+But there will have another problem to sovle.
+That is about network capability.
+Receiver just said to sender that how much it can receive.
+so what if receiver say "I can receive about 5GB".
+Then sender will push all 5GB at the same time.
+It will overflow the network (the path from sender to receiver).
+TCP solve the case by implement congestion control mechanism.
+
+The purpose of this is control how much the sender will push data out network to avoid overflow network.
+
+* low-start
+** Slow start phase
+
+[.text-center]
+.*Slow Start Algorithm*
+image::tcp_slow_start_congestion_control.png[align=center]
+
+** congestion avoidance phase
+
+[.text-center]
+.*Low Start Congestion Avoidance*
+image::tcp_low_start_congestion_avoid.png[align=center]
+
+* CUBIC
+
+[.text-center]
+.*CUBIC Congestion Control*
+image::tcp_cubic_congestion_control.png[align=center]
+** Concave phase:
+** Convex phase
+* Bottleneck Bandwidth and RTT
 
 == Reference
 
 * http://www.tcpipguide.com/free/t_TCPConnectionEstablishmentProcessTheThreeWayHandsh-3.htm[TCP connection three ways established]
 * https://www.geeksforgeeks.org/socket-programming-cc/[TCP server client source reference]
+* https://www.noction.com/blog/tcp-transmission-control-protocol-congestion-control[TCP (Transmission Control Protocol) Congestion Control]
+* https://sookocheff.com/post/networking/how-does-tcp-work/[How Does TCP Work?]
