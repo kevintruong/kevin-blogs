@@ -214,6 +214,7 @@ int main(int argc, char const *argv[])
     printf("Hello message sent\n");
     return 0;
 }
+
 ----
 <1> : TCP server socket closed state, need initial and configure socket server bind a file description to socker address
 <2> : TCP socket server in listen state, wait for sync packet from client
@@ -223,6 +224,8 @@ Send ACK + SYN(r) and wait for ACK from client <4>
 <4> : Connection established
 --
 
+[.text-center]
+.TCP 3-ways handshake
 image::tcp_handshake.png[]
 
 So, for establishing a TCP connection, sender and receiver mut perfom 3 ways handshake.
