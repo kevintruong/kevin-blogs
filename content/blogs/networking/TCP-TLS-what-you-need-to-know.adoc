@@ -20,7 +20,7 @@ I saw some kind of simple question on how to send/received package with TCP sock
 No one can tell me detail about it.
 That why I decided to relearn and write something about it.
 
-== TCP
+== Define
 
 * TCP and UDP, the two guys are really famous with all IT Engineer.
 They are transport protocol and they are on layer 3 in OSI model.
@@ -57,6 +57,7 @@ Receiver will tell to Sender about what size of data it (receiver) can receive.
 The 4 (Congestion Control) will limit the server from overflow the network (Link Layer).
 
 === Connection management
+==== Establish connection
 
 For establishing a connection, TCP will perform handshake protocol called 3 way handshake
 
@@ -231,7 +232,8 @@ image::tcp_handshake.png[align=center]
 So, for establishing a TCP connection, sender and receiver mut perfom 3 ways handshake.
 sender must sync with receiver a sender magic number, and also receive will also sync with sender a receiver magic number After synchronize both magic numbers, the tcp connection will be established
 
-The next thing we need to deep dive into is how TCP transfer data package relieable and orderable
+==== Terminate connection
+//TODO add write about how to terminate
 
 === Reliablitity in TCP link
 
@@ -352,27 +354,29 @@ TCP solve the case by implement congestion control mechanism.
 
 The purpose of this is control how much the sender will push data out network to avoid overflow network.
 
-* low-start
-** Slow start phase
+==== Low-Start
+
+* Slow start phase
 
 [.text-center]
 .*Slow Start Algorithm*
 image::tcp_slow_start_congestion_control.png[align=center]
 
-** congestion avoidance phase
+* Congestion avoidance phase
 
 [.text-center]
 .*Low Start Congestion Avoidance*
 image::tcp_low_start_congestion_avoid.png[align=center]
 
-* CUBIC
+==== CUBIC
 
 [.text-center]
 .*CUBIC Congestion Control*
 image::tcp_cubic_congestion_control.png[align=center]
-** Concave phase:
-** Convex phase
-* Bottleneck Bandwidth and RTT
+* Concave phase:
+* Convex phase:
+
+==== Bottleneck Bandwidth and RTT
 
 == Reference
 
