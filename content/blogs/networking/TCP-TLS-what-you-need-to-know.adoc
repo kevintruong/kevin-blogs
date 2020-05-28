@@ -1,5 +1,5 @@
 ---
-title: "TCP What You Need to Know"
+title: "TCP What You Need to Know (Part 1)"
 date: 2020-05-16T15:45:18Z
 draft: true
 ---
@@ -57,6 +57,7 @@ Receiver will tell to Sender about what size of data it (receiver) can receive.
 The 4 (Congestion Control) will limit the server from overflow the network (Link Layer).
 
 === Connection management
+
 ==== Establish connection
 
 For establishing a connection, TCP will perform handshake protocol called 3 way handshake
@@ -235,7 +236,7 @@ sender must sync with receiver a sender magic number, and also receive will also
 ==== Terminate connection
 //TODO add write about how to terminate
 
-=== Reliablitity in TCP link
+=== Reliablitity
 
 Before go dive to TCP transfer data sequence, I think we need to know about some terminology
 
@@ -341,16 +342,78 @@ And the time to complete a route trip is Route Trip Time (RTT)
 
 === Flow Control
 
+Receiver has received buffer (FIFO) to store data from the Sender.
+The size of TCP Received Buffer defined by multiple OS with different value.
+When TCP established, sender and receiver will exchange the free received buffer by read out `window size` value of TCP header.
+Then sender and receiver will know how much data it can send to each other.
+
+[.text-center]
+.TCP Header format
+image::TCP_header.png[align=center]
+
+Now we have number call `window size`.
+In another words, it is the remain free of received buffer.
+Whenever the buffer received an amount of data from sender.
+TCP stack will update the remain free at current time and TCP stack will update the value to ACK package response back.
+Then sender can not send TCP data packet with size larger than `window size` which read from previous ACK packet.
+
+[.text-center]
+.*TCP Flow Control Transfer*
+[plantuml,tcp_flow_control,svg,align="center"]
+----
+box "Sender"
+    participant TCP_Client_App
+    participant TCP_Socket_Client
+end box
+
+box "Receiver"
+    participant TCP_Socket_Server
+    participant TCP_Server_App
+end box
+
+group normal case
+    autonumber
+    TCP_Socket_Client <--> TCP_Socket_Server : established connection
+    note left: ISN TCP client: 1000, rdwn = 4000,FifoSize=4000
+    note right: ISN TCP server: 7000, rdwn = 10000,FifoSize=10000
+
+    TCP_Client_App --> TCP_Socket_Client : send 5000 bytes data
+    TCP_Socket_Client --> TCP_Socket_Server : send 5000 bytes to socket server
+    TCP_Socket_Client <-- TCP_Socket_Server: send ACK=6000,rdwn=5000
+
+    TCP_Socket_Server --> TCP_Server_App: send 5KB to TCP_Server_App
+    note right of TCP_Server_App
+        App read out data from Fifo,
+        then FifoSize=10000
+    end note
+    TCP_Socket_Server --> TCP_Socket_Server: update rdwn (window size)
+
+    TCP_Client_App --> TCP_Socket_Client: send 4000 bytes
+    note left of TCP_Client_App
+        previous ACK rdwn = 5000
+        then max send out is 5000
+    end note
+    TCP_Socket_Client --> TCP_Socket_Server: send 4000 data, seq=6000
+    TCP_Socket_Server --> TCP_Server_App: send 4000 to Server_App
+    TCP_Socket_Client <-- TCP_Socket_Server: send ACK=10000
+end
+----
+
 === Congestion Control
 
 As I mentioned above, TCP using receive window (ACK package) to inform the sender about receiver's capability.
-But there will have another problem to sovle.
+But there will have another problem to solve.
 That is about network capability.
-Receiver just said to sender that how much it can receive.
-so what if receiver say "I can receive about 5GB".
+Receiver just said to Sender that how much it can receive.
+So what if receiver say "I can receive about 5GB".
 Then sender will push all 5GB at the same time.
+
 It will overflow the network (the path from sender to receiver).
-TCP solve the case by implement congestion control mechanism.
+TCP solves the case by implement congestion control mechanism.
+Not like Flow Control while Sliding Window (rwnd) is stored in TCP header send from Receiver.
+In Congestion Control will use another number call congestion window (cwnd).
+The number is only cared by Sender to define how much data can be send into network without acknowledged.
+In another words, that mean the sender can send limited number of TCP packets without wait one by one ACK.
 
 The purpose of this is control how much the sender will push data out network to avoid overflow network.
 

@@ -15,8 +15,7 @@ function hugo_ascii_docker_run() {
     --net host \
     --user $(whoami) \
     -u=$(id -u $(whoami)):$(id -g $(whoami)) \
-    -May 24, 2017 - TCP can use the congestion window (cwnd) and the receiver window (rwnd) to control and avoid network congestion. The amount of data that ...
--volume ${PASSWD_FILE}:/etc/passwd \
+    --volume ${PASSWD_FILE}:/etc/passwd \
     --volume ${GROUP_FILE}:/etc/group \
     --volume $HOME:$HOME \
     --volume $(pwd):/documents \
