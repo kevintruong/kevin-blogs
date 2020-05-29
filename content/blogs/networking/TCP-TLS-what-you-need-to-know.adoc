@@ -234,7 +234,66 @@ So, for establishing a TCP connection, sender and receiver mut perfom 3 ways han
 sender must sync with receiver a sender magic number, and also receive will also sync with sender a receiver magic number After synchronize both magic numbers, the tcp connection will be established
 
 ==== Terminate connection
-//TODO add write about how to terminate
+
+[.text-center]
+.*TCP terminate connection*
+[plantuml,tcp_terminate_connection,svg,align="center"]
+----
+skinparam sequenceMessageAlign center
+autonumber
+box "Sender"
+    participant TCP_Socket_Client
+end box
+
+box "Receiver"
+    participant TCP_Socket_Server
+end box
+
+group Terminate Connection
+
+    note left TCP_Socket_Client #aqua
+        ESTABLISHED State
+    end note
+
+    note right TCP_Socket_Server
+        ESTABLISHED State
+    end note
+
+    TCP_Socket_Client --> TCP_Socket_Server : send FIN
+
+    note left of TCP_Socket_Client #aqua
+        FIN_WAIT_1 state
+    end note
+
+    TCP_Socket_Client <-- TCP_Socket_Server: send ACK
+    note right TCP_Socket_Server
+        CLOSE WAIT State
+    end note
+
+    note left of TCP_Socket_Client #aqua
+        FIN_WAIT_2 state
+    end note
+    TCP_Socket_Client <-- TCP_Socket_Server: send FIN
+    note right TCP_Socket_Server
+        LAST_ACK State
+    end note
+
+    note left of TCP_Socket_Client #aqua
+        TIME_WATE state
+    end note
+
+    TCP_Socket_Client --> TCP_Socket_Server: Send ACK
+    note right TCP_Socket_Server
+        CLOSE State
+    end note
+
+    TCP_Socket_Client --> TCP_Socket_Client: Wait_timeout(30) secs
+    note left of TCP_Socket_Client #aqua
+        CLOSE state
+    end note
+
+end
+----
 
 === Reliablitity
 
