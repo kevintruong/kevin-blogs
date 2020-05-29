@@ -481,17 +481,54 @@ The purpose of this is control how much the sender will push data out network to
 
 ==== Low-Start
 
-* Slow start phase
+Using `cwnd` value to define how much data can be sent into network 1 cwnd mean 1 MSS package (1460 bytes).
+
+* Slow start phase Using explonential algorithm to speed up
+
+[source,align=center]
+----
+    cwnd = 1
+    cwnc = cwnd*2^n
+----
+
+n : nth success round trip
+
+For example:
+
+[source]
+----
+n = 0; cwnd = 1
+n = 1; cwnd = 2
+n = 2; cwnd = 4
+n = 3; cwnd = 8
+...
+----
 
 [.text-center]
 .*Slow Start Algorithm*
 image::tcp_slow_start_congestion_control.png[align=center]
 
-* Congestion avoidance phase
+* Congestion avoidance phase The phase start when there have congestion event.
+At the time congestion avoidance will slow increase cwnd
+
+[source]
+----
+cwnd = cwnd + 1
+----
+
+** Retransmission because timeout
+*** ssthresh = current cwnd / 2
+*** cwnd = 1
+*** restart low-start
+
+** Retransmission becasue 3 ACK duplicates
+*** ssthresh = current cwnd / 2
+*** cwnd = ssthresh
+*** using avoidance congestion increase
 
 [.text-center]
 .*Low Start Congestion Avoidance*
-image::tcp_low_start_congestion_avoid.png[align=center]
+image::tcp_congestion_slow_start_algorithm.png[align=center]
 
 ==== CUBIC
 
@@ -500,8 +537,6 @@ image::tcp_low_start_congestion_avoid.png[align=center]
 image::tcp_cubic_congestion_control.png[align=center]
 * Concave phase:
 * Convex phase:
-
-==== Bottleneck Bandwidth and RTT
 
 == Reference
 
