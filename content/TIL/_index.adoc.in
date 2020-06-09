@@ -3,6 +3,7 @@ title: "Today I learned"
 date: 2020-02-28T23:29:49+07:00
 tag: ["TIL","TodayILearn","todayilearn"]
 author: "Kevin Truong"
+weight: 100
 ---
 
 :projectdir: ../../

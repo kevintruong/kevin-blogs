@@ -1,0 +1,89 @@
+---
+title: "Writing - cheat sheet"
+date: 2020-02-28T23:29:49+07:00
+tag: ["writing"]
+draft: true
+author: "Kevin Truong"
+---
+
+:projectdir: ../../
+:imagesdir: ${projectdir}/assets/
+:toclevels: 4
+:toc:
+:toc: left
+:sectnums:
+:source-highlighter: coderay
+:sectnumlevels: 5
+
+== How We Write - My cheat sheet
+
+=== Use more verbs and fewer nouns
+
+When we’re writing, we tend to swap out verbs for nouns because nouns are seen as more professional.
+But when we're talking, we naturally use more verbs than nouns (after all, most of the time we're not sharing facts, we're telling stories).
+
+It turns out that written text flows more naturally when we use `more verbs than nouns as well`.
+It makes things shorter, too:
+
+* We made a decision to → We decided to
+* We conducted an analysis of → We analysed
+* We provide help to customers → We help customers
+
+Swap formal words for normal ones
+
+There's a whole lexicon of British "business-speak" that one can use to sound professional, but also needlessly distant.
+We try to avoid that:
+
+* Assistance → Help
+* Commence → Start
+* Enable → Let
+* Ensure → Make sure
+* Further → More
+* However → But (PS, it's fine to start a sentence with "but")
+* In order to → To
+* Obtain → Get
+* Provide → Give
+* Query → Question
+* Request → Ask
+* Require → Need
+* Resolve → Fix
+* Therefore → So
+* Utilise → Use
+
+== STYLE GUIDE
+
+=== RULES IN PRACTICE
+
+Once again - a foolish consistency is the hobgoblin of little minds.
+These guidelines won't always be appropriate.
+
+All documents and frameworks should be written to a high standard, even if they are first drafts.
+We should conduct our business in all things as if our work were to be published, in its current and raw form, by a major newspaper.
+
+* No spelling or grammatical errors.
+It's 2020. Spellcheck is good now.
+* Be consistent with tenses.
+* Don't use complex formatting/indentation/etc.
+If you couldn't easily format what you're saying in Notion, that's a bad sign.
+* One space after sentences.
+Two spaces is heresy!
+* Use the simplest language you can.
+Anyone at the company should be able to read the policy and understand it.
+* Natural language flow.
+Documents should read naturally, with each section following naturally from its previous one.
+Where asides or references are needed, put them in footnotes to preserve flow.
+* Leave no room for doubt.
+Whether or not an action is permitted by a given document should be made unambiguously clear with objective language.
+* Capitalise section headers consistently.
+We prefer sentence case (e.g. "Rules in practice", not "Rules in Practice") but we're not dogmatic - just make sure you use the same case throughout.
+* Define your terms.
+If you're using domain-specific terms, define them at first use.
+Avoid capitalising improper nouns.
+* Don't repeat yourself.
+If you're covering something that already exists in another document, reference and/or link to that document rather that repeating its content.
+* Respect your reader's time.
+Keep it short.
+Avoid sentences more than 20 words long.
+We've all got other things to do.
+
+== Reference
