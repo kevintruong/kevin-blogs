@@ -4,10 +4,10 @@ site:
 contents:
   - url: https://github.com/kevintruong/easy-framework.git
     path: content/projects/easy-framework
-    update: true
+    update: false
   - url: https://github.com/kevintruong/workspace-rsync.git
     path: content/projects/workspace-rsync
-    update: true
+    update: false
 actions:
   - action: index_generate
     paths:
