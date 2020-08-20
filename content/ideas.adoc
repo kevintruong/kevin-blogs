@@ -7,6 +7,10 @@ author: "Kevin Truong"
 disableToc: true
 ---
 
+== Brief
+I love to write down all my ideas, bad thing or good thing. By this way, I think It will keep up my motivation.
+
+
 === Docker + X11 + packer: Lightweight Development Environment Containers
 
 I read about `HashiCorp packer` and `HashiCorp Vagrant`.
@@ -25,7 +29,7 @@ yes, We need an unify development environment for a specific project Varand from
 The one I didn't like on Vagrant is that it will using VM machine As my thought it is take a lot resource of your PC.
 That I come to another ideal is using docker will X11. yes, I know about the weak point of docker with X11.
 
-=== How about build a sharing PC resoruce platform ?
+=== How about build a sharing PC Resource platform/Share PC resource economy ?
 
 Few weeks ago, I think about about build a sharing PC resource platform.
 We have 3 big cloud providers: AWS, GCP, Azure.
@@ -41,7 +45,7 @@ By this way we can have share economy model when the owner PC can get money from
 * AWS: free 100$
 * Azure: free 200$ ... etc
 
-How to build a abstract service provider which will communicate with all free cloud provider to create VM instance and let `End User` rent the VM Instance with really cheap price.
+How to build a abstract VM Instance provider which will communicate with all free cloud provider to create VM instance and let `End User` rent the VM Instance with really cheap price.
 When a free money is run out, just simple create new account.
 
 
