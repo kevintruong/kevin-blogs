@@ -1,0 +1,154 @@
+:sectnums:
+:source-highlighter: coderay
+:sectnumlevels: 5
+
+= Resume - Vu Truong Cong Hoan
+Léa Rumiz
+
+[.info]
+== !
+
+image:photo.jpg[role=profil]
+
+=== Vu Truong Cong Hoan
+
+[contact]
+- image:phone.svg[role="picto phone"] +84935731111
+- image:mail.svg[role="picto"] kevin.truong.ds@gmail.com
+- image:github-logo.svg[role="picto"] https://github.com/kevintruong
+
+=== !
+
+==== Skills set
+
+* Project/Product management
+* Git, Bash, Python, AsciiDoc, C/C++, Terraform, Ansible, plantuml,Docker
+* Software development skills set including:
+** UML, documentation, Diagram
+** Software architecture, software design.
+** Design pattern
+** Debugging
+* DevOps
+** Jenkins
+
+==== Interests
+
+- Hacker News/GitHub Explore
+- Open Source project
+- Treking / Travel
+
+[.chronologie]
+== !
+
+=== Professional experience
+
+==== Senior Embedded Engineer at VERIK SYSTEMS
+
+(June 2019 - Present)
+
+* Build Continuous Integrate process for VERIK Firmware team.
+** Bring up Jenkins and integrate with GitLab.
+** Training for team member about CI in Jenkins
+** Bring up WikiJs , Integrate with current system for document/knowledge base management
+* LinkSys outsourcing (https://www.linksys.com/us/velop/[LinkSys-Velop])
+** Design and implementation core engine of next Wi-Fi generate of LinkSys: `Wi-Fi as Service`
+** Implement protocol to communicate between cloud service and Wi-Fi device to enhance remote configure Wi-Fi
+* GreenWave-CenturyLink Outsourcing (C4000XG-C4000LG)
+** Implement and integrate features relative to:
+*** Static routing and dynamic routing
+*** DHCP - Implement some extra feature relate to DHCP based on `dnsmasq`
+** Maintainer and bug fixing
+
+==== Team Leader as RAVEN TEAM
+
+(Sep. 2018 - May 2019)
+
+* Team Lead for a Software as Service
+** Build PoC
+** Team up
+** Design and Implementation core engine of the SaS
+** Build a render system on demand and support simple cached mechanism to save CPU process time
+
+==== Senior Systems Engineer/Co-Founder at ELINKGATE
+
+(Jan.2015 - Jan.2019)
+
+* Design and implement VNC service for multiple platform Window,Linux and Osx
+* Design and implement the first UEFI VNC driver to allow remote control PC at Pre-Boot Environment
+* Protocol design and implementation Host Interface Stack to communicate with `ELink` device (USB device) through file/block interface
+
+==== Embedded Firmware Engineer - STYL Solutions
+
+(Oct.2012 - May.2014)
+
+* Implement NFC reader/writer
+* Research and optimize power consumption of NFC door lock in LPC Chipset (cortex M0+)
+* Implement gesture detector
+
+=== My Open Source Project
+
+When we stuck on an issue, we usually find solution on StackOverflow or GitHub.
+Yes, and I think I learned alot from opensource community.
+That's why I think I will have something to give back.
+
+Bellow are some opensource project I work on for practicing or sharing.
+
+==== https://github.com/kevintruong/easy-framework[Easy Framework]
+
+This is c framework.
+I make it so long time ago to practice about design pattern and learn about operation system.
+By using the project, we can quick and simple create an C application.
+The main idea is based on Event Driven and Infinite State Machine.
+
+Love to finish/stable the project but don't have time now.
+
+Features:
+
+* Simple and quick create C application
+* Support log
+* Support state machine and event driven
+* Support HAL to simple port the application to another platform
+
+==== https://github.com/kevintruong/workspace-rsync[Workspace Rsync]
+
+Simple and lightweight bash script can help to quick sync a change from local workspace to remote workspace.
+Support to upload resource to and download resource from remote workspace.
+Another useful of the tool is support to quickly run command on remote workspace.
+Features:
+
+* Support to force upload/download to/from local to remote
+* Support quick run command on remote side
+* Support monitoring files change and sync up
+
+==== https://github.com/kevintruong/ravenlrc[RavenLrc]
+
+The idea of the project is bring up a simple Software as service can help End User to quickly and simply create a lyric music video
+
+Feature:
+
+* Support FFmpeg to render video
+* Simple cached rendered layer to save resource
+* Simple crawler to get lyric/audio from internet
+* Support multiple lyric effect
+* Support Google Drive storage to store output
+
+==== https://github.com/kevintruong/kzefram[Kzeframe]
+
+==== Some articles in Medium and my blogs
+
+I think to become a good software engineer, beside that good in coding, design.
+I have to good on writing also.
+The writing skill will help me alot on detail my design, thought ... slow down the code flow for better quality.
+that's why I have a blog https://kencancode.xyz[here] and trying to public few of it to `Medium`
+
+===== https://medium.com/@vu.truongch/development-environment-boost-up-your-productivity-94e1b91dca69[Development Environment — Boost up your productivity]
+
+Explain about my development environment.
+
+===== https://kencancode.xyz/blogs/networking/tcp-what-you-need-to-know/[TCP Protocol: What you need to know]
+
+Back to foundamental, explain about TCP protocol and what you should know about the well know protocol
+
+==== https://kencancode.xyz/blogs/productive/git-describe-and-my-work-flow[Git internal]
+
+Overal about git internal, explain about internal structure of git
