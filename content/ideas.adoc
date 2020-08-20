@@ -34,3 +34,14 @@ I think the `Service Provider` here will like a distribute system.
 It will process the request from `End User`
 and run on free resource which registered service provider.
 By this way we can have share economy model when the owner PC can get money from their PC and `End User` will have a cheap option when comparing with the big three.
+
+=== Evil Idea - Building a abstract Cloud Service Provider
+
+* GCP: free 300$
+* AWS: free 100$
+* Azure: free 200$ ... etc
+
+How to build a abstract service provider which will communicate with all free cloud provider to create VM instance and let `End User` rent the VM Instance with really cheap price.
+When a free money is run out, just simple create new account.
+
+
