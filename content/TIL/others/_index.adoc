@@ -1,5 +1,5 @@
 ---
-title: "TIL by Interview questions"
+title: "TIL"
 date: 2020-02-28T23:29:49+07:00
 tag: ["TIL","TodayILearn","todayilearn"]
 author: "Kevin Truong"
@@ -14,7 +14,7 @@ author: "Kevin Truong"
 :source-highlighter: coderay
 :sectnumlevels: 5
 
-== TIL - TODAY I LEARN BY INTERVIEW QUESTIONS
+== TIL - TODAY I LEARN
 
 I usually read news/articles in HN (hacker news). And really excited and inspired by five-year-and-counting-collection by *Josh Branchaud* on GitHub.
 And I also learn from another guy *Simon Willison* about his ideal on using github action with some script to create his own
