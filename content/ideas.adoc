@@ -25,18 +25,12 @@ yes, We need an unify development environment for a specific project Varand from
 The one I didn't like on Vagrant is that it will using VM machine As my thought it is take a lot resource of your PC.
 That I come to another ideal is using docker will X11. yes, I know about the weak point of docker with X11.
 
-=== Telegram bot - anki card
+=== How about build a sharing PC resoruce platform ?
 
-Recently, I focus on retraing my english.
-Really want to up scale my English to next level.
-But I struggle on learning grammar and vocabulary as well.
-I thinking about a reminder Anki card telegram bot.
-With I will push all what I learned to the bot then it will auto create anki card for me.
-And send me about these cards daily.
-to remain me about what I learned.
-To transform short tern memory to long term memory.
-I could be a greate bot while I can used the bot on learning new skill also.
-Let do it tomorrow.
-
-
-
+Few weeks ago, I think about about build a sharing PC resource platform.
+We have 3 big cloud providers: AWS, GCP, Azure.
+But how about the new four, the whole personal PC in the world, imaging that we can build a software platform that every single PC will install the software and register with `service provider` that they want to share the resource of the PC. The `Service Provider` will receive request from `End User` want to rend CPU/GPU ...etc to process their request.
+I think the `Service Provider` here will like a distribute system.
+It will process the request from `End User`
+and run on free resource which registered service provider.
+By this way we can have share economy model when the owner PC can get money from their PC and `End User` will have a cheap option when comparing with the big three.
