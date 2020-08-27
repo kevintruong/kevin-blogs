@@ -1,7 +1,7 @@
 ---
-title: "Kzefram"
+title: "Kzefram - Simple utility to quickly create VM Instance and deploy dev env to the VM Instance"
 date: 2020-02-28T23:29:49+07:00
-tag: ["terraform","ansible","devops"]
+tag: ["embedded-system","programming","C/C++"]
 author: "Kevin Truong"
 ---
 
@@ -12,6 +12,6 @@ author: "Kevin Truong"
 :sectnums:
 :source-highlighter: coderay
 :sectnumlevels: 5
-:includedir: ./content/projects/kzefram/
+:includedir: ./content/projects/workspace-rsync/
 
 include::{includedir}/README.adoc[tags=readme]
