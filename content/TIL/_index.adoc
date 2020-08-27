@@ -25,8 +25,10 @@ the TIL like dictionary for my work.
 
 
 
-=== bash
+
+=== bash 
 * link:bash/bash_cheat_sheet[Bash Cheat Sheet] 2020-05-04
+* link:bash/terminal_stream_redirection[Terminal I/O streams and redirection] 2020-05-19
 
 
 === python 
@@ -34,9 +36,4 @@ the TIL like dictionary for my work.
 
 
 === C_Cpp 
-* link:c_cpp/embedded-c-object-oriented-programming-part-1[Embedded C - OOP approaching] 2020-05-03
 * link:c_cpp/fat_pointer[Fat pointer] 2020-05-07
-
-
-=== LBI 
-* link:lbi/global-static-object-evil[LBIQ- Why static or global object is evil] 2020-05-07

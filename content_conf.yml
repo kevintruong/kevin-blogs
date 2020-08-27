@@ -8,6 +8,10 @@ contents:
   - url: https://github.com/kevintruong/workspace-rsync.git
     path: content/projects/workspace-rsync
     update: false
+
+  - url: https://github.com/kevintruong/kzefram
+    path: content/projects/kzefram
+    update: false
 actions:
   - action: index_generate
     paths:

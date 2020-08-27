@@ -35,15 +35,16 @@ body {
 .header {
   background-color: #81c784;
   padding: .75rem;
-  padding-top: 4rem;
+  padding-top: 2rem;
 }
 
 h1 {
-  font-family: 'Bitter', serif;
+  font-family: 'Fira Sans', sans-serif;
 }
 
 h1, h2, h3, h4 {
   margin: 0;
+  font-family: 'Fira Sans', sans-serif;
 }
 
 p {
@@ -55,33 +56,37 @@ ul {
 }
 
 h1 {
+  font-family: 'Fira Sans', sans-serif;
   text-align: center;
   color: white;
 }
 
 .chronologie h2 {
+  font-family: 'Fira Sans', sans-serif;
   text-transform: uppercase;
   margin-top: .75rem;
   font-size: 1.8em;
   font-weight: 300;
+
 }
 
 .chronologie h3 {
   margin-top: 0.5rem;
   font-size: 1.2em;
+  font-family: 'Fira Sans', sans-serif;
 }
 
 .info h2 {
+  font-family: 'Fira Sans', sans-serif;
   font-size: 2em;
   text-align: center;
   padding-top: 0.4cm;
   padding-bottom: 0.4cm;
-  font-family: 'Bitter', serif;
 }
 
 .info .contact {
   text-align: center;
-  font-size: 9pt
+  font-size: 7pt
 }
 
 .info .contact a {
@@ -119,6 +124,7 @@ ul.atouts {
   border-top: 1pt solid grey;
   padding-bottom: 1rem;
   border-bottom: 1pt solid grey;
+  font-family: 'Fira Sans', sans-serif;
 }
 
 ul.atouts>li {
@@ -137,14 +143,16 @@ ul.contact {
 }
 
 #content>.info {
-  width: calc(5.2cm - 0.6cm);
+  width: calc(5.5cm - 0.6cm);
   background-color: #efefef;
   padding-left: 0.4cm;
   padding-right: 0.5cm;
   text-align: left;
+  font-family: 'Fira Sans', sans-serif;
 }
 
 #content>.chronologie {
+  font-family: 'Fira Sans', sans-serif;
   width: calc(15.8cm - 0.6cm);
   margin-left: 0.8cm;
   margin-right: 0.8cm;

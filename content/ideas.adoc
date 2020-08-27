@@ -8,8 +8,9 @@ disableToc: true
 ---
 
 == Brief
-I love to write down all my ideas, bad thing or good thing. By this way, I think It will keep up my motivation.
 
+I love to write down all my ideas, bad thing or good thing.
+By this way, I think It will keep up my motivation.
 
 === Docker + X11 + packer: Lightweight Development Environment Containers
 
